@@ -1,0 +1,9 @@
+{
+    "name": "buffer", 
+    "license": "MPL 1.1/GPL 2.0/LGPL 2.1", 
+    "author": "Joel Gascoigne", 
+    "version": "1.5", 
+    "fullName": "Buffer for Firefox", 
+    "id": "jid1-zUyU7TGKwejAyA", 
+    "description": "Add Tweets and Facebook posts to your Buffer from anywhere and we automagically share them for you through the day."
+}
