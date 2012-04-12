@@ -7,6 +7,8 @@ var self = require("self");
 var pageMod = require("page-mod");
 var selection = require("selection");
 var ss = require("simple-storage");
+var Hotkey = require('hotkeys');
+var contextMenu = require("context-menu");
 
 // Configuration
 var config = {};
@@ -79,3 +81,10 @@ var widget = widgets.Widget({
     }
 });
 
+// Hotkeys!
+Hotkey({
+    combo: "control-alt-b",
+    onPress: function () {
+        overlay();
+    }
+})
