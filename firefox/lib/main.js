@@ -4,102 +4,66 @@
 var widgets = require("widget");
 var tabs = require("tabs");
 var self = require("self");
-var data = self.data;
 var pageMod = require("page-mod");
 var selection = require("selection");
+var ss = require("simple-storage");
+var worker;
 
 // Configuration
 var config = {};
 config.attributes = [
     {
         name: "url",
-        get: function () {
-            return tabs.activeTab.url;
-        },
-        encode: function (val) {
-            return encodeURIComponent(val);
+        get: function (tab) {
+            return tab.url;
         }
     },
     {
         name: "text",
-        get: function () {
-            if(selection.text) return '"' = selection.text '"';
-            return tabs.activeTab.title;
-        },
-        encode: function (val) {
-            return encodeURIComponent(val);
-        }
-    },
-    {
-        name: "via",
-        get: function (val) {
-            return val;
-        },
-        encode: function (val) {
-            return val;
-        }
-    },
-    {
-        name: "count",
-        get: function (val) {
-            if( ! val || val.length < 1 ) return 'vertical';
-            return val;
-        },
-        encode: function (val) {
-            return val;
-        }
-    },
-    {
-        name: "picture",
-        get: function (val) {
-            return val;
-        },
-        encode: function (val) {
-            return encodeURIComponent(val);
+        get: function (tab) {
+            if(selection.text) return '"' + selection.text + '"';
+            return tab.title;
         }
     }
 ];
 
 config.plugin = {
-    attributes: [
-       {
-            name: "utm_source",
-            get: function (data) {
-                return encodeURIComponent(window.location.href);
-            }
-        },
-        {
-            name: "utm_medium",
-            get: function () {
-                return "buffer_plugin_firefox"
-            }
-        },
-        {
-            name: "utm_campaign",
-            get: function () {
-                return "buffer"
-            }
-        }
-    ]
+    label: "Add this page to your Buffer",
+    icon: "http://bufferapp.com/favicon.ico",
+    guide: 'http://bufferapp.com/guides/firefox'
 };
-
-// This should be abstracted out (it's duplicated)
-config.overlay = {
-    endpoint: 'http://bufferapp.com/bookmarklet/',
-    localendpoint: 'http://local.bufferapp.com/bookmarklet/',
-    getCSS: function () { return "border:none;height:100%;width:100%;position:fixed;z-index:99999999;top:0;left:0;"; }
-};
-
 
 // Main Plugin
 
-// Place icon in toolbar
+// Show guide on first run
+if( ! ss.storage.run ) {
+    ss.storage.run = true;
+    tabs.open({
+      url: config.plugin.guide,
+      inNewWindow: true
+    });
+}
+
+// Place icon in addon bar
 var widget = widgets.Widget({
     id: "buffer-button",
-    label: "Buffer this page",
-    contentURL: "http://bufferapp.com/favicon.ico",
-    onClick: function() {
-
+    label: config.plugin.label,
+    contentURL: config.plugin.icon,
+    onClick: function () {
+        
+        var tab = tabs.activeTab;
+        var worker = tab.attach({
+          contentScriptFile: self.data.url('buffer-overlay.js')
+        });
+        
+        var data = {};
+        for(var i=0; i < config.attributes.length; i++) {
+            var a = config.attributes[i];
+            data[a.name] = a.get(tab);
+        }
+        
+        worker.port.emit("buffer_data", data)
+        
     }
 });
 
