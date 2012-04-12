@@ -7,7 +7,6 @@ var self = require("self");
 var pageMod = require("page-mod");
 var selection = require("selection");
 var ss = require("simple-storage");
-var worker;
 
 // Configuration
 var config = {};
@@ -35,6 +34,32 @@ config.plugin = {
 
 // Main Plugin
 
+var active = false;
+
+var overlay = function() {
+    
+    if(active) return;
+    active = true;
+    
+    var tab = tabs.activeTab;
+    var worker = tab.attach({
+      contentScriptFile: self.data.url('buffer-overlay.js')
+    });
+    
+    var data = {};
+    for(var i=0; i < config.attributes.length; i++) {
+        var a = config.attributes[i];
+        data[a.name] = a.get(tab);
+    }
+    
+    worker.port.emit('buffer_data', data);
+    
+    worker.port.on('buffer_done', function() {
+        active = false;
+    })
+    
+};
+
 // Show guide on first run
 if( ! ss.storage.run ) {
     ss.storage.run = true;
@@ -50,20 +75,7 @@ var widget = widgets.Widget({
     label: config.plugin.label,
     contentURL: config.plugin.icon,
     onClick: function () {
-        
-        var tab = tabs.activeTab;
-        var worker = tab.attach({
-          contentScriptFile: self.data.url('buffer-overlay.js')
-        });
-        
-        var data = {};
-        for(var i=0; i < config.attributes.length; i++) {
-            var a = config.attributes[i];
-            data[a.name] = a.get(tab);
-        }
-        
-        worker.port.emit("buffer_data", data)
-        
+        overlay();
     }
 });
 

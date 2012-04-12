@@ -26,7 +26,11 @@ config.overlay = {
 
 // Listen for events
 self.port.on("buffer_data", function(data) {
-    OverlayIframe(data, function() {});
+    window.addEventListener('load', function () {
+        OverlayIframe(data, function() {
+            self.port.emit("buffer_done");
+        }); 
+    }) 
 });
 
 var OverlayIframe = function(data, doneCallback) {
