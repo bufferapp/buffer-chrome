@@ -7,7 +7,7 @@ var self = require("self");
 var pageMod = require("page-mod");
 var selection = require("selection");
 var ss = require("simple-storage");
-var Hotkey = require('hotkeys');
+var { Hotkey } = require('hotkeys');
 var contextMenu = require("context-menu");
 
 // Configuration
@@ -34,19 +34,33 @@ config.plugin = {
     guide: 'http://bufferapp.com/guides/firefox'
 };
 
-// Main Plugin
+// Show guide on first run
+
+if( ! ss.storage.run ) {
+    ss.storage.run = true;
+    tabs.open({
+      url: config.plugin.guide,
+      inNewWindow: true
+    });
+}
+
+// Buffer this page
 
 var active = false;
 
 var overlay = function() {
     
-    if(active) return;
+    if( active ) return;
     active = true;
     
     var tab = tabs.activeTab;
     var worker = tab.attach({
-      contentScriptFile: self.data.url('buffer-overlay.js')
+      contentScriptFile: [self.data.url('buffer-firefox.js'), self.data.url('buffer-overlay.js')]
     });
+    
+    worker.port.on('buffer_done', function() {
+       active = false;
+    })
     
     var data = {};
     for(var i=0; i < config.attributes.length; i++) {
@@ -56,20 +70,7 @@ var overlay = function() {
     
     worker.port.emit('buffer_data', data);
     
-    worker.port.on('buffer_done', function() {
-        active = false;
-    })
-    
 };
-
-// Show guide on first run
-if( ! ss.storage.run ) {
-    ss.storage.run = true;
-    tabs.open({
-      url: config.plugin.guide,
-      inNewWindow: true
-    });
-}
 
 // Place icon in addon bar
 var widget = widgets.Widget({
@@ -88,3 +89,6 @@ Hotkey({
         overlay();
     }
 })
+
+// Injection
+
