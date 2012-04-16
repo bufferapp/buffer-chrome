@@ -49,11 +49,11 @@
         }
     ];
     config.overlay = {
-        endpoint: 'https://bufferapp.com/bookmarklet/',
-        localendpoint: 'http://local.bufferapp.com/bookmarklet/',
+        endpoint: document.location.protocol + '//bufferapp.com/bookmarklet/',
+        localendpoint: document.location.protocol + '//local.bufferapp.com/bookmarklet/',
         getCSS: function () { return "border:none;height:100%;width:100%;position:fixed;z-index:99999999;top:0;left:0;"; }
     };
-    
+        
     var executeAfter = function(done, count, data, cb) {
         if(done === count) {
             setTimeout(function(){
