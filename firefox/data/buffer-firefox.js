@@ -49,7 +49,7 @@
         }
     ];
     config.overlay = {
-        endpoint: 'http://bufferapp.com/bookmarklet/',
+        endpoint: 'https://bufferapp.com/bookmarklet/',
         localendpoint: 'http://local.bufferapp.com/bookmarklet/',
         getCSS: function () { return "border:none;height:100%;width:100%;position:fixed;z-index:99999999;top:0;left:0;"; }
     };
@@ -77,6 +77,10 @@
     };
    
     var createOverlay = function (data) {
+        if( data.tweet ) {
+            data.text = data.tweet;
+            data.tweet = null;
+        }
         var count = config.attributes.length;
         for(var i=0; i < count; i++) {
             var a = config.attributes[i];

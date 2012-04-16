@@ -169,7 +169,6 @@ pageMod.PageMod({
     onAttach: function (worker) {
         worker.port.on('buffer_click', function (tweet) {
             // Buffer a tweet
-            console.log(tweet);
             attachOverlay({tweet: tweet});
         })
     }
