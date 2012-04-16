@@ -41,7 +41,11 @@ var cm = require("context-menu");
 var config = {};
 config.plugin = {
     label: "Buffer This Page",
-    icon: "http://bufferapp.com/favicon.ico",
+    icon: {
+        static: self.data.url('icons/buffer-icon.png'),
+        hover: self.data.url('icons/buffer-icon-hover.png'),
+        loading: self.data.url('icons/buffer-icon-loading.png')
+    },
     guide: 'http://bufferapp.com/guides/firefox',
     menu: {
         page: {
@@ -65,20 +69,27 @@ config.plugin = {
 };
 
 // Overlay
-var attachOverlay = function (image) {
-    if( ! image ) image = null;
+var attachOverlay = function (data, cb) {
+    
+    if( typeof data === 'function' ) cb = data;
+    if( ! data ) data = {};
+    if( ! cb ) cb = function () {};
     
     var worker = tabs.activeTab.attach({
         contentScriptFile: config.plugin.overlay.scripts
     });
     
     worker.port.on('buffer_get_image', function () {
-        worker.port.emit("buffer_image", image);
+        worker.port.emit("buffer_image", data.image);
+    });
+    
+    worker.port.on('buffer_get_tweet', function () {
+        worker.port.emit("buffer_tweet", data.tweet);
     });
     
     worker.port.on('buffer_done', function () {
-        //console.log("destroying");
-        //worker.destroy();
+        worker.destroy();
+        cb();
     });
 };
 
@@ -86,8 +97,7 @@ var attachOverlay = function (image) {
 if( ! ss.storage.run ) {
     ss.storage.run = true;
     tabs.open({
-      url: config.plugin.guide,
-      inNewWindow: true
+      url: config.plugin.guide
     });
 }
 
@@ -95,11 +105,24 @@ if( ! ss.storage.run ) {
 var button = widgets.Widget({
     id: 'buffer-button',
     label: config.plugin.label,
-    contentURL: config.plugin.icon
+    contentURL: config.plugin.icon.static,
+    onMouseover: function () {
+        if( this.contentURL !== config.plugin.icon.loading) {
+            this.contentURL = config.plugin.icon.hover;
+        }
+    },
+    onMouseout: function () {
+        if( this.contentURL !== config.plugin.icon.loading) {
+            this.contentURL = config.plugin.icon.static;
+        }
+    }
 })
-
 button.on('click', function () {
-    attachOverlay();  
+    prev = config.plugin.icon.loading;
+    button.contentURL = config.plugin.icon.loading;
+    attachOverlay(function() {
+        button.contentURL = config.plugin.icon.static;
+    });  
 })
 
 // Context menu
@@ -115,7 +138,7 @@ menu.page = cm.Item({
             attachOverlay();
         }
     }
-})
+});
 menu.selection = cm.Item({
     label: config.plugin.menu.selection.label,
     image: config.plugin.icon,
@@ -127,8 +150,7 @@ menu.selection = cm.Item({
             attachOverlay();
         }
     }
-})
-/*
+});
 menu.image = cm.Item({
     label: config.plugin.menu.image.label,
     image: config.plugin.icon,
@@ -136,7 +158,19 @@ menu.image = cm.Item({
     contentScriptFile: config.plugin.menu.image.scripts,
     contentScriptWhen: 'start',
     onMessage: function (image) {
-        attachOverlay(image);
+        attachOverlay({image: image});
     }
-})*/
+});
 
+// Twitter
+pageMod.PageMod({
+    include: '*.twitter.com',
+    contentScriptFile: config.plugin.twitter.scripts,
+    onAttach: function (worker) {
+        worker.port.on('buffer_click', function (tweet) {
+            // Buffer a tweet
+            console.log(tweet);
+            attachOverlay({tweet: tweet});
+        })
+    }
+});

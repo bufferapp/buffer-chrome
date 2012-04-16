@@ -1,8 +1,11 @@
-var OverlayIframe = function(data, config, doneCallback) {
+var bufferOverlay = function(data, config, doneCallback) {
+    
+    if( ! doneCallback ) doneCallback = function () {};
+    if( ! config ) return;
     
     var buildSrc = function() {
         var src = config.overlay.endpoint;
-        if(data.local) src = config.overlay.localendpoint;
+        if( data.local ) src = config.overlay.localendpoint;
         
         // Add button attributes
         var first = true, count = 0;

@@ -34,6 +34,18 @@
             encode: function (val) {
                 return encodeURIComponent(val);
             }
+        },
+        {
+            name: "tweet",
+            get: function (cb) {
+                self.port.on("buffer_tweet", function(data) {
+                    cb(data);
+                });
+                self.port.emit("buffer_get_tweet");
+            },
+            encode: function (val) {
+                return encodeURIComponent(val);
+            }
         }
     ];
     config.overlay = {
@@ -70,7 +82,7 @@
             var a = config.attributes[i];
             console.log(a.name, " : ", data[a.name]);
         }
-        OverlayIframe(data, config, function () {
+        bufferOverlay(data, config, function () {
             self.port.emit("buffer_done");
         });
     };
