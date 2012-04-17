@@ -1,5 +1,5 @@
 // Buffer for Firefox
-// Firefox-specific code
+// (sorta) Firefox-specific code
 //$(function () {
     
     var config = {};
