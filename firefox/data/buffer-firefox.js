@@ -49,8 +49,8 @@
         }
     ];
     config.overlay = {
-        endpoint: document.location.protocol + '//bufferapp.com/bookmarklet/',
-        localendpoint: document.location.protocol + '//local.bufferapp.com/bookmarklet/',
+        endpoint: document.location.protocol + '//bufferapp.com/add/',
+        localendpoint: document.location.protocol + '//local.bufferapp.com/add/',
         getCSS: function () { return "border:none;height:100%;width:100%;position:fixed;z-index:99999999;top:0;left:0;"; }
     };
         
