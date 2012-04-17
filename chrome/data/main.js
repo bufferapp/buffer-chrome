@@ -53,6 +53,31 @@ config.plugin = {
     }
 };
 
+// Overlay
+var attachOverlay = function (data, cb) {
+    
+    if( typeof data === 'function' ) cb = data;
+    if( ! data ) data = {};
+    if( ! cb ) cb = function () {};
+    
+    var worker = tabs.activeTab.attach({
+        contentScriptFile: config.plugin.overlay.scripts
+    });
+    
+    worker.port.on('buffer_get_image', function () {
+        worker.port.emit("buffer_image", data.image);
+    });
+    
+    worker.port.on('buffer_get_tweet', function () {
+        worker.port.emit("buffer_tweet", data.tweet);
+    });
+    
+    worker.port.on('buffer_done', function () {
+        worker.destroy();
+        cb();
+    });
+};
+
 // Show the guide on first run
 if( ! localStorage.getItem('buffer.run') ) {
     localStorage.setItem('buffer.run', true);
@@ -60,3 +85,8 @@ if( ! localStorage.getItem('buffer.run') ) {
         url: config.plugin.guide
     })
 }
+
+// Fire the overlay when the button is clicked
+chrome.browserAction.onClicked.addListener(function(tab) {
+    attachOverlay(function() {});
+});
