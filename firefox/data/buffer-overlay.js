@@ -31,8 +31,6 @@ var bufferOverlay = function(data, config, doneCallback) {
 	
 	temp.src = buildSrc();
 	
-	console.log(temp.src);
-	
 	document.body.appendChild(temp);
     
     // Bind close listener
