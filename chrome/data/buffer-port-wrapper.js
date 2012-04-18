@@ -29,7 +29,9 @@ var PortWrapper = function (port) {
         destroy: function () {
             sub = {};
             port = null;
-        }
+        },
+        name: port.name,
+        raw: port
     }
     
 };

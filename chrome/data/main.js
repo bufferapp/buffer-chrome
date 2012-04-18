@@ -107,3 +107,21 @@ chrome.contextMenus.create({
         attachOverlay({tab: tab});
     }
 });
+
+// Listen for twitter events
+chrome.extension.onConnect.addListener(function(chport) {
+    console.log("twitter-ping");
+    if( chport.name !== "buffer-twitter" ) return; 
+    console.log("yes! it's a twitter-ping");
+
+    var port = PortWrapper(chport);
+    var tab = port.raw.sender.tab;
+    
+    console.log("sender: ", tab.id);
+    
+    port.on("buffer_click", function (tweet) {
+       attachOverlay({tab: tab, tweet: tweet}); 
+    });
+    
+    
+});
