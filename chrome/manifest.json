@@ -7,7 +7,7 @@
 	},
 	"background_page": "buffer.html",
 	"permissions": [
-		"tabs"
+		"tabs", "http://*/*"
 	],
 	"icons": {
 		"16": "logo_icon_small.png",

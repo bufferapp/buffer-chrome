@@ -22,8 +22,8 @@ page mod        |                   | inject buffer links
                 |                   | buffer-twitter.js
 ------------------------------------------------------------                
 
-Ideally the second column would not be firefox specific, but differences
-between Webkit and Firefox's engine mean it might be neccessary.
+Ideally the second column would not be browser specific, but differences
+between extension APIs engine mean it's be neccessary.
 
 */
 
@@ -46,7 +46,7 @@ config.plugin = {
         },
     },
     overlay: {
-        scripts: []
+        scripts: ['data/buffer-port-wrapper.js', 'data/jquery-1.7.2.min.js', 'data/postmessage.js', 'data/buffer-overlay.js', 'data/buffer-chrome.js']
     },
     twitter: {
         scripts: []
@@ -54,28 +54,66 @@ config.plugin = {
 };
 
 // Overlay
+var executeAfter = function(done, count, data, cb) {
+    if(done === count) {
+        setTimeout(function(){
+            cb(data)
+        }, 0);
+    }
+};
+
+var attachScripts = function(tab, cb) {
+    
+    var scripts = config.plugin.overlay.scripts;
+    var i, length = scripts.length;
+    var done = 0;
+    
+    for( i=0; i < length; i++ ) {
+        console.log(scripts[i]);
+        chrome.tabs.executeScript(tab.id, {
+            file: scripts[i]
+        }, function () {
+            done += 1;
+            executeAfter(done, length, tab, cb);
+        });
+    }
+
+};
+
 var attachOverlay = function (data, cb) {
     
     if( typeof data === 'function' ) cb = data;
     if( ! data ) data = {};
     if( ! cb ) cb = function () {};
     
-    var worker = tabs.activeTab.attach({
-        contentScriptFile: config.plugin.overlay.scripts
+    var tab = data.tab;
+
+    attachScripts(tab, function (tab) {
+        
+        var port = PortWrapper(chrome.tabs.connect(tab.id));
+        
+        port.on('hello', function (data) {
+            console.log("hello! ", data);
+        });
+        
+        /*
+        port.on('buffer_get_image', function () {
+            port.emit("buffer_image", data.image);
+        });
+
+        port.on('buffer_get_tweet', function () {
+            port.emit("buffer_tweet", data.tweet);
+        });
+
+        port.on('buffer_done', function () {
+            setTimeout(function () {
+                cb();
+            }, 0);
+        });*/
+        
     });
     
-    worker.port.on('buffer_get_image', function () {
-        worker.port.emit("buffer_image", data.image);
-    });
     
-    worker.port.on('buffer_get_tweet', function () {
-        worker.port.emit("buffer_tweet", data.tweet);
-    });
-    
-    worker.port.on('buffer_done', function () {
-        worker.destroy();
-        cb();
-    });
 };
 
 // Show the guide on first run
@@ -88,5 +126,5 @@ if( ! localStorage.getItem('buffer.run') ) {
 
 // Fire the overlay when the button is clicked
 chrome.browserAction.onClicked.addListener(function(tab) {
-    attachOverlay(function() {});
+    attachOverlay({tab: tab}, function() {});
 });
