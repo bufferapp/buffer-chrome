@@ -91,12 +91,7 @@ var attachOverlay = function (data, cb) {
     attachScripts(tab, function (tab) {
         
         var port = PortWrapper(chrome.tabs.connect(tab.id));
-        
-        port.on('hello', function (data) {
-            console.log("hello! ", data);
-        });
-        
-        /*
+    
         port.on('buffer_get_image', function () {
             port.emit("buffer_image", data.image);
         });
@@ -109,7 +104,7 @@ var attachOverlay = function (data, cb) {
             setTimeout(function () {
                 cb();
             }, 0);
-        });*/
+        });
         
     });
     
