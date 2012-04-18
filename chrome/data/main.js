@@ -34,52 +34,18 @@ config.plugin = {
     guide: 'http://bufferapp.com/guides/chrome',
     menu: {
         page: {
-            label: "Buffer This Page",
-            scripts: []
+            label: "Buffer This Page"
         },
         selection: {
             label: "Buffer Selected Text"
         },
         image: {
-            label: "Buffer This Image",
-            scripts: []
+            label: "Buffer This Image"
         },
-    },
-    overlay: {
-        scripts: ['data/buffer-port-wrapper.js', 'data/jquery-1.7.2.min.js', 'data/postmessage.js', 'data/buffer-overlay.js', 'data/buffer-chrome.js']
-    },
-    twitter: {
-        scripts: []
     }
 };
 
 // Overlay
-var executeAfter = function(done, count, data, cb) {
-    if(done === count) {
-        setTimeout(function(){
-            cb(data)
-        }, 0);
-    }
-};
-
-var attachScripts = function(tab, cb) {
-    
-    var scripts = config.plugin.overlay.scripts;
-    var i, length = scripts.length;
-    var done = 0;
-    
-    for( i=0; i < length; i++ ) {
-        console.log(scripts[i]);
-        chrome.tabs.executeScript(tab.id, {
-            file: scripts[i]
-        }, function () {
-            done += 1;
-            executeAfter(done, length, tab, cb);
-        });
-    }
-
-};
-
 var attachOverlay = function (data, cb) {
     
     if( typeof data === 'function' ) cb = data;
@@ -87,27 +53,26 @@ var attachOverlay = function (data, cb) {
     if( ! cb ) cb = function () {};
     
     var tab = data.tab;
-
-    attachScripts(tab, function (tab) {
         
-        var port = PortWrapper(chrome.tabs.connect(tab.id));
-    
-        port.on('buffer_get_image', function () {
-            port.emit("buffer_image", data.image);
-        });
+    var port = PortWrapper(chrome.tabs.connect(tab.id));
 
-        port.on('buffer_get_tweet', function () {
-            port.emit("buffer_tweet", data.tweet);
-        });
+    port.on('buffer_get_image', function () {
+        port.emit("buffer_image", data.image);
+    });
 
-        port.on('buffer_done', function () {
-            setTimeout(function () {
-                cb();
-            }, 0);
-        });
-        
+    port.on('buffer_get_tweet', function () {
+        port.emit("buffer_tweet", data.tweet);
+    });
+
+    port.on('buffer_done', function () {
+        port.destroy();
+        port = null;
+        setTimeout(function () {
+            cb();
+        }, 0);
     });
     
+    port.emit("buffer_click");
     
 };
 
@@ -121,5 +86,24 @@ if( ! localStorage.getItem('buffer.run') ) {
 
 // Fire the overlay when the button is clicked
 chrome.browserAction.onClicked.addListener(function(tab) {
-    attachOverlay({tab: tab}, function() {});
+    attachOverlay({tab: tab});
+});
+
+// Context menus
+// Page
+chrome.contextMenus.create({
+    title: config.plugin.menu.page.label,
+    contexts: ["page"],
+    onclick: function (info, tab) {
+        attachOverlay({tab: tab});
+    }
+});
+
+// Selection
+chrome.contextMenus.create({
+    title: config.plugin.menu.selection.label,
+    contexts: ["selection"],
+    onclick: function (info, tab) {
+        attachOverlay({tab: tab});
+    }
 });

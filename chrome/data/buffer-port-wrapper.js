@@ -25,7 +25,11 @@ var PortWrapper = function (port) {
                 payload: payload
             });
         },
-        sub: function () { return sub; }
+        sub: function () { return sub; },
+        destroy: function () {
+            sub = {};
+            port = null;
+        }
     }
     
 };

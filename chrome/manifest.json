@@ -7,8 +7,12 @@
 	},
 	"background_page": "buffer.html",
 	"permissions": [
-		"tabs", "http://*/*"
+		"tabs", "http://*/*", "contextMenus"
 	],
+	"content_scripts": [{
+	  "matches": ["http://*/*", "https://*/*"],
+	  "js": ["data/buffer-port-wrapper.js", "data/jquery-1.7.2.min.js", "data/postmessage.js", "data/buffer-overlay.js", "data/buffer-chrome.js"]
+	}],
 	"icons": {
 		"16": "logo_icon_small.png",
 		"48": "logo_icon_large.png",
