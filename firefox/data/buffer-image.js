@@ -43,6 +43,7 @@ $(function () {
         anchor.className = "buffer-add-button";
         anchor.setAttribute('data-count', 'none');
         anchor.setAttribute('data-picture', image.src);
+        anchor.setAttribute('data-url', image.src); // TODO: remove this? Is this how pictures should work?
         
         buttonwrap.appendChild(anchor);
         
