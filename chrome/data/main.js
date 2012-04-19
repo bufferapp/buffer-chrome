@@ -5,26 +5,6 @@ Buffer for Chrome
 Authors: Joel Gascoigne         Tom Ashworth
          joel@bufferapp.com     tom.a@bufferapp.com
 
-Architecture
-
-addon           | content script
-------------------------------------------------------------
-browser-specific                    | non-specific
---OVERLAY---------------------------------------------------
-widgets         | gather data       | create iframe
-context menu    | go iframe         | close iframe
-hotkeys         | notify plugin     |
-                |                   |
-main.js         | buffer-chrome.js  | buffer-overlay.js
---TWITTER---------------------------------------------------
-page mod        |                   | inject buffer links
-                |                   |
-                |                   | buffer-twitter.js
-------------------------------------------------------------                
-
-Ideally the second column would not be browser specific, but differences
-between extension APIs engine mean it's be neccessary.
-
 */
 
 // Configuration
