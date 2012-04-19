@@ -4,6 +4,7 @@ $(function() {
         var bufferChrome = function () {
             
             var config = {};
+            config.local = false;
             config.attributes = [
                 {
                     name: "url",
@@ -47,11 +48,20 @@ $(function() {
                     encode: function (val) {
                         return encodeURIComponent(val);
                     }
+                },
+                {
+                    name: "local",
+                    get: function (cb) {
+                        cb(config.local);  
+                    },
+                    encode: function (val) {
+                        return encodeURIComponent(val);
+                    }
                 }
             ];
             config.overlay = {
-                endpoint: document.location.protocol + '//bufferapp.com/add/',
-                localendpoint: document.location.protocol + '//local.bufferapp.com/add/',
+                endpoint: (config.local ? 'http:' : document.location.protocol) + '//bufferapp.com/add/',
+                localendpoint: (config.local ? 'http:' : document.location.protocol) + '//local.bufferapp.com/add/',
                 getCSS: function () { return "border:none;height:100%;width:100%;position:fixed;z-index:99999999;top:0;left:0;"; }
             };
 
@@ -68,12 +78,16 @@ $(function() {
                 var done = 0;
                 var data = {};
                 for(var i=0; i < count; i++) {
-                    var a = config.attributes[i];
-                    a.get(function(d) {
-                        done += 1;
-                        data[a.name] = d;
-                        executeAfter(done, count, data, cb);
-                    });
+                    // Wrapped in a self-executing function to ensure we don't overwrite ‘a’
+                    // and that the correct ‘i’ is used
+                    (function (i) {
+                        var a = config.attributes[i];
+                        a.get(function(d) {
+                            done += 1;
+                            data[a.name] = d;
+                            executeAfter(done, count, data, cb);
+                        });
+                    }(i));
                 }
             };
 
@@ -81,6 +95,7 @@ $(function() {
                 if( data.tweet ) {
                     data.text = data.tweet;
                     data.tweet = null;
+                    data.url = null;
                 }
                 var count = config.attributes.length;
                 for(var i=0; i < count; i++) {
