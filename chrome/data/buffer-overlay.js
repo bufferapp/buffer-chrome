@@ -143,7 +143,7 @@ var bufferData = function () {
         var count = config.attributes.length;
         for(var i=0; i < count; i++) {
             var a = config.attributes[i];
-            console.log(a.name, " : ", data[a.name]);
+            //console.log(a.name, " : ", data[a.name]);
         }
         bufferOverlay(data, config, function () {
             self.port.emit("buffer_done");

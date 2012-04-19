@@ -1,7 +1,6 @@
 // Buffer for Firefox
-// (sorta) Firefox-specific code
-//$(function () {
+$(function () {
     
     bufferData();
     
-//});
+});
