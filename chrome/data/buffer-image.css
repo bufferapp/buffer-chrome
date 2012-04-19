@@ -13,3 +13,6 @@
 .buffer-image:active {
     background-position: 0 -40px;
 }
+.buffer-image iframe {
+    border-radius: 5px;
+}
