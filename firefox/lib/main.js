@@ -45,6 +45,9 @@ config.plugin = {
     },
     twitter: {
         scripts: [self.data.url('jquery-1.7.2.min.js'), self.data.url('buffer-twitter.js')]
+    },
+    picture: {
+        scripts: [self.data.url('jquery-1.7.2.min.js'), self.data.url('buffer-image-css.js'), self.data.url('buffer-image.js')]
     }
 };
 
@@ -152,4 +155,10 @@ pageMod.PageMod({
             attachOverlay({tweet: tweet});
         })
     }
+});
+
+// Pictures
+pageMod.PageMod({
+    include: '*',
+    contentScriptFile: config.plugin.picture.scripts
 });
