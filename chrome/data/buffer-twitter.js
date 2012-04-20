@@ -7,6 +7,7 @@ $(function() {
 	config.buttons = [
 	    {
 	        name: "composer",
+	        text: "Buffer",
     	    container: 'div.tweet-button-sub-container',
 	        after: 'input.tweet-counter',
 	        className: 'buffer-tweet-button btn disabled',
@@ -20,12 +21,27 @@ $(function() {
 	            var target = $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor');
 	            $(target).on('keyup focus', function (e) {
 	                var val = $(this).val();
-	                if ( val.length > 0 && val !== "Compose new Tweet...") {
+	                var counter = $(elem).siblings('.tweet-counter').val();
+	                if ( val.length > 0 && counter > -1 && val !== "Compose new Tweet...") {
 	                    $(elem).removeClass('disabled');
 	                } else {
 	                    $(elem).addClass('disabled');
 	                }
 	            });
+	        }
+        },
+        {
+	        name: "retweet",
+	        text: "Buffer Retweet",
+    	    container: '#retweet-dialog div.twttr-prompt',
+	        after: 'div.js-prompt-ok',
+	        className: 'buffer-tweet-button btn',
+	        style: 'border: 1px solid #40873B; padding-left: 26px; color: white!important; text-shadow: none; font-weight: normal;',
+	        http: 'background: #4C9E46 url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px;',
+	        https: 'background: #4C9E46 url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px;',
+	        data: function (elem) {
+	            var c = $(elem).parents().siblings('.twttr-dialog-reply-footer');
+	            return 'RT @' + c.find('.twttr-reply-screenname').text().trim() + ' "' + c.find('.js-tweet-text').text().trim() + '"';
 	        }
         }
 	];
@@ -39,7 +55,7 @@ $(function() {
     	    a.setAttribute('class', btnConfig.className);
     	    a.setAttribute('style', btnConfig.style + (document.location.protocol == 'http:' ? btnConfig.http : btnConfig.https));
     	    a.setAttribute('href', '#');
-    	    a.innerText = "Buffer";
+    	    a.innerText = btnConfig.text;
 
     	    return a;
 
@@ -64,12 +80,14 @@ $(function() {
 
         	        $(container).find(btnConfig.after).after(btn);
 
-        	        console.log(btn);
+        	        console.log(container);
 
-    	            btnConfig.activator(btn);
+    	            if (btnConfig.activator) btnConfig.activator(btn);
+    	            
+    	            var getData = btnConfig.data;
 
         	        $(btn).click(function (e) {
-        	            self.port.emit("buffer_click", btnConfig.data(btn));
+        	            self.port.emit("buffer_click", getData(btn));
         	        });
                     
                 })
