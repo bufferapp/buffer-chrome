@@ -80,8 +80,6 @@ $(function() {
 
         	        $(container).find(btnConfig.after).after(btn);
 
-        	        console.log(container);
-
     	            if (btnConfig.activator) btnConfig.activator(btn);
     	            
     	            var getData = btnConfig.data;
@@ -98,6 +96,7 @@ $(function() {
 
     	insertButtons();
 
+        /*
     	function fixLinksInTweet(el, buffer_text) {
     		var tweet_obj = $(el).parents('div.tweet').find('div.tweet-text');
     		var tweet_links = tweet_obj.find('a.twitter-timeline-link');
@@ -229,6 +228,7 @@ $(function() {
     	}
 
     	checkForTweets();
+    	*/
 
     	setTimeout(bufferTwitter, 500);
 
