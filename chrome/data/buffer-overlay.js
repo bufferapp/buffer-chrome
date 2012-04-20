@@ -44,7 +44,7 @@ var bufferOverlay = function(data, config, doneCallback) {
     
 };
 
-var bufferData = function () {
+var bufferData = function (port) {
     
     var config = {};
     config.local = false;
@@ -71,22 +71,22 @@ var bufferData = function () {
         {
             name: "picture",
             get: function (cb) {
-                self.port.on("buffer_image", function(data) {
+                port.on("buffer_image", function(data) {
                     cb(data);
                 });
-                self.port.emit("buffer_get_image");
+                port.emit("buffer_get_image");
             },
             encode: function (val) {
                 return encodeURIComponent(val);
             }
         },
         {
-            name: "tweet",
+            name: "embed",
             get: function (cb) {
-                self.port.on("buffer_tweet", function(data) {
+                port.on("buffer_embed", function(data) {
                     cb(data);
                 });
-                self.port.emit("buffer_get_tweet");
+                port.emit("buffer_get_embed");
             },
             encode: function (val) {
                 return encodeURIComponent(val);
@@ -135,9 +135,9 @@ var bufferData = function () {
     };
 
     var createOverlay = function (data) {
-        if( data.tweet ) {
-            data.text = data.tweet;
-            data.tweet = null;
+        if( data.embed ) {
+            data.text = data.embed;
+            data.embed = null;
             data.url = null;
         }
         var count = config.attributes.length;
@@ -146,7 +146,7 @@ var bufferData = function () {
             //console.log(a.name, " : ", data[a.name]);
         }
         bufferOverlay(data, config, function () {
-            self.port.emit("buffer_done");
+            port.emit("buffer_done");
         });
     };
 

@@ -1,10 +1,10 @@
 $(function() {
     chrome.extension.onConnect.addListener(function(chport) {
         
-        self.port = PortWrapper(chport);
+        var overlayPort = PortWrapper(chport);
         
-        self.port.on("buffer_click", function() {
-            bufferData();
+        overlayPort.on("buffer_click", function() {
+            bufferData(overlayPort);
         });
   
     });

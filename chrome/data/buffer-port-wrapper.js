@@ -20,6 +20,8 @@ var PortWrapper = function (port) {
             sub[type].push(cb);
         },
         emit: function(type, payload) {
+            console.log(type, payload);
+            console.log(port);
             port.postMessage({
                 type: type,
                 payload: payload
