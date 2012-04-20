@@ -14,10 +14,10 @@
 	  "js": ["data/buffer-port-wrapper.js", "data/jquery-1.7.2.min.js", "data/postmessage.js", "data/buffer-overlay.js", "data/buffer-chrome.js"]
 	},{
   	"matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
-	  "js": ["data/buffer-port-wrapper.js", "data/jquery-1.7.2.min.js", "data/postmessage.js", "data/buffer-chrome-embed.js", "data/buffer-twitter.js"]
+	  "js": ["data/buffer-chrome-embed.js", "data/buffer-twitter.js"]
 	},{
       "matches": ["http://news.ycombinator.com/*"],
-  	  "js": ["data/buffer-port-wrapper.js", "data/jquery-1.7.2.min.js", "data/postmessage.js", "data/buffer-chrome-embed.js", "data/buffer-hn.js"]
+  	  "js": ["data/buffer-chrome-embed.js", "data/buffer-hn.js"]
   	}],
 	"icons": {
 		"16": "logo_icon_small.png",

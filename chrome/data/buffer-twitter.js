@@ -84,8 +84,7 @@ $(function() {
     	            
     	            var getData = btnConfig.data;
 
-        	        $(btn).click(function (e) {
-        	            console.log("click");
+        	        $(btn).click(function (e) {        	            
         	            self.port.emit("buffer_click", getData(btn));
         	            e.preventDefault();
         	        });
