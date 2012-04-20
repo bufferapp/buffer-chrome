@@ -3,7 +3,15 @@ $(function () {
     var config = {};
     config.image = {
         attribute: 'data-buffer-id',
-        min: 300,
+        size: {
+            width: 100,
+            height: 100,
+            diagonal: 300
+        },
+        aspect: {
+          max: 40,
+          min: 0.4  
+        },
         opacity: {
             idle: 0.2,
             active: 1
@@ -101,16 +109,37 @@ $(function () {
         
     };
 
-    var calcSize = function(size, y) {
-        var t = size,
-        x = 0;
-        if (!y) {
-            x = size.x;
-            y = size.y;
-        } else {
-            x = size;
+    var calcSize = function(size) {
+        return Math.pow(Math.pow(size.x, 2) + Math.pow(size.y, 2), 0.5);
+    };
+    
+    var calcGCD = function(size) {
+        var a = size.x, b = size.y;
+        var remander = 0;
+        while (b !== 0) {
+            remainder = a % b;
+            a = b;
+            b = remainder;
         }
-        return Math.pow(Math.pow(x, 2) + Math.pow(y, 2), 0.5);
+        return Math.abs(a);
+    };
+    
+    var calcAspect = function(size) {
+        if ( ! size.x || ! size.y ) return 1;
+        var gcd = calcGCD(size);
+        return (size.x / gcd) / (size.y / gcd);
+    };
+    
+    var checkSize = function(size) {
+        
+        if ( calcSize(size) < config.image.size.diagonal ) return false;
+        if ( size.x < config.image.size.width ) return false;
+        if ( size.y < config.image.size.height ) return false;
+        var aspect = calcAspect(size);
+        if ( aspect < config.image.aspect.min || aspect > config.image.aspect.max ) return false;
+        
+        return true;
+        
     };
 
     $('body')
@@ -121,7 +150,8 @@ $(function () {
             y: $(this).height()
         };
 
-        if (calcSize(size) < config.image.min) {
+        if ( ! checkSize(size) ) {
+            console.log("image refused");
             return;
         }
         
@@ -161,7 +191,7 @@ $(function () {
             y: $(this).height()
         };
 
-        if (calcSize(size) > config.image.min) {
+        if ( checkSize(size) ) {
             addButton(this);
         } 
     });
