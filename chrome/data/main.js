@@ -100,8 +100,9 @@ chrome.extension.onConnect.addListener(function(chport) {
     var port = PortWrapper(chport);
     var tab = port.raw.sender.tab;
     
+    console.log(tab.url);
+    
     port.on("buffer_click", function (embed) {
-        console.log("recieved click");
         attachOverlay({tab: tab, embed: embed}); 
     });
     
