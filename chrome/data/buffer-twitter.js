@@ -10,7 +10,9 @@ $(function() {
     	    container: 'div.tweet-button-sub-container',
 	        after: 'input.tweet-counter',
 	        className: 'buffer-tweet-button btn disabled',
-	        style: 'background: #4C9E46 url(http://static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px; border: 1px solid #40873B; padding-left: 26px; color: white!important; text-shadow: none; font-weight: normal; top: -1px;',
+	        style: 'border: 1px solid #40873B; padding-left: 26px; color: white!important; text-shadow: none; font-weight: normal; top: -1px;',
+	        http: 'background: #4C9E46 url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px;',
+	        https: 'background: #4C9E46 url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px;',
 	        data: function (elem) {
 	            return $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val()
 	        },
@@ -35,7 +37,7 @@ $(function() {
 
     	    var a = document.createElement('a');
     	    a.setAttribute('class', btnConfig.className);
-    	    a.setAttribute('style', btnConfig.style);
+    	    a.setAttribute('style', btnConfig.style + (document.location.protocol == 'http:' ? btnConfig.http : btnConfig.https));
     	    a.setAttribute('href', '#');
     	    a.innerText = "Buffer";
 
@@ -50,21 +52,27 @@ $(function() {
 
     	        var btnConfig = config.buttons[i];
                 
-                var container = $(btnConfig.container);
-    	        
-    	        if ( $(container).hasClass('buffer-inserted') ) continue;
-    	        
-    	        $(container).addClass('buffer-inserted');
-    	        
-    	        var btn = createButton(btnConfig);
+                $(btnConfig.container).each(function () {
+                    
+                    var container = $(this);
+                    
+                    if ( $(container).hasClass('buffer-inserted') && $(container).find('buffer-tweet-button') ) return;
 
-    	        $(container).find(btnConfig.after).after(btn);
-    	        
-	            btnConfig.activator(btn);
-    	        
-    	        $(btn).click(function (e) {
-    	            self.port.emit("buffer_click", btnConfig.data(btn));
-    	        });
+        	        $(container).addClass('buffer-inserted');
+
+        	        var btn = createButton(btnConfig);
+
+        	        $(container).find(btnConfig.after).after(btn);
+
+        	        console.log(btn);
+
+    	            btnConfig.activator(btn);
+
+        	        $(btn).click(function (e) {
+        	            self.port.emit("buffer_click", btnConfig.data(btn));
+        	        });
+                    
+                })
 
     	    }
 
