@@ -43,10 +43,6 @@ var attachOverlay = function (data, cb) {
     port.on('buffer_get_embed', function () {
         port.emit("buffer_embed", data.embed);
     });
-    
-    port.on("buffer_click", function () {
-        console.log("recieved click in ATTACH");
-    })
 
     port.on('buffer_done', function () {
         port.destroy();

@@ -1,4 +1,3 @@
-console.log("inserting hn");
 $(function() {
     
     var config = {};

@@ -150,10 +150,7 @@ $(function () {
             y: $(this).height()
         };
 
-        if ( ! checkSize(size) ) {
-            console.log("image refused");
-            return;
-        }
+        if ( ! checkSize(size) ) return;
         
         if( ! this.hasAttribute(config.image.attribute) ) {
             addButton(this);
