@@ -12,7 +12,10 @@ $(function() {
 	            var title = $(article).text().trim();
 	            var link = $(article).attr('href').trim();
 	            
-	            return title + ' ' + link;
+	            return {
+	                text: title,
+	                url: link
+                };
 	        }
         }
 	];

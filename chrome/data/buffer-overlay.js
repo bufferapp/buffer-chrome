@@ -136,9 +136,15 @@ var bufferData = function (port) {
 
     var createOverlay = function (data) {
         if( data.embed ) {
-            data.text = data.embed;
-            data.embed = null;
-            data.url = null;
+            if( typeof data.embed === "object" ) {
+                data.text = data.embed.text;
+                data.url = data.embed.url;
+                data.embed = null;
+            } else {
+                data.text = data.embed;
+                data.url = null;
+                data.embed = null;
+            }
         }
         var count = config.attributes.length;
         for(var i=0; i < count; i++) {
