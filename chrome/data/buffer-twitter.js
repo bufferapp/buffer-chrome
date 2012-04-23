@@ -12,6 +12,7 @@ $(function() {
 	        after: 'input.tweet-counter',
 	        className: 'buffer-tweet-button btn disabled',
 	        style: 'border: 1px solid #40873B; padding-left: 26px; color: white!important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
+	        hover: 'box-shadow: inset 0 0 30px rgba(0,0,0,.2);',
 	        http: 'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
 	              'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);',
 	        https:'background: url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
@@ -39,6 +40,7 @@ $(function() {
 	        after: 'div.js-prompt-ok',
 	        className: 'buffer-tweet-button btn',
 	        style: 'border: 1px solid #40873B; padding-left: 26px; color: white!important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
+	        hover: 'box-shadow: inset 0 0 30px rgba(0,0,0,.2);',
 	        http: 'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
 	              'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);',
 	        https:'background: url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
@@ -60,6 +62,12 @@ $(function() {
     	    a.setAttribute('style', btnConfig.style + (document.location.protocol == 'http:' ? btnConfig.http : btnConfig.https));
     	    a.setAttribute('href', '#');
     	    a.innerText = btnConfig.text;
+    	    
+    	    $(a).hover(function () {
+                $(this).attr('style', btnConfig.style + (document.location.protocol == 'http:' ? btnConfig.http : btnConfig.https) + btnConfig.hover);
+            }, function() {
+                $(this).attr('style', btnConfig.style + (document.location.protocol == 'http:' ? btnConfig.http : btnConfig.https));
+            });
 
     	    return a;
 
