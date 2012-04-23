@@ -8,17 +8,9 @@ $(function() {
     	    container: 'td.subtext',
 	        className: 'buffer-hn-button',
 	        data: function (elem) {
-	            var title = $(elem).parents('tr').prev('tr').find('.title').children('a').text().trim();
-	            
-	            var siblings = $(elem).siblings('a');
-	            var i, l = siblings.length;
-	            var link = config.base;
-	            for( i=0; i < l; i++ ) {
-	                var a = siblings[i];
-	                if( $(a).text().indexOf('comment') !== -1 ) {
-	                    link += $(a).attr('href').trim();
-	                }
-	            }
+	            var article = $(elem).parents('tr').prev('tr').find('.title').children('a');
+	            var title = $(article).text().trim();
+	            var link = $(article).attr('href').trim();
 	            
 	            return title + ' ' + link;
 	        }
@@ -61,6 +53,7 @@ $(function() {
 
     	        $(btn).click(function (e) {
     	            self.port.emit("buffer_click", getData(btn));
+    	            e.preventDefault();
     	        });
                 
             })
