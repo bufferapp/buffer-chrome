@@ -11,9 +11,11 @@ $(function() {
     	    container: 'div.tweet-button-sub-container',
 	        after: 'input.tweet-counter',
 	        className: 'buffer-tweet-button btn disabled',
-	        style: 'border: 1px solid #40873B; padding-left: 26px; color: white!important; text-shadow: none; font-weight: normal; top: -1px;',
-	        http: 'background: #4C9E46 url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px;',
-	        https: 'background: #4C9E46 url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px;',
+	        style: 'border: 1px solid #40873B; padding-left: 26px; color: white!important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
+	        http: 'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
+	              'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);',
+	        https:'background: url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
+	              'background: url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px, -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);',
 	        data: function (elem) {
 	            return $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val()
 	        },
@@ -36,10 +38,12 @@ $(function() {
     	    container: '#retweet-dialog div.twttr-prompt',
 	        after: 'div.js-prompt-ok',
 	        className: 'buffer-tweet-button btn',
-	        style: 'border: 1px solid #40873B; padding-left: 26px; color: white!important; text-shadow: none; font-weight: normal;',
-	        http: 'background: #4C9E46 url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px;',
-	        https: 'background: #4C9E46 url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px;',
-	        data: function (elem) {
+	        style: 'border: 1px solid #40873B; padding-left: 26px; color: white!important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
+	        http: 'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
+	              'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);',
+	        https:'background: url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
+	              'background: url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px, -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);',
+			data: function (elem) {
 	            var c = $(elem).parents().siblings('.twttr-dialog-reply-footer');
 	            return 'RT @' + c.find('.twttr-reply-screenname').text().trim() + ': ' + c.find('.js-tweet-text').text().trim() + '';
 	        }
