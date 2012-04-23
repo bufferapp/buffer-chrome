@@ -41,7 +41,7 @@ $(function() {
 	        https: 'background: #4C9E46 url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px;',
 	        data: function (elem) {
 	            var c = $(elem).parents().siblings('.twttr-dialog-reply-footer');
-	            return 'RT @' + c.find('.twttr-reply-screenname').text().trim() + ' "' + c.find('.js-tweet-text').text().trim() + '"';
+	            return 'RT @' + c.find('.twttr-reply-screenname').text().trim() + ': ' + c.find('.js-tweet-text').text().trim() + '';
 	        }
         }
 	];
