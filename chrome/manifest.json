@@ -19,7 +19,7 @@
     	  "js": ["data/buffer-chrome-embed.js", "data/buffer-twitter.js"]
     	},
     	{
-          "matches": ["http://*.ycombinator.org/*"],
+          "matches": ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*"],
       	  "js": ["data/buffer-chrome-embed.js", "data/buffer-hn.js"]
       	}
   	],
