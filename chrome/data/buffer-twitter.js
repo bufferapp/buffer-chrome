@@ -6,7 +6,7 @@ $(function() {
     var config = {};
     config.time = {
         success: {
-            delay: 1000
+            delay: 2000
         }
     };
 	config.buttons = [
@@ -21,13 +21,13 @@ $(function() {
 	        hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
 	        active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
 	        data: function (elem) {
-	            return 
+	            return $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val();
 	        },
 	        clear: function (elem) {
 	            var target = $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val("Buffered!");
 	            setTimeout(function () {
 	               $(target).val(''); 
-	            } config.time.success.delay)
+	            }, config.time.success.delay)
 	        },
 	        activator: function (elem, btnConfig) {
 	            var target = $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor');
