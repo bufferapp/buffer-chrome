@@ -15,11 +15,15 @@ $(function() {
 	        hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
 	        active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
 	        data: function (elem) {
-	            return $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val()
+	            return $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val();
+	        },
+	        wipe: function(elem) {
+	            $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val('Compose new Tweet...');
+	            $(elem).parents('.tweet-box').addClass('condensed');
 	        },
 	        activator: function (elem, btnConfig) {
 	            var target = $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor');
-	            $(target).on('keyup focus', function (e) {
+	            $(target).on('keyup focus blur change paste cut', function (e) {
 	                var val = $(this).val();
 	                var counter = $(elem).siblings('.tweet-counter').val();
 	                if ( val.length > 0 && counter > -1 && val !== "Compose new Tweet...") {
@@ -57,9 +61,13 @@ $(function() {
     	    a.innerText = btnConfig.text;
     	    
     	    $(a).hover(function () {
-    	        if( $(this).hasClass("disabled") ) return;
+    	        if( $(this).hasClass("disabled") ) {
+    	            $(this).attr('style', '');
+    	            return;
+	            }
                 $(this).attr('style', btnConfig.style + btnConfig.hover);
             }, function() {
+                if( $(this).hasClass("disabled") ) return;
                 $(this).attr('style', btnConfig.style);
             });
             
@@ -96,13 +104,24 @@ $(function() {
 
         	        $(container).find(btnConfig.after).after(btn);
 
-    	            if (btnConfig.activator) btnConfig.activator(btn, btnConfig);
+    	            if ( !! btnConfig.activator) btnConfig.activator(btn, btnConfig);
     	            
     	            var getData = btnConfig.data;
+    	            var wipeData = btnConfig.wipe;
+    	            
+    	            var clearcb = function () {};
 
-        	        $(btn).click(function (e) {        	            
+        	        $(btn).click(function (e) {
+        	            clearcb = function () { // allow clear to be called for this button
+            	            if ( !! wipeData ) wipeData(btn);
+            	        };
         	            self.port.emit("buffer_click", getData(btn));
         	            e.preventDefault();
+        	        });
+        	        
+        	        self.port.on("buffer_twitter_clear", function () {
+                        clearcb();
+        	            clearcb = function () {}; // prevent clear from being called again, until the button is clicked again
         	        });
                     
                 })

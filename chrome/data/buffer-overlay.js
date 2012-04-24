@@ -34,11 +34,11 @@ var bufferOverlay = function(data, config, doneCallback) {
 	document.body.appendChild(temp);
     
     // Bind close listener
-	bufferpm.bind("buffermessage", function(data) {
+	bufferpm.bind("buffermessage", function(overlaydata) {
 		document.body.removeChild(temp);
 		bufferpm.unbind("buffermessage");
 		setTimeout(function () {
-		    doneCallback(data);
+		    doneCallback(overlaydata);
 	    }, 0);
 	});
     
@@ -146,13 +146,8 @@ var bufferData = function (port) {
                 data.embed = null;
             }
         }
-        var count = config.attributes.length;
-        for(var i=0; i < count; i++) {
-            var a = config.attributes[i];
-            //console.log(a.name, " : ", data[a.name]);
-        }
-        bufferOverlay(data, config, function () {
-            port.emit("buffer_done");
+        bufferOverlay(data, config, function (overlaydata) {
+            port.emit("buffer_done", overlaydata);
         });
     };
 
