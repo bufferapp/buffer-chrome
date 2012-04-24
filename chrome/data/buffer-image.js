@@ -56,7 +56,7 @@ $(function () {
         buttonwrap.appendChild(anchor);
         
         var script = document.createElement('script');
-        script.src = "http://static.bufferapp.com/js/button.js";
+        script.src = "//static.bufferapp.com/js/button.js";
         
         buttonwrap.appendChild(script);
         

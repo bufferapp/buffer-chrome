@@ -12,7 +12,8 @@
 	"content_scripts": [
 	    {
     	  "matches": ["http://*/*", "https://*/*"],
-    	  "js": ["data/buffer-port-wrapper.js", "data/jquery-1.7.2.min.js", "data/postmessage.js", "data/buffer-overlay.js", "data/buffer-chrome.js"]
+    	  "css": ["data/buffer-image.css"],
+    	  "js": ["data/buffer-port-wrapper.js", "data/jquery-1.7.2.min.js", "data/postmessage.js", "data/buffer-overlay.js", "data/buffer-image.js", "data/buffer-chrome.js"]
     	},
     	{
       	  "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
