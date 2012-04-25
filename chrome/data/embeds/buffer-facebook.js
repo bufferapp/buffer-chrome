@@ -1,6 +1,7 @@
 $(function() {
     
     var config = {};
+    config.base = "https://facebook.com";
     config.time = {
         reload: 800
     };
@@ -112,7 +113,9 @@ $(function() {
 	            $(elem).after(" · ")
 	        },
 	        data: function (elem) {
-	            return $(elem).closest('.mainWrapper').find('span.messageBody').text();
+	            return '“' + $(elem).closest('.mainWrapper').find('span.messageBody').text()
+	                       + '” – ' + $(elem).closest('.mainWrapper').find('.uiStreamHeadline > .actorName').text()
+	                       + ' on #fb: ' + config.base + $(elem).closest('div.uiStreamFooter').find('span.uiStreamSource > a').attr('href');
 	        }
         }
 	];
