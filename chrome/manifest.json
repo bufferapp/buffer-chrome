@@ -1,6 +1,6 @@
 {
 	"name": "Buffer for Chrome",
-	"version": "2.0.5",
+	"version": "2.1",
 	"description": "Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!",
 	"browser_action": {
 		"default_icon": "logo_icon_small.png"
@@ -12,20 +12,20 @@
 	"content_scripts": [
 	    {
     	  "matches": ["http://*/*", "https://*/*"],
-    	  "css": ["data/buffer-image.css"],
-    	  "js": ["data/buffer-port-wrapper.js", "data/buffer-chrome-embed.js", "data/jquery-1.7.2.min.js", "data/postmessage.js", "data/buffer-overlay.js", "data/buffer-hotkey.js", "data/buffer-image.js", "data/buffer-chrome.js"]
+    	  "css": ["data/image/buffer-image.css"],
+    	  "js": ["data/chrome/buffer-chrome-port-wrapper.js", "data/chrome/buffer-chrome-embed.js", "data/libs/jquery-1.7.2.min.js", "data/libs/postmessage.js", "data/buffer-overlay.js", "data/embeds/buffer-hotkey.js", "data/image/buffer-image.js", "data/chrome/buffer-chrome.js"]
     	},
     	{
       	  "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
-    	  "js": ["data/buffer-twitter.js"]
+    	  "js": ["data/embeds/buffer-twitter.js"]
     	},
     	{
           "matches": ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*"],
-      	  "js": ["data/buffer-hn.js"]
+      	  "js": ["data/embeds/buffer-hn.js"]
       	},
       	{
           "matches": ["http://*.reddit.com/*"],
-      	  "js": ["data/buffer-reddit.js"]
+      	  "js": ["data/embeds/buffer-reddit.js"]
       	}
   	],
 	"icons": {
