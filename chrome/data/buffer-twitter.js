@@ -24,7 +24,12 @@ $(function() {
 	            return $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val();
 	        },
 	        clear: function (elem) {
-				$('.twitter-anywhere-tweet-box-editor').val(' ');
+	            var target = $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val('').blur();
+                window.localStorage["draft_tweets"] = "{}";
+                $(target).one('click', function () {
+	                $(target).val('');
+	                 window.localStorage["draft_tweets"] = "{}";
+	            });
 	        },
 	        activator: function (elem, btnConfig) {
 	            var target = $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor');
