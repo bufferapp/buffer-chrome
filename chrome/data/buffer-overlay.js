@@ -50,7 +50,6 @@ var bufferData = function (port) {
     config.local = false;
     config.googleReader = false;
     if( $("#current-entry .entry-container").length > 0 ) config.googleReader = true;
-    console.log("READER? ", config.googleReader);
     config.attributes = [
         {
             name: "url",
