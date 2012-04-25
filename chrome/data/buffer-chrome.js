@@ -3,8 +3,8 @@ $(function() {
         
         var overlayPort = PortWrapper(chport);
         
-        overlayPort.on("buffer_click", function() {
-            bufferData(overlayPort);
+        overlayPort.on("buffer_click", function(postData) {
+            bufferData(overlayPort, postData);
         });
   
     });

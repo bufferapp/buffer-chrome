@@ -44,7 +44,7 @@ var bufferOverlay = function(data, config, doneCallback) {
     
 };
 
-var bufferData = function (port) {
+var bufferData = function (port, postData) {
     
     var config = {};
     config.local = false;
@@ -82,10 +82,7 @@ var bufferData = function (port) {
         {
             name: "picture",
             get: function (cb) {
-                port.on("buffer_image", function(data) {
-                    cb(data);
-                });
-                port.emit("buffer_get_image");
+                cb(postData.image);
             },
             encode: function (val) {
                 return encodeURIComponent(val);
@@ -94,10 +91,7 @@ var bufferData = function (port) {
         {
             name: "embed",
             get: function (cb) {
-                port.on("buffer_embed", function(data) {
-                    cb(data);
-                });
-                port.emit("buffer_get_embed");
+                cb(postData.embed);
             },
             encode: function (val) {
                 return encodeURIComponent(val);
@@ -150,6 +144,7 @@ var bufferData = function (port) {
             if( typeof data.embed === "object" ) {
                 data.text = data.embed.text;
                 data.url = data.embed.url;
+                data.picture = data.embed.image;
                 data.embed = null;
             } else {
                 data.text = data.embed;

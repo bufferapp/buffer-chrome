@@ -36,23 +36,17 @@ var attachOverlay = function (data, cb) {
         
     var port = PortWrapper(chrome.tabs.connect(tab.id));
 
-    port.on('buffer_get_image', function () {
-        port.emit("buffer_image", data.image);
-    });
-
-    port.on('buffer_get_embed', function () {
-        port.emit("buffer_embed", data.embed);
-    });
-
-    port.on('buffer_done', function (overlaydata) {
+    // Remove the port once the Buffering is complete
+    port.on('buffer_done', function (overlayData) {
         port.destroy();
         port = null;
         setTimeout(function () {
-            cb(overlaydata);
+            cb(overlayData);
         }, 0);
     });
     
-    port.emit("buffer_click");
+    // Inform overlay that click has occurred
+    port.emit("buffer_click", data);
     
 };
 
@@ -96,9 +90,9 @@ chrome.extension.onConnect.addListener(function(chport) {
     var port = PortWrapper(chport);
     var tab = port.raw.sender.tab;
     
+    // Listen for embedded triggers
     port.on("buffer_click", function (embed) {
         attachOverlay({tab: tab, embed: embed}, function (overlaydata) {
-            console.log(overlaydata);
             if( !!overlaydata.sent ) {
                 // Buffer was sent
                 port.emit("buffer_twitter_clear");
