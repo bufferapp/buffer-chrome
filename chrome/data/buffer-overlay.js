@@ -68,7 +68,6 @@ var bufferData = function (port) {
             name: "text",
             get: function (cb) {
                 if( config.googleReader ) {
-                    console.log($("#current-entry .entry-container a.entry-title-link"));
                     cb($("#current-entry .entry-container a.entry-title-link").text());
                 } else if(document.getSelection() != false) {
                     cb('"' + document.getSelection().toString() + '"');
