@@ -53,7 +53,40 @@ $(function() {
 	            var c = $(elem).parents().siblings('.twttr-dialog-reply-footer');
 	            return 'RT @' + c.find('.twttr-reply-screenname').text().trim() + ': ' + c.find('.js-tweet-text').text().trim() + '';
 	        }   
-        }
+        },
+        {
+	        name: "twitter-button",
+	        text: "Buffer",
+    	    container: 'div.ft',
+	        after: '#char-count',
+	        default: 'margin-right: 8px; background: #eee; background: -webkit-linear-gradient(bottom, #eee 25%, #f8f8f8 63%); border: 1px solid #999; color: #444 !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px;',
+	        className: 'button',
+	        style: 'margin-right: 8px; background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px;',
+	        hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+	        active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+	        data: function (elem) {
+	            return $(elem).parents('.ft').siblings('.bd').find('#status').val();
+	        },
+	        clear: function (elem) {
+				window.close();
+	        },
+	        activator: function (elem, btnConfig) {
+	            var target = $(elem).parents('.ft').siblings('.bd').find('#status');
+	            var activate = function () {
+	                var val = $(target).val();
+	                var counter = $(elem).siblings('#char-count').val();
+    	            if ( val.length > 0 && counter > -1) {
+                        $(elem).removeClass('disabled').attr('style', btnConfig.style);
+                    } else {
+                        $(elem).addClass('disabled').attr('style', btnConfig.default);
+                    }
+	            };
+	            $(target).on('keyup focus blur change paste cut', function (e) {
+	                activate();
+	            });	            
+	            activate();
+	        }
+        },
 	];
 
     ;(function bufferTwitter() {
