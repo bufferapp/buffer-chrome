@@ -48,11 +48,17 @@ var bufferData = function (port) {
     
     var config = {};
     config.local = false;
+    config.googleReader = false;
+    if( !! $("#current-entry .entry-container") ) config.googleReader = true;
     config.attributes = [
         {
             name: "url",
             get: function (cb) {
-                cb(window.location.href);
+                if( ! config.googleReader ) {
+                    cb(window.location.href);
+                } else {
+                    cb($("#current-entry .entry-container a.entry-title-link").attr('href'));
+                }
             },
             encode: function (val) {
                 return encodeURIComponent(val);
@@ -61,8 +67,14 @@ var bufferData = function (port) {
         {
             name: "text",
             get: function (cb) {
-                if(document.getSelection() != false) cb('"' + document.getSelection().toString() + '"');
-                else cb(document.title);
+                if( config.googleReader ) {
+                    console.log($("#current-entry .entry-container a.entry-title-link"));
+                    cb($("#current-entry .entry-container a.entry-title-link").text());
+                } else if(document.getSelection() != false) {
+                    cb('"' + document.getSelection().toString() + '"');
+                } else {
+                    cb(document.title);
+                }
             },
             encode: function (val) {
                 return encodeURIComponent(val);
