@@ -12,19 +12,15 @@
 	"content_scripts": [
 	    {
     	  "matches": ["http://*/*", "https://*/*"],
-    	  "js": ["data/buffer-port-wrapper.js", "data/jquery-1.7.2.min.js", "data/postmessage.js", "data/buffer-overlay.js", "data/buffer-hotkey.js", "data/buffer-chrome.js"]
-    	},
-    	{
-    	  "matches": ["http://*/*", "https://*/*"],
-    	  "js": ["data/buffer-chrome-embed.js", "data/buffer-hotkey.js"]
+    	  "js": ["data/buffer-port-wrapper.js", "data/buffer-chrome-embed.js", "data/jquery-1.7.2.min.js", "data/postmessage.js", "data/buffer-overlay.js", "data/buffer-hotkey.js", "data/buffer-chrome.js"]
     	},
     	{
       	  "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
-    	  "js": ["data/buffer-chrome-embed.js", "data/buffer-twitter.js"]
+    	  "js": ["data/buffer-twitter.js"]
     	},
     	{
           "matches": ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*"],
-      	  "js": ["data/buffer-chrome-embed.js", "data/buffer-hn.js"]
+      	  "js": ["data/buffer-hn.js"]
       	}
   	],
 	"icons": {
