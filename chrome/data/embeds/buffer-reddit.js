@@ -6,6 +6,7 @@ $(function() {
 	        text: "buffer",
     	    container: 'div.entry ul.flat-list',
 	        className: 'buffer-reddit-button',
+	        selector: '.buffer-reddit-button',
 	        data: function (elem) {
 	            var article = $(elem).closest('.entry').find('a.title');
 	            var title = $(article).text().trim();
@@ -47,7 +48,7 @@ $(function() {
                 
                 var container = $(this);
                 
-                if ( $(container).hasClass('buffer-inserted') && $(container).find('buffer-hn-button') ) return;
+                if ( $(container).hasClass('buffer-inserted') ) return;
 
     	        $(container).addClass('buffer-inserted');
 
