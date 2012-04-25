@@ -44,11 +44,11 @@ var attachOverlay = function (data, cb) {
         port.emit("buffer_embed", data.embed);
     });
 
-    port.on('buffer_done', function () {
+    port.on('buffer_done', function (overlaydata) {
         port.destroy();
         port = null;
         setTimeout(function () {
-            cb();
+            cb(overlaydata);
         }, 0);
     });
     
@@ -97,7 +97,13 @@ chrome.extension.onConnect.addListener(function(chport) {
     var tab = port.raw.sender.tab;
     
     port.on("buffer_click", function (embed) {
-        attachOverlay({tab: tab, embed: embed}); 
+        attachOverlay({tab: tab, embed: embed}, function (overlaydata) {
+            console.log(overlaydata);
+            if( !!overlaydata.sent ) {
+                // Buffer was sent
+                port.emit("buffer_twitter_clear");
+            }
+        });
     });
     
 });

@@ -4,7 +4,7 @@ $(function() {
     config.base = "http://news.ycombinator.org/",
 	config.buttons = [
 	    {
-	        text: "Add to Buffer",
+	        text: "add to buffer",
     	    container: 'td.subtext',
 	        className: 'buffer-hn-button',
 	        data: function (elem) {

@@ -4,32 +4,42 @@ $(function() {
 	$('head').append(css);
     
     var config = {};
+    config.time = {
+        success: {
+            delay: 2000
+        }
+    };
 	config.buttons = [
 	    {
 	        name: "composer",
 	        text: "Buffer",
     	    container: 'div.tweet-button-sub-container',
 	        after: 'input.tweet-counter',
+	        default: '',
 	        className: 'buffer-tweet-button btn disabled',
-	        style: 'border: 1px solid #40873B; padding-left: 26px; color: white!important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
-	        hover: 'box-shadow: inset 0 0 30px rgba(0,0,0,.2);',
-	        active: 'box-shadow: inset 0 0 20px rgba(0,0,0,.4);',
-	        http: 'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
-	              'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);',
-	        https:'background: url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
-	              'background: url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px, -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);',
+	        style: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
+	        hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+	        active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
 	        data: function (elem) {
-	            return $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val()
+	            return $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val();
 	        },
-	        activator: function (elem) {
+	        clear: function (elem) {
+	            var target = $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val('').blur();
+                window.localStorage["draft_tweets"] = "{}";
+                $(target).one('click', function () {
+	                $(target).val('');
+	                 window.localStorage["draft_tweets"] = "{}";
+	            });
+	        },
+	        activator: function (elem, btnConfig) {
 	            var target = $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor');
-	            $(target).on('keyup focus', function (e) {
+	            $(target).on('keyup focus blur change paste cut', function (e) {
 	                var val = $(this).val();
 	                var counter = $(elem).siblings('.tweet-counter').val();
 	                if ( val.length > 0 && counter > -1 && val !== "Compose new Tweet...") {
-	                    $(elem).removeClass('disabled');
+	                    $(elem).removeClass('disabled').attr('style', btnConfig.style);
 	                } else {
-	                    $(elem).addClass('disabled');
+	                    $(elem).addClass('disabled').attr('style', btnConfig.default);
 	                }
 	            });
 	        }
@@ -40,18 +50,48 @@ $(function() {
     	    container: '#retweet-dialog div.twttr-prompt',
 	        after: 'div.js-prompt-ok',
 	        className: 'buffer-tweet-button btn',
-	        style: 'border: 1px solid #40873B; padding-left: 26px; color: white!important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
-	        hover: 'box-shadow: inset 0 0 30px rgba(0,0,0,.2);',
-	        active: 'box-shadow: inset 0 0 20px rgba(0,0,0,.4);',
-	        http: 'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
-	              'background: url(//static.bufferapp.com/images/logo-icon-small-white.png) no-repeat 6px 6px, -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);',
-	        https:'background: url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px, -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);'+
-	              'background: url(//d389zggrogs7qo.cloudfront.net/images/logo-icon-small-white.png) no-repeat 6px 6px, -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%);',
+	        default: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
+	        style: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
+	        hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+	        active: 'box-shadow: inset 0 5px 8px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
 			data: function (elem) {
 	            var c = $(elem).parents().siblings('.twttr-dialog-reply-footer');
 	            return 'RT @' + c.find('.twttr-reply-screenname').text().trim() + ': ' + c.find('.js-tweet-text').text().trim() + '';
+	        }   
+        },
+        {
+	        name: "twitter-button",
+	        text: "Buffer",
+    	    container: 'div.ft',
+	        after: '#char-count',
+	        default: 'margin-right: 8px; background: #eee; background: -webkit-linear-gradient(bottom, #eee 25%, #f8f8f8 63%); border: 1px solid #999; color: #444 !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px;',
+	        className: 'button',
+	        style: 'margin-right: 8px; background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px;',
+	        hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+	        active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+	        data: function (elem) {
+	            return $(elem).parents('.ft').siblings('.bd').find('#status').val();
+	        },
+	        clear: function (elem) {
+				window.close();
+	        },
+	        activator: function (elem, btnConfig) {
+	            var target = $(elem).parents('.ft').siblings('.bd').find('#status');
+	            var activate = function () {
+	                var val = $(target).val();
+	                var counter = $(elem).siblings('#char-count').val();
+    	            if ( val.length > 0 && counter > -1) {
+                        $(elem).removeClass('disabled').attr('style', btnConfig.style);
+                    } else {
+                        $(elem).addClass('disabled').attr('style', btnConfig.default);
+                    }
+	            };
+	            $(target).on('keyup focus blur change paste cut', function (e) {
+	                activate();
+	            });	            
+	            activate();
 	        }
-        }
+        },
 	];
 
     ;(function bufferTwitter() {
@@ -61,24 +101,29 @@ $(function() {
 
     	    var a = document.createElement('a');
     	    a.setAttribute('class', btnConfig.className);
-    	    a.setAttribute('style', btnConfig.style + (document.location.protocol == 'http:' ? btnConfig.http : btnConfig.https));
+    	    a.setAttribute('style', btnConfig.default);
     	    a.setAttribute('href', '#');
     	    a.innerText = btnConfig.text;
     	    
     	    $(a).hover(function () {
-    	        if( $(this).hasClass("disabled") ) return;
-                $(this).attr('style', btnConfig.style + (document.location.protocol == 'http:' ? btnConfig.http : btnConfig.https) + btnConfig.hover);
+    	        if( $(this).hasClass("disabled") ) {
+    	            $(this).attr('style', btnConfig.default);
+    	            return;
+	            }
+                $(this).attr('style', btnConfig.style + btnConfig.hover);
             }, function() {
-                $(this).attr('style', btnConfig.style + (document.location.protocol == 'http:' ? btnConfig.http : btnConfig.https));
+                if( $(this).hasClass("disabled") ) return;
+                $(this).attr('style', btnConfig.style);
             });
             
             $(a).mousedown(function () {
                 if( $(this).hasClass("disabled") ) return;
-                $(this).attr('style', btnConfig.style + (document.location.protocol == 'http:' ? btnConfig.http : btnConfig.https) + btnConfig.active);
+                $(this).attr('style', btnConfig.style + btnConfig.active);
             });
             
             $(a).mouseup(function () {
-                $(this).attr('style', btnConfig.style + (document.location.protocol == 'http:' ? btnConfig.http : btnConfig.https) + btnConfig.hover);
+                if( $(this).hasClass("disabled") ) return;
+                $(this).attr('style', btnConfig.style + btnConfig.hover);
             });
 
     	    return a;
@@ -104,13 +149,24 @@ $(function() {
 
         	        $(container).find(btnConfig.after).after(btn);
 
-    	            if (btnConfig.activator) btnConfig.activator(btn);
+    	            if ( !! btnConfig.activator) btnConfig.activator(btn, btnConfig);
     	            
     	            var getData = btnConfig.data;
+    	            var clearData = btnConfig.clear;
+    	            
+    	            var clearcb = function () {};
 
-        	        $(btn).click(function (e) {        	            
+        	        $(btn).click(function (e) {
+        	            clearcb = function () { // allow clear to be called for this button
+            	            if ( !! clearData ) clearData(btn);
+            	        };
         	            self.port.emit("buffer_click", getData(btn));
         	            e.preventDefault();
+        	        });
+        	        
+        	        self.port.on("buffer_twitter_clear", function () {
+                        clearcb();
+        	            clearcb = function () {}; // prevent clear from being called again, until the button is clicked again
         	        });
                     
                 })

@@ -1,6 +1,6 @@
 {
 	"name": "Buffer for Chrome",
-	"version": "2.0",
+	"version": "2.0.3",
 	"description": "Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!",
 	"browser_action": {
 		"default_icon": "logo_icon_small.png"
@@ -12,16 +12,20 @@
 	"content_scripts": [
 	    {
     	  "matches": ["http://*/*", "https://*/*"],
+<<<<<<< HEAD
     	  "css": ["data/buffer-image.css"],
     	  "js": ["data/buffer-port-wrapper.js", "data/jquery-1.7.2.min.js", "data/postmessage.js", "data/buffer-overlay.js", "data/buffer-image.js", "data/buffer-chrome.js"]
+=======
+    	  "js": ["data/buffer-port-wrapper.js", "data/buffer-chrome-embed.js", "data/jquery-1.7.2.min.js", "data/postmessage.js", "data/buffer-overlay.js", "data/buffer-hotkey.js", "data/buffer-chrome.js"]
+>>>>>>> chrome
     	},
     	{
       	  "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
-    	  "js": ["data/buffer-chrome-embed.js", "data/buffer-twitter.js"]
+    	  "js": ["data/buffer-twitter.js"]
     	},
     	{
           "matches": ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*"],
-      	  "js": ["data/buffer-chrome-embed.js", "data/buffer-hn.js"]
+      	  "js": ["data/buffer-hn.js"]
       	}
   	],
 	"icons": {

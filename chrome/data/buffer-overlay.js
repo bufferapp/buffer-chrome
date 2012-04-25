@@ -34,11 +34,11 @@ var bufferOverlay = function(data, config, doneCallback) {
 	document.body.appendChild(temp);
     
     // Bind close listener
-	bufferpm.bind("buffermessage", function(data) {
+	bufferpm.bind("buffermessage", function(overlaydata) {
 		document.body.removeChild(temp);
 		bufferpm.unbind("buffermessage");
 		setTimeout(function () {
-		    doneCallback(data);
+		    doneCallback(overlaydata);
 	    }, 0);
 	});
     
@@ -48,11 +48,17 @@ var bufferData = function (port) {
     
     var config = {};
     config.local = false;
+    config.googleReader = false;
+    if( !! $("#current-entry .entry-container") ) config.googleReader = true;
     config.attributes = [
         {
             name: "url",
             get: function (cb) {
-                cb(window.location.href);
+                if( ! config.googleReader ) {
+                    cb(window.location.href);
+                } else {
+                    cb($("#current-entry .entry-container a.entry-title-link").attr('href'));
+                }
             },
             encode: function (val) {
                 return encodeURIComponent(val);
@@ -61,8 +67,13 @@ var bufferData = function (port) {
         {
             name: "text",
             get: function (cb) {
-                if(document.getSelection() != false) cb('"' + document.getSelection().toString() + '"');
-                else cb(document.title);
+                if( config.googleReader ) {
+                    cb($("#current-entry .entry-container a.entry-title-link").text());
+                } else if(document.getSelection() != false) {
+                    cb('"' + document.getSelection().toString() + '"');
+                } else {
+                    cb(document.title);
+                }
             },
             encode: function (val) {
                 return encodeURIComponent(val);
@@ -146,13 +157,8 @@ var bufferData = function (port) {
                 data.embed = null;
             }
         }
-        var count = config.attributes.length;
-        for(var i=0; i < count; i++) {
-            var a = config.attributes[i];
-            //console.log(a.name, " : ", data[a.name]);
-        }
-        bufferOverlay(data, config, function () {
-            port.emit("buffer_done");
+        bufferOverlay(data, config, function (overlaydata) {
+            port.emit("buffer_done", overlaydata);
         });
     };
 
