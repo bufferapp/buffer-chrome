@@ -17,9 +17,9 @@ $(function() {
                             ['a', 'buffer-facebook-button']
                         ]
                     ],
-            default: 'background: hsl(116, 39%, 45%); background: -webkit-linear-gradient(bottom, hsl(116, 39%, 45%) 95%, hsl(116, 39%, 60%) 100%); border: 1px solid #40873B; color: white !important;padding: 3px 10px;margin-top: 0px;display: block;',
-	        style:   'background: hsl(116, 39%, 45%); background: -webkit-linear-gradient(bottom, hsl(116, 39%, 45%) 95%, hsl(116, 39%, 60%) 100%); border: 1px solid #40873B; color: white !important;padding: 3px 10px;margin-top: 0px;display: block;',
-	        hover:   'background: hsl(116, 39%, 42%); background: -webkit-linear-gradient(bottom, hsl(116, 39%, 42%) 95%, hsl(116, 39%, 55%) 100%); text-decoration: none;',
+            default: 'background: hsl(116, 39%, 45%); background: -webkit-linear-gradient(bottom, hsl(116, 39%, 45%) 95%, hsl(116, 39%, 60%) 96%); border: 1px solid #40873B; color: white !important;padding: 3px 10px;margin-top: 0px;display: block;',
+	        style:   'background: hsl(116, 39%, 45%); background: -webkit-linear-gradient(bottom, hsl(116, 39%, 45%) 95%, hsl(116, 39%, 60%) 96%); border: 1px solid #40873B; color: white !important;padding: 3px 10px;margin-top: 0px;display: block;',
+	        hover:   'background: hsl(116, 39%, 42%); background: -webkit-linear-gradient(bottom, hsl(116, 39%, 42%) 95%, hsl(116, 39%, 55%) 96%); text-decoration: none;',
 	        active:  'background: hsl(116, 39%, 40%); text-decoration: none;',
 	        create: function (btnConfig) {
 	            
@@ -71,6 +71,49 @@ $(function() {
 	        clear: function (elem) {
 				$(elem).closest('.uiMetaComposerMessageBox').find('textarea.textInput').val('');
 	        }
+        },
+        {
+	        name: "share",
+	        text: "Buffer",
+    	    container: 'span.UIActionLinks.UIActionLinks_bottom',
+    	    className: 'buffer-facebook-button',
+    	    selector: '.buffer-facebook-button',
+	        elements:
+	                ['a', ''],
+            default: '',
+	        style:   '',
+	        hover:   '',
+	        active:  '',
+	        create: function (btnConfig) {
+	            
+	            var buildElement = function buildElement (parentConfig) {
+	                
+	                var temp = document.createElement(parentConfig[0]);
+	                temp.setAttribute('class', parentConfig[1]);
+	                
+	                if ( parentConfig.length > 2 ) temp.appendChild(buildElement(parentConfig[2]));
+	                
+	                return temp;
+	                
+	            };
+	            
+	            var temp = buildElement(btnConfig.elements);
+	            
+	            var a = temp;
+	            if ( $(temp).children().length > 0 ) a = $(temp).find(btnConfig.selector)[0];
+        	    a.setAttribute('style', btnConfig.default);
+        	    a.setAttribute('href', '#');
+        	    a.innerText = btnConfig.text;
+
+        	    return temp;
+	            
+	        },
+	        lastly: function (elem) {
+	            $(elem).after(" · ")
+	        },
+	        data: function (elem) {
+	            return $(elem).closest('.mainWrapper').find('span.messageBody').text();
+	        }
         }
 	];
 
@@ -92,13 +135,13 @@ $(function() {
         	        $(container).addClass('buffer-inserted');
 
         	        var btn = btnConfig.create(btnConfig);
-        	        
-        	        console.log(btn);
 
-                    if ( btnConfig.after) $(container).find(btnConfig.after).after(btn);
+                    if ( btnConfig.after ) $(container).find(btnConfig.after).after(btn);
                     else $(container).append(btn);
 
-    	            if ( !! btnConfig.activator) btnConfig.activator(btn, btnConfig);
+    	            if ( !! btnConfig.activator ) btnConfig.activator(btn, btnConfig);
+    	            
+    	            if ( !! btnConfig.lastly ) btnConfig.lastly(btn, btnConfig);
     	            
     	            var getData = btnConfig.data;
     	            var clearData = btnConfig.clear;
