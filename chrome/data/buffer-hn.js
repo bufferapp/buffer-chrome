@@ -42,7 +42,7 @@ $(function() {
                 
                 var container = $(this);
                 
-                if ( $(container).hasClass('buffer-inserted') && $(container).find('buffer-hn-button') ) return;
+                if ( $(container).hasClass('buffer-inserted') ) return;
 
     	        $(container).addClass('buffer-inserted');
 
