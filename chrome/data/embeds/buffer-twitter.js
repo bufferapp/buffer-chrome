@@ -21,6 +21,10 @@ $(function() {
 	        style: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
 	        hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
 	        active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+	        ignore: function(container) {
+	            if( $(container).closest('.dm-dialog').length > 0 ) return true;
+	            return false;
+	        },
 	        data: function (elem) {
 	            return $(elem).parents('.tweet-button-container').siblings('.text-area').find('.twitter-anywhere-tweet-box-editor').val();
 	        },
@@ -138,6 +142,10 @@ $(function() {
                 $(btnConfig.container).each(function () {
                     
                     var container = $(this);
+                    
+                    if( !! btnConfig.ignore ) {
+                        if( btnConfig.ignore(container) ) return;
+                    }
                     
                     if ( $(container).hasClass('buffer-inserted') ) return;
 
