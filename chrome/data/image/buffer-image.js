@@ -1,6 +1,10 @@
 ;(function () {
     
     var config = {};
+    config.endpoint = {
+        http: "http://static.bufferapp.com/js/button.js",
+        https: "https://d389zggrogs7qo.cloudfront.net/js/button.js"
+    };
     config.image = {
         attribute: 'data-buffer-id',
         size: {
@@ -56,7 +60,8 @@
         buttonwrap.appendChild(anchor);
         
         var script = document.createElement('script');
-        script.src = "//static.bufferapp.com/js/button.js";
+        if( document.location.protocol == "https:" ) script.src = config.endpoint.https;
+        else script.src = config.endpoint.http;
         
         buttonwrap.appendChild(script);
         
