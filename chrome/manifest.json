@@ -24,6 +24,10 @@
     	  "js": ["data/embeds/buffer-twitter.js"]
     	},
     	{
+        "matches": ["http://*.google.com/reader/*", "https://*.google.com/reader/*"],
+    	  "js": ["data/embeds/buffer-google-reader.js"]
+    	},
+    	{
           "matches": ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*"],
       	  "js": ["data/embeds/buffer-hn.js"]
       	},
