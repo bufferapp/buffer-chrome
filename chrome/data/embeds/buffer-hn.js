@@ -1,4 +1,4 @@
-$(function() {
+;(function() {
     
     var config = {};
     config.base = "http://news.ycombinator.org/",
@@ -68,4 +68,4 @@ $(function() {
 	
 	insertButtons();
 
-});
+}());

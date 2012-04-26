@@ -1,4 +1,4 @@
-$(function() {
+;(function() {
     
     var config = {};
 	config.buttons = [
@@ -71,4 +71,4 @@ $(function() {
 	
 	insertButtons();
 
-});
+}());

@@ -1,4 +1,4 @@
-$(function () {
+;(function () {
     
     var config = {};
     config.image = {
@@ -193,4 +193,4 @@ $(function () {
         } 
     });
 
-});
+}());

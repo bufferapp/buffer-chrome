@@ -1,4 +1,4 @@
-$(function() {
+;(function() {
     
     var config = {};
     config.base = "https://facebook.com";
@@ -176,4 +176,4 @@ $(function() {
 
     }());
     
-});
+}());
