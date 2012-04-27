@@ -1,1 +1,0 @@
-# Buffer for Firefox
