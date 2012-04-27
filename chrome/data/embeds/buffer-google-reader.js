@@ -92,12 +92,8 @@
                     if ( $(container).hasClass('buffer-inserted') ) return;
 
         	        $(container).addClass('buffer-inserted');
-        	        
-        	        console.log(container);
 
         	        var btn = btnConfig.create(btnConfig);
-        	        
-        	        console.log(btn);
 
                     if ( btnConfig.after ) $(container).find(btnConfig.after).after(btn);
                     else $(container).append(btn);

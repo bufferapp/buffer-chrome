@@ -49,7 +49,7 @@ var bufferData = function (port, postData) {
     var config = {};
     config.local = false;
     config.googleReader = false;
-    if( $("#current-entry .entry-container").length > 0 ) config.googleReader = true;
+    if( window.location.href.indexOf("google") != -1 && window.location.href.indexOf("reader") != -1 ) config.googleReader = true;
     config.attributes = [
         {
             name: "url",
@@ -57,7 +57,11 @@ var bufferData = function (port, postData) {
                 if( ! config.googleReader ) {
                     cb(window.location.href);
                 } else {
-                    cb($("#current-entry .entry-container a.entry-title-link").attr('href'));
+                    var href = $("#current-entry .entry-container a.entry-title-link").attr('href');
+                    console.log(href);
+                    if( ! href ) href = $('.entry').first().find(".entry-container a.entry-title-link").attr('href');
+                    console.log(href);
+                    cb(href);
                 }
             },
             encode: function (val) {
@@ -68,7 +72,9 @@ var bufferData = function (port, postData) {
             name: "text",
             get: function (cb) {
                 if( config.googleReader ) {
-                    cb($("#current-entry .entry-container a.entry-title-link").text());
+                    var text = $("#current-entry .entry-container a.entry-title-link").text();
+                    if( ! text ) text = $('.entry').first().find(".entry-container a.entry-title-link").text();
+                    cb(text);
                 } else if(document.getSelection() != false) {
                     cb('"' + document.getSelection().toString() + '"');
                 } else {
