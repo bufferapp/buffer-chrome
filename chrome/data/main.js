@@ -95,7 +95,7 @@ chrome.extension.onConnect.addListener(function(chport) {
         attachOverlay({tab: tab, embed: embed}, function (overlaydata) {
             if( !!overlaydata.sent ) {
                 // Buffer was sent
-                port.emit("buffer_twitter_clear");
+                port.emit("buffer_embed_clear");
             }
         });
     });

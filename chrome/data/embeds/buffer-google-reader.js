@@ -115,7 +115,7 @@
         	            e.preventDefault();
         	        });
         	        
-        	        self.port.on("buffer_twitter_clear", function () {
+        	        self.port.on("buffer_embed_clear", function () {
                         clearcb();
         	            clearcb = function () {}; // prevent clear from being called again, until the button is clicked again
         	        });
