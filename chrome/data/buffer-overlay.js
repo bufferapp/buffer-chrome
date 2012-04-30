@@ -58,7 +58,7 @@ var bufferData = function (port, postData) {
                     cb(window.location.href);
                 } else {
                     var href = $("#current-entry .entry-container a.entry-title-link").attr('href');
-                    if( ! href ) href = $('.entry').first().find(".entry-container a.entry-title-link").attr('href');                    console.log(href);
+                    if( ! href ) href = $('.entry').first().find(".entry-container a.entry-title-link").attr('href');
                     cb(href);
                 }
             },
