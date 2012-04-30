@@ -11,20 +11,33 @@
 	],
 	"content_scripts": [
 	    {
-    	  "matches": ["http://*/*", "https://*/*"],
-    	  "js": ["data/chrome/buffer-chrome-port-wrapper.js", "data/chrome/buffer-chrome-embed.js", "data/libs/jquery-1.7.2.min.js", "data/libs/postmessage.js", "data/buffer-overlay.js", "data/embeds/buffer-hotkey.js", "data/chrome/buffer-chrome.js"]
+    	    "matches": ["http://*/*", "https://*/*"],
+    	    "js": ["data/chrome/buffer-chrome-port-wrapper.js", "data/chrome/buffer-chrome-embed.js", "data/libs/jquery-1.7.2.min.js", "data/libs/postmessage.js", "data/buffer-overlay.js", "data/embeds/buffer-hotkey.js", "data/chrome/buffer-chrome.js"]
     	},
     	{
-      	  "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
-    	  "js": ["data/embeds/buffer-twitter.js"]
+    	    "matches": ["http://*/*", "https://*.facebook.com/*", "https://*.twitter.com/*"],
+    	    "css": ["data/image/buffer-image.css"],
+    	    "image": ["data/image/buffer-image.js"]
     	},
     	{
-        "matches": ["http://*.google.com/reader/*", "https://*.google.com/reader/*"],
-    	  "js": ["data/embeds/buffer-google-reader.js"]
+            "matches": ["https://*.facebook.com/*"],
+    	    "js": ["data/embeds/buffer-facebook.js"]
     	},
     	{
-          "matches": ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*"],
-      	  "js": ["data/embeds/buffer-hn.js"]
+      	    "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
+    	    "js": ["data/embeds/buffer-twitter.js"]
+    	},
+    	{
+            "matches": ["http://*.google.com/reader/*", "https://*.google.com/reader/*"],
+    	    "js": ["data/embeds/buffer-google-reader.js"]
+    	},
+    	{
+            "matches": ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*"],
+      	    "js": ["data/embeds/buffer-hn.js"]
+      	},
+      	{
+            "matches": ["http://*.reddit.com/*"],
+      	    "js": ["data/embeds/buffer-reddit.js"]
       	}
   	],
 	"icons": {
