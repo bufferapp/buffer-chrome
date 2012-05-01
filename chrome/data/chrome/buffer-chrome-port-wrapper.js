@@ -36,7 +36,8 @@ var PortWrapper = function (port) {
     
 };
 
-var self = {
+if(!self) var self = {};
+self = {
     port: {
         on: function () {console.log("port.on called before initialised.", arguments)},
         emit: function () {console.log("port.emit called before initialised.", arguments)}
