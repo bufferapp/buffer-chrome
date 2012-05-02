@@ -1,5 +1,7 @@
 ;(function() {
 
+    $('head').append('<style> .tweet .action-buffer-container i, .tweet.opened-tweet .action-buffer-container i, .tweet.opened-tweet.hover .action-buffer-container i  { background-position: -3px -3px; } .tweet.hover .action-buffer-container i { background-position: -3px -21px; }');
+
     var buildElement = function buildElement (parentConfig) {
         
         var temp = document.createElement(parentConfig[0]);
@@ -225,7 +227,8 @@
                 a.setAttribute('href', '#')
 
                 var i = document.createElement('i');
-                i.setAttribute('style', 'top: -1px; position: relative; margin-right: 4px; width: 16px; height: 16px; top: -1px; background: #0099B9 url(https://buffer-static.s3.amazonaws.com/images/twttr-sprite.png) no-repeat -5px -5px');
+                i.setAttribute('class', 'sm-embed'); // let Twitter set the bg color
+                i.setAttribute('style', 'top: -1px; position: relative; margin-right: 4px; width: 16px; height: 16px; top: -1px; background-image: url(' + self.data.get('data/img/twttr-sprite.png') + '); background-repeat: no-repeat; background-position: -5px -5px;');
 
                 $(a).append(i);
 
@@ -270,7 +273,8 @@
                 a.setAttribute('href', '#')
 
                 var i = document.createElement('i');
-                i.setAttribute('style', 'position: relative; top: 1px; margin-right: 4px; width: 13px; height: 13px; background: transparent url(' + self.data.get("data/img/buffer_twitter_small.png") + ') no-repeat top left;');
+                i.setAttribute('class', 'sm-embed'); // let Twitter set the bg colors
+                i.setAttribute('style', 'position: relative; top: 1px; margin-right: 4px; width: 13px; height: 13px; background-image: url(' + self.data.get('data/img/twttr-sprite-small.png') + '); background-repeat: no-repeat;');
 
                 $(a).append(i);
 
