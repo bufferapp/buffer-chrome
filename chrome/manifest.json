@@ -17,7 +17,7 @@
     	{
     	    "matches": ["http://*/*", "https://*.facebook.com/*", "https://*.twitter.com/*"],
     	    "css": ["data/image/buffer-image.css"],
-    	    "image": ["data/image/buffer-image.js"]
+    	    "js": ["data/image/buffer-image.js"]
     	},
     	{
             "matches": ["https://*.facebook.com/*"],
