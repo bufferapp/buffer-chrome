@@ -274,7 +274,7 @@
 
                 var i = document.createElement('i');
                 i.setAttribute('class', 'sm-embed'); // let Twitter set the bg colors
-                i.setAttribute('style', 'position: relative; top: 1px; margin-right: 4px; width: 13px; height: 13px; background-image: url(' + self.data.get('data/img/twttr-sprite-small.png') + '); background-repeat: no-repeat;');
+                i.setAttribute('style', 'position: relative; top: 0px; margin-right: 4px; width: 13px; height: 13px; background-image: url(' + self.data.get('data/img/twttr-sprite-small.png') + '); background-repeat: no-repeat;');
 
                 $(a).append(i);
 
