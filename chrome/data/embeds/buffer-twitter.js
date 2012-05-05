@@ -43,7 +43,7 @@
                 a.setAttribute('class', btnConfig.className);
                 a.setAttribute('style', btnConfig.default);
                 a.setAttribute('href', '#');
-                a.innerText = btnConfig.text;
+                $(a).text(btnConfig.text);
 
                 $(a).hover(function () {
                     if( $(this).hasClass("disabled") ) {
@@ -109,7 +109,7 @@
                 a.setAttribute('class', btnConfig.className);
                 a.setAttribute('style', btnConfig.default);
                 a.setAttribute('href', '#');
-                a.innerText = btnConfig.text;
+                $(a).text(btnConfig.text);
 
                 $(a).hover(function () {
                     if( $(this).hasClass("disabled") ) {
@@ -157,7 +157,7 @@
                 a.setAttribute('class', btnConfig.className);
                 a.setAttribute('style', btnConfig.default);
                 a.setAttribute('href', '#');
-                a.innerText = btnConfig.text;
+                $(a).text(btnConfig.text);
 
                 $(a).hover(function () {
                     if( $(this).hasClass("disabled") ) {

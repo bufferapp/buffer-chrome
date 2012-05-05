@@ -1,5 +1,5 @@
 // Make the stupid Chrome ports act like Firefox ones
-var PortWrapper = function (port) {
+var PortWrapper = function (port, name) {
     
     var sub = {};
     

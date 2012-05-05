@@ -48,7 +48,7 @@
 	            var a = $(temp).find(btnConfig.selector)[0];
         	    a.setAttribute('style', btnConfig.default);
         	    a.setAttribute('href', '#');
-        	    a.innerText = btnConfig.text;
+        	    $(a).text(btnConfig.text);
 
         	    $(a).hover(function () {
                     $(this).parent().attr('style', btnConfig.style + btnConfig.hover);
@@ -138,7 +138,7 @@
 	            var temp = buildElement(btnConfig.elements);
 	            
         	    temp.setAttribute('href', '#');
-        	    temp.innerText = btnConfig.text;
+        	    $(temp).text(btnConfig.text);
         	    $(temp).css({"background-image": "url(" + self.data.get("data/img/google-reader-logo-small-white.png") + ")"})
 
         	    return temp;

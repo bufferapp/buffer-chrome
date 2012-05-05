@@ -14,6 +14,10 @@
     	  "matches": ["http://*/*", "https://*/*"],
     	  "js": ["data/chrome/buffer-chrome-port-wrapper.js", "data/chrome/buffer-chrome-data-wrapper.js", "data/chrome/buffer-chrome-embed.js", "data/libs/jquery-1.7.2.min.js", "data/libs/postmessage.js", "data/buffer-overlay.js", "data/embeds/buffer-hotkey.js", "data/chrome/buffer-chrome.js"]
     	},
+      {
+          "matches": ["https://*.facebook.com/*"],
+          "js": ["data/embeds/buffer-facebook.js"]
+      },
     	{
       	  "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
     	  "js": ["data/embeds/buffer-twitter.js"]
