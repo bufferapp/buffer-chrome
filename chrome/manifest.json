@@ -1,6 +1,6 @@
 {
 	"name": "Buffer for Chrome",
-	"version": "2.0.8",
+	"version": "2.1.0",
 	"description": "Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!",
 	"browser_action": {
 		"default_icon": "logo_icon_small.png"
@@ -17,6 +17,10 @@
       {
           "matches": ["https://*.facebook.com/*"],
           "js": ["data/embeds/buffer-facebook.js"]
+      },
+      {
+          "matches": ["http://*.reddit.com/*"],
+          "js": ["data/embeds/buffer-reddit.js"]
       },
     	{
       	  "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
