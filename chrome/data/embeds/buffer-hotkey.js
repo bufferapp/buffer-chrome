@@ -6,7 +6,7 @@
 ;(function () {
     
     key('alt+b', function () {
-        self.port.emit("buffer_click");
+        xt.port.emit("buffer_click");
         return false;
     });
     

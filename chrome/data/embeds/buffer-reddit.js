@@ -59,7 +59,7 @@
 	            var getData = btnConfig.data;
 
     	        $(btn).click(function (e) {
-    	            self.port.emit("buffer_click", getData(btn));
+    	            xt.port.emit("buffer_click", getData(btn));
     	            e.preventDefault();
     	        });
                 

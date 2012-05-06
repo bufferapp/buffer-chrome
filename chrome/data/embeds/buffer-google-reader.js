@@ -34,13 +34,13 @@
     	    className: 'buffer-reader-button',
     	    selector: '.buffer-reader-button',
 	        elements:
-                    ['div', 'goog-inline-block jfk-button jfk-button-standard viewer-buttons goog-flat-menu-button', 'float: left; padding: 0 8px; min-width: 0; background: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1); border-color: 1px solid #c6c6c6;',
+                    ['div', 'goog-inline-block jfk-button jfk-button-standard viewer-buttons goog-flat-menu-button', 'float: left; padding: 0 8px; min-width: 0; background: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1); background: -moz-linear-gradient(top, #f5f5f5, #f1f1f1); border-color: 1px solid #c6c6c6;',
                         ['a', 'buffer-reader-button', '']
                     ],
             default: 'text-decoration: none; color: #444;',
-	        style:   'float: left; padding: 0 8px; min-width: 0; background: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1); border-color: 1px solid #c6c6c6;',
-	        hover:   'background: -webkit-linear-gradient(top, #f8f8f8, #f1f1f1); border-color: 1px solid #c6c6c6;',
-	        active:  'background: -webkit-linear-gradient(top, #f8f8f8, #f1f1f1); border-color: 1px solid #c6c6c6;',
+	        style:   'float: left; padding: 0 8px; min-width: 0; background: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1); background: -moz-linear-gradient(top, #f5f5f5, #f1f1f1); border-color: 1px solid #c6c6c6;',
+	        hover:   'background: -webkit-linear-gradient(top, #f8f8f8, #f1f1f1); background: -moz-linear-gradient(top, #f8f8f8, #f1f1f1); border-color: 1px solid #c6c6c6;',
+	        active:  'background: -webkit-linear-gradient(top, #f8f8f8, #f1f1f1); background: -moz-linear-gradient(top, #f8f8f8, #f1f1f1); border-color: 1px solid #c6c6c6;',
 	        create: function (btnConfig) {
 	            
 	            var temp = buildElement(btnConfig.elements);
@@ -139,7 +139,7 @@
 	            
         	    temp.setAttribute('href', '#');
         	    $(temp).text(btnConfig.text);
-        	    $(temp).css({"background-image": "url(" + self.data.get("data/img/google-reader-logo-small-white.png") + ")"})
+        	    $(temp).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-white.png") + ")"})
 
         	    return temp;
 	            
@@ -147,9 +147,9 @@
 	        activator: function (elem, btnConfig) {
 	            
         	    $(elem).hover(function () {
-        	        $(this).css({"background-image": "url(" + self.data.get("data/img/google-reader-logo-small-grey.png") + ")"});
+        	        $(this).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-grey.png") + ")"});
         	    }, function () {
-        	        $(this).css({"background-image": "url(" + self.data.get("data/img/google-reader-logo-small-white.png") + ")"});
+        	        $(this).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-white.png") + ")"});
         	    });
     
 	        },
@@ -203,11 +203,11 @@
             	            clearcb = function () { // allow clear to be called for this button
                 	            if ( !! clearData ) clearData(btn);
                 	        };
-            	            self.port.emit("buffer_click", getData(btn));
+            	            xt.port.emit("buffer_click", getData(btn));
             	            e.preventDefault();
             	        });
         	        
-            	        self.port.on("buffer_embed_clear", function () {
+            	        xt.port.on("buffer_embed_clear", function () {
                             clearcb();
             	            clearcb = function () {}; // prevent clear from being called again, until the button is clicked again
             	        });

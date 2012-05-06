@@ -24,7 +24,7 @@
       },
     	{
       	  "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
-    	  "js": ["data/embeds/buffer-twitter.js"]
+    	    "js": ["data/embeds/buffer-twitter.js"]
     	},
     	{
         "matches": ["http://*.google.com/reader/*", "https://*.google.com/reader/*"],

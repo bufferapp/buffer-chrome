@@ -1,1 +1,1 @@
-if( ! self.port.raw ) self.port = PortWrapper(chrome.extension.connect({name: "buffer-embed"}));
+if( ! xt.port.raw ) xt.port = PortWrapper(chrome.extension.connect({name: "buffer-embed"}));

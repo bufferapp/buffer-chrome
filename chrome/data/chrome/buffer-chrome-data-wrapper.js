@@ -8,5 +8,5 @@ var DataWrapper = function () {
     
 };
 
-if(!self) var self = {};
-self.data = DataWrapper();
+if(!xt) var xt = {};
+xt.data = DataWrapper();

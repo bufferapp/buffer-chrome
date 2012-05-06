@@ -26,7 +26,7 @@
 	    var a = document.createElement('a');
 	    a.setAttribute('class', btnConfig.className);
 	    a.setAttribute('href', '#');
-	    a.innerText = btnConfig.text;
+	    $(a).text(btnConfig.text);
 
 	    return a;
 
@@ -56,7 +56,7 @@
 	            var getData = btnConfig.data;
 
     	        $(btn).click(function (e) {
-    	            self.port.emit("buffer_click", getData(btn));
+    	            xt.port.emit("buffer_click", getData(btn));
     	            e.preventDefault();
     	        });
                 

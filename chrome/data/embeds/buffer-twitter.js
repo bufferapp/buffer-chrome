@@ -34,9 +34,9 @@
             default: '',
             className: 'buffer-tweet-button btn disabled',
             selector: '.buffer-tweet-button',
-            style: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
-            hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
-            active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+            style: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); background: -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
+            hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%); background: -moz-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+            active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%); background: -moz-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
             create: function (btnConfig) {
 
                 var a = document.createElement('a');
@@ -99,10 +99,10 @@
             after: 'div.js-prompt-ok',
             className: 'buffer-tweet-button btn',
             selector: '.buffer-tweet-button',
-            default: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
-            style: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
-            hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
-            active: 'box-shadow: inset 0 5px 8px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+            default: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
+            style: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
+            hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%); -moz-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+            active: 'box-shadow: inset 0 5px 8px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%); background: -moz-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
             create: function (btnConfig) {
 
                 var a = document.createElement('a');
@@ -145,12 +145,12 @@
             text: "Buffer",
             container: 'div.ft',
             after: '#char-count',
-            default: 'margin-right: 8px; background: #eee; background: -webkit-linear-gradient(bottom, #eee 25%, #f8f8f8 63%); border: 1px solid #999; color: #444 !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px;',
+            default: 'margin-right: 8px; background: #eee; background: -webkit-linear-gradient(bottom, #eee 25%, #f8f8f8 63%); background: -moz-linear-gradient(bottom, #eee 25%, #f8f8f8 63%); border: 1px solid #999; color: #444 !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px;',
             className: 'button',
             selector: '.button',
-            style: 'margin-right: 8px; background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px;',
-            hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
-            active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+            style: 'margin-right: 8px; background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); background: -moz-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px;',
+            hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%); background: -moz-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
+            active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%); background: -moz-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
             create: function (btnConfig) {
 
                 var a = document.createElement('a');
@@ -228,7 +228,7 @@
 
                 var i = document.createElement('i');
                 i.setAttribute('class', 'sm-embed'); // let Twitter set the bg color
-                i.setAttribute('style', 'top: -1px; position: relative; margin-right: 4px; width: 16px; height: 16px; top: -1px; background-image: url(' + self.data.get('data/img/twttr-sprite.png') + '); background-repeat: no-repeat; background-position: -5px -5px;');
+                i.setAttribute('style', 'top: -1px; position: relative; margin-right: 4px; width: 16px; height: 16px; top: -1px; background-image: url(' + xt.data.get('data/img/twttr-sprite.png') + '); background-repeat: no-repeat; background-position: -5px -5px;');
 
                 $(a).append(i);
 
@@ -274,7 +274,7 @@
 
                 var i = document.createElement('i');
                 i.setAttribute('class', 'sm-embed'); // let Twitter set the bg colors
-                i.setAttribute('style', 'position: relative; top: 0px; margin-right: 4px; width: 13px; height: 13px; background-image: url(' + self.data.get('data/img/twttr-sprite-small.png') + '); background-repeat: no-repeat;');
+                i.setAttribute('style', 'position: relative; top: 0px; margin-right: 4px; width: 13px; height: 13px; background-image: url(' + xt.data.get('data/img/twttr-sprite-small.png') + '); background-repeat: no-repeat;');
 
                 $(a).append(i);
 
@@ -345,11 +345,11 @@
                     clearcb = function () { // allow clear to be called for this button
                         if ( !! clearData ) clearData(btn);
                     };
-                    self.port.emit("buffer_click", getData(btn));
+                    xt.port.emit("buffer_click", getData(btn));
                     e.preventDefault();
                 });
                 
-                self.port.on("buffer_embed_clear", function () {
+                xt.port.on("buffer_embed_clear", function () {
                     clearcb();
                     clearcb = function () {}; // prevent clear from being called again, until the button is clicked again
                 });
