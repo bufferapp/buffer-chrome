@@ -23,16 +23,17 @@
 
     var share = {};
     $('body').on('click', 'a.share_action_link', function (e) {
+        console.log(share);
         console.log("click");
         var parent = $(this).closest('.genericStreamStory');
         share.via = $(parent).find('.actorName').text();
         share.text = $(parent).find('.messageBody').text();
-        share.url = $(parent).find('.uiStreamSource a').attr('href');
+        var url = $(parent).find('.uiStreamSource a').attr('href');
+        if( url[0] == "/" ) url = "https://facebook.com" + url;
+        share.url = url;
         var small_img = $(parent).find('.uiPhotoThumb img').attr('src');
-        console.log(share);
         if( small_img ) {
             var img = small_img.replace(/s[0-9]+x[0-9]+\//, '')
-            console.log(small_img, img);
             share.image = img;
             share.url = $(parent).find('.uiPhotoThumb').attr('href');
         }
@@ -116,15 +117,13 @@
             active:  'background: hsl(116, 39%, 40%); text-decoration: none;',
             create: function (btnConfig) {
                 
-                var temp = buildElement(btnConfig.elements);
-
-                console.log(temp);
+                var temp = buildElement(btnConfig.elements);    
                 
                 var a = $(temp).find(btnConfig.selector)[0];
                 if( ! a ) a = temp; // EXT
                 a.setAttribute('style', btnConfig.default);
                 a.setAttribute('href', '#');
-                $(a).text(btnConfig.text); // EXT req jQuery? :/ jqmob?
+                $(a).text(btnConfig.text); // EXT
 
                 $(a).hover(function () {
                     if( $(this).hasClass("disabled") ) {
@@ -156,7 +155,6 @@
                 if( text === "Write something" ) text = undefined;
                 if( share.url ) {
                     if( text ) share.text = text;
-                    console.log(share);
                     return share;
                 } else {
                     return text;
@@ -164,7 +162,6 @@
             },
             clear: function (elem) {
                 share = {};
-                $(elem).closest('.uiDialog').find('.layerCancel').click();
             }
         }
     ];
