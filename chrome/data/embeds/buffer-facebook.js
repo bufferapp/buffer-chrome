@@ -23,8 +23,6 @@
 
     var share = {};
     $('body').on('click', 'a.share_action_link', function (e) {
-        console.log(share);
-        console.log("click");
         var parent = $(this).closest('.genericStreamStory');
         share.via = $(parent).find('.actorName').text();
         share.text = $(parent).find('.messageBody').text();
@@ -37,7 +35,6 @@
             share.image = img;
             share.url = $(parent).find('.uiPhotoThumb').attr('href');
         }
-        console.log(share);
     });
     
     var config = {};
