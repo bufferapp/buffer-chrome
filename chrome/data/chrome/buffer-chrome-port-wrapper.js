@@ -1,5 +1,5 @@
 // Make the stupid Chrome ports act like Firefox ones
-var PortWrapper = function (port) {
+var PortWrapper = function (port, name) {
     
     var sub = {};
     
@@ -36,7 +36,8 @@ var PortWrapper = function (port) {
     
 };
 
-var self = {
+if(!xt) var xt = {};
+xt = {
     port: {
         on: function () {console.log("port.on called before initialised.", arguments)},
         emit: function () {console.log("port.emit called before initialised.", arguments)}

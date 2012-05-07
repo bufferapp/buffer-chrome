@@ -18,9 +18,9 @@
 	                text: title,
 	                url: link,
 	                image: image
-                };
+              };
 	        }
-        }
+      }
 	];
 	
 	var createButton = function (btnConfig) {
@@ -28,7 +28,7 @@
 	    var a = document.createElement('a');
 	    a.setAttribute('class', btnConfig.className);
 	    a.setAttribute('href', '#');
-	    a.innerText = btnConfig.text;
+	    $(a).text(btnConfig.text);
 	    
 	    var li = document.createElement('li');
 	    li.appendChild(a);
@@ -59,7 +59,7 @@
 	            var getData = btnConfig.data;
 
     	        $(btn).click(function (e) {
-    	            self.port.emit("buffer_click", getData(btn));
+    	            xt.port.emit("buffer_click", getData(btn));
     	            e.preventDefault();
     	        });
                 
