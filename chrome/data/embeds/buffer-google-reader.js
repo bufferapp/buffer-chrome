@@ -162,6 +162,59 @@
                 };
                 
             }
+        },
+        {
+            name: "icon-collapsed",
+            text: "",
+            container: '.collapsed div.entry-icons',
+            after: '.item-star',
+            className: 'buffer-small-button',
+            selector: '.buffer-small-button',
+            elements: ['a', 'buffer-small-button', 'height: 17px; width: 17px; display: inline-block; position: relative; margin-left: 2px; background-repeat: none;'],
+            default: '',
+            style:   '',
+            hover:   '',
+            active:  '',
+            create: function (btnConfig) {
+                
+                var temp = buildElement(btnConfig.elements);
+                
+                temp.setAttribute('href', '#');
+                $(temp).text(btnConfig.text);
+                $(temp).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-white.png") + ")"})
+
+                return temp;
+                
+            },
+            activator: function (elem, btnConfig) {
+                
+                $(elem).hover(function () {
+                    $(this).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-grey.png") + ")"});
+                }, function () {
+                    $(this).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-white.png") + ")"});
+                });
+
+                $('.collapsed .entry-secondary:not(.buffer-resized)').each(function () {
+                    try {
+                        var margin = parseInt($(this).addClass("buffer-resized").css('margin-left').replace('px', ''));
+                    } catch (e) { console.log(e); }
+                    margin += 20;
+                    console.log(margin+"px!important");
+                    this.style.setProperty('margin-left', margin+'px', 'important'); // Gets round !important
+                });
+
+                $('.collapsed .item-star').css({'margin-right': 1});
+    
+            },
+            data: function (elem) {
+                
+                var target = $(elem).closest(".entry").find(".entry-main");
+                return {
+                    text: target.find('.entry-title').text(),
+                    url: target.find('.entry-original').attr('href')
+                };
+                
+            }
         }
     ];
 
@@ -205,6 +258,7 @@
                             };
                             xt.port.emit("buffer_click", getData(btn));
                             e.preventDefault();
+                            e.stopPropagation();
                         });
                     
                         xt.port.on("buffer_embed_clear", function () {
