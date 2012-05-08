@@ -27,59 +27,6 @@
     };
     config.buttons = [
         {
-            name: "top-control",
-            text: "Buffer",
-            container: 'div#viewer-top-controls',
-            after: '#stream-prefs-menu',
-            className: 'buffer-reader-button',
-            selector: '.buffer-reader-button',
-            elements:
-                    ['div', 'goog-inline-block jfk-button jfk-button-standard viewer-buttons goog-flat-menu-button', 'float: left; padding: 0 8px; min-width: 0; background: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1); background: -moz-linear-gradient(top, #f5f5f5, #f1f1f1); border-color: 1px solid #c6c6c6;',
-                        ['a', 'buffer-reader-button', '']
-                    ],
-            default: 'text-decoration: none; color: #444;',
-            style:   'float: left; padding: 0 8px; min-width: 0; background: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1); background: -moz-linear-gradient(top, #f5f5f5, #f1f1f1); border-color: 1px solid #c6c6c6;',
-            hover:   'background: -webkit-linear-gradient(top, #f8f8f8, #f1f1f1); background: -moz-linear-gradient(top, #f8f8f8, #f1f1f1); border-color: 1px solid #c6c6c6;',
-            active:  'background: -webkit-linear-gradient(top, #f8f8f8, #f1f1f1); background: -moz-linear-gradient(top, #f8f8f8, #f1f1f1); border-color: 1px solid #c6c6c6;',
-            create: function (btnConfig) {
-                
-                var temp = buildElement(btnConfig.elements);
-                
-                var a = $(temp).find(btnConfig.selector)[0];
-                a.setAttribute('style', btnConfig.default);
-                a.setAttribute('href', '#');
-                $(a).text(btnConfig.text);
-
-                $(a).hover(function () {
-                    $(this).parent().attr('style', btnConfig.style + btnConfig.hover);
-                }, function() {
-                    $(this).parent().attr('style', btnConfig.style);
-                });
-
-                $(a).mousedown(function () {
-                    $(this).parent().attr('style', btnConfig.style + btnConfig.active);
-                });
-
-                $(a).mouseup(function () {
-                    $(this).parent().attr('style', btnConfig.style + btnConfig.hover);
-                });
-
-                return temp;
-                
-            },
-            data: function (elem) {
-                
-                var target = $("#current-entry .entry-container a.entry-title-link");
-                
-                if( target.length == 0 ) target = $("#entries .entry").first().find(".entry-container a.entry-title-link");
-                
-                return {
-                    url: target.attr('href'),
-                    text: target.text()
-                }
-            }
-        },
-        {
             name: "share",
             text: "Buffer",
             container: 'div.entry-actions',
@@ -87,7 +34,7 @@
             className: 'buffer-share-button',
             selector: '.buffer-share-button',
             elements:
-                    ['a', 'buffer-add-button', 'height: 18px; width: 75px; margin-right: 16px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border:none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial;',
+                    ['a', 'buffer-add-button', 'height: 18px; width: 75px; margin-right: 16px; display: inline-block; text-indent: 0px; margin: 0px; padding: 1px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border:none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial;',
                         ['div', '', 'padding-top: 1px; position: relative; height: 16px; font-size: 13px; padding-left:20px; margin-right: 16px; background-image: url(http://static.bufferapp.com/images/logo_icon_small.png); background-repeat: no-repeat!important;',
                             ['span', '', 'height: 22px; width: 50px; position: relative;']
                         ]
@@ -167,7 +114,7 @@
             name: "icon-collapsed",
             text: "",
             container: '.collapsed div.entry-icons',
-            after: '.item-star',
+            after: '.star',
             className: 'buffer-small-button',
             selector: '.buffer-small-button',
             elements: ['a', 'buffer-small-button', 'height: 17px; width: 17px; display: inline-block; position: relative; margin-left: 2px; background-repeat: none;'],
@@ -203,7 +150,8 @@
                     this.style.setProperty('margin-left', margin+'px', 'important'); // Gets round !important
                 });
 
-                $('.collapsed .item-star').css({'margin-right': 1});
+                $('.collapsed .star').css({'margin-right': 1});
+                $('.entry-source-title').css({left: '3.4em'});
     
             },
             data: function (elem) {
