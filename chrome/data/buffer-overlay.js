@@ -45,6 +45,10 @@ var bufferOverlay = function(data, config, doneCallback) {
 };
 
 var bufferData = function (port, postData) {
+
+    if (window.top !== window) {
+        return;
+    }
     
     var config = {};
     config.local = false;

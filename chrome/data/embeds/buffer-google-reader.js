@@ -146,7 +146,6 @@
                         var margin = parseInt($(this).addClass("buffer-resized").css('margin-left').replace('px', ''));
                     } catch (e) { console.log(e); }
                     margin += 20;
-                    console.log(margin+"px!important");
                     this.style.setProperty('margin-left', margin+'px', 'important'); // Gets round !important
                 });
 
