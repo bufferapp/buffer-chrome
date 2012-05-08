@@ -1,0 +1,3 @@
+[submodule "chrome/data/buffer-extension-shared"]
+	path = chrome/data/buffer-extension-shared
+	url = git@github.com:bufferapp/buffer-extension-shared.git
