@@ -75,7 +75,7 @@
             after: '.entry-icons',
             className: 'buffer-small-button',
             selector: '.buffer-small-button',
-            elements: ['a', 'buffer-small-button', 'height: 17px; width: 17px; display: inline-block; position: relative; top: 2px; margin-left: 5px; background-repeat: none;'],
+            elements: ['a', 'buffer-small-button', 'height: 17px; width: 17px; display: inline-block; position: relative; margin-left: 2px; background-position-y: 1px; background-repeat: no-repeat;'],
             default: '',
             style:   '',
             hover:   '',
@@ -86,7 +86,7 @@
                 
                 temp.setAttribute('href', '#');
                 $(temp).text(btnConfig.text);
-                $(temp).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-white.png") + ")"})
+                $(temp).css({"background-image": "url(" + xt.data.get("data/img/buffer-icon-sprite.png") + ")"})
 
                 return temp;
                 
@@ -94,9 +94,9 @@
             activator: function (elem, btnConfig) {
                 
                 $(elem).hover(function () {
-                    $(this).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-grey.png") + ")"});
+                    $(this).css({"background-position-x": "-16px"});
                 }, function () {
-                    $(this).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-white.png") + ")"});
+                    $(this).css({"background-position-x": "0px"});
                 });
     
             },
@@ -117,7 +117,7 @@
             after: '.star',
             className: 'buffer-small-button',
             selector: '.buffer-small-button',
-            elements: ['a', 'buffer-small-button', 'height: 17px; width: 17px; display: inline-block; position: relative; margin-left: 2px; background-repeat: none;'],
+            elements: ['a', 'buffer-small-button', 'height: 17px; width: 17px; display: inline-block; position: relative; margin-left: 2px; background-position-y: 1px; background-repeat: no-repeat;'],
             default: '',
             style:   '',
             hover:   '',
@@ -128,7 +128,7 @@
                 
                 temp.setAttribute('href', '#');
                 $(temp).text(btnConfig.text);
-                $(temp).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-white.png") + ")"})
+                $(temp).css({"background-image": "url(" + xt.data.get("data/img/buffer-icon-sprite.png") + ")"})
 
                 return temp;
                 
@@ -136,9 +136,9 @@
             activator: function (elem, btnConfig) {
                 
                 $(elem).hover(function () {
-                    $(this).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-grey.png") + ")"});
+                    $(this).css({"background-position-x": "-16px"});
                 }, function () {
-                    $(this).css({"background-image": "url(" + xt.data.get("data/img/google-reader-logo-small-white.png") + ")"});
+                    $(this).css({"background-position-x": "0px"});
                 });
 
                 $('.collapsed .entry-secondary:not(.buffer-resized)').each(function () {
