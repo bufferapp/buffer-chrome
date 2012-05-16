@@ -52,6 +52,7 @@ var attachOverlay = function (data, cb) {
 
     // Pass statistic data
     data.version = config.plugin.version;
+	if( data.embed.placement ) data.placement = data.embed.placement;
 
     // Inform overlay that click has occurred
     port.emit("buffer_click", data);
