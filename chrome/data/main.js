@@ -12,7 +12,6 @@ var config = {};
 config.plugin = {
     label: "Buffer This Page",
     version: "2.1.4",
-    placement_prefix: 'chrome-',
     guide: 'http://bufferapp.com/guides/chrome/installed',
     menu: {
         page: {
@@ -50,14 +49,12 @@ var attachOverlay = function (data, cb) {
     
     // Don't try to JSON encode a tab
     data.tab = null;
+
     // Pass statistic data
     data.version = config.plugin.version;
-    if( data.embed.placement ) data.embed.placement = config.plugin.placement_prefix + data.embed.placement;
-    if( data.placement ) data.placement = config.plugin.placement_prefix + data.placement;
-    else if( data.embed.placement ) data.placement = data.embed.placement;
+
     // Inform overlay that click has occurred
     port.emit("buffer_click", data);
-    
 };
 
 // Show the guide on first run
@@ -109,5 +106,4 @@ chrome.extension.onConnect.addListener(function(chport) {
             }
         });
     });
-    
 });
