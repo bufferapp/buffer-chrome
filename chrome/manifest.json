@@ -1,5 +1,5 @@
 {
-	"name": "Buffer for Chrome",
+	"name": "Buffer",
 	"version": "2.1.4",
 	"description": "Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!",
 	"browser_action": {
