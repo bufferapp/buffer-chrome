@@ -63,7 +63,7 @@ if( ! localStorage.getItem('buffer.run') ) {
     localStorage.setItem('buffer.run', true);
     chrome.tabs.create({
         url: config.plugin.guide
-    })
+    });
 }
 
 // Fire the overlay when the button is clicked
@@ -91,11 +91,14 @@ chrome.contextMenus.create({
 });
 
 // Listen for embedded events (twitter/hacker news)
+var ports = [];
+var overlayPort;
 chrome.extension.onConnect.addListener(function(chport) {
     
-    if( chport.name !== "buffer-embed" ) return; 
+    if( chport.name !== "buffer-embed" ) return;
 
     var port = PortWrapper(chport);
+    var index = ports.push(port);
     var tab = port.raw.sender.tab;
     
     // Listen for embedded triggers
@@ -107,4 +110,23 @@ chrome.extension.onConnect.addListener(function(chport) {
             }
         });
     });
+
+    // Listen for a request for scraper data
+    port.on("buffer_details_request", function () {
+        console.log("Details request.");
+        overlayPort = port;
+        var i = 0, l = ports.length;
+        for( ; i < l; i++ ) {
+            var p = ports[i];
+            console.log(i, p);
+            p.emit("buffer_details_request");
+        }
+        
+    });
+
+    port.on("buffer_details", function (data) {
+        console.log(data);
+        if( overlayPort ) overlayPort.emit("buffer_details", data);
+    });
+
 });

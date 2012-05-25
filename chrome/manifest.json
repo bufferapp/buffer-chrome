@@ -19,11 +19,21 @@
 				"data/shared/libs/jquery-1.7.2.min.js", 
 				"data/shared/libs/postmessage.js", 
 				"data/shared/buffer-overlay.js", 
-        "data/shared/embeds/buffer-scraper.js",
+                "data/shared/embeds/buffer-scraper.js",
 				"data/shared/embeds/buffer-hotkey.js", 
 				"data/chrome/buffer-chrome.js"
 			]
     	},
+        {
+            "matches": ["https://*.bufferapp.com/*", "http://*.bufferapp.com/*"],
+            "js": [
+                "data/chrome/buffer-chrome-port-wrapper.js",
+                "data/chrome/buffer-chrome-embed.js",
+                "data/shared/libs/postmessage.js",
+                "data/shared/embeds/buffer-overlay-scraper.js"
+            ],
+            "all_frames": true
+        },
         {
 			"matches": ["https://*.facebook.com/*", "http://*.facebook.com/*"],
 			"js": ["data/shared/embeds/buffer-facebook.js"]
