@@ -1,6 +1,6 @@
 {
 	"name": "Buffer",
-	"version": "2.1.4",
+	"version": "2.2",
 	"description": "Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!",
 	"browser_action": {
 		"default_icon": "logo_icon_small.png"
