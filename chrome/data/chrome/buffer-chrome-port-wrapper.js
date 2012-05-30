@@ -2,6 +2,7 @@
 var PortWrapper = function (port, name) {
     
     var sub = {};
+    var disconnected = false;
     
     port.onMessage.addListener(function (data) {
        
@@ -13,6 +14,10 @@ var PortWrapper = function (port, name) {
         }
         
     });
+
+    port.onDisconnect.addListener(function () {
+        disconnected = true;
+    });
     
     return {
         on: function (type, cb) {
@@ -20,6 +25,7 @@ var PortWrapper = function (port, name) {
             sub[type].push(cb);
         },
         emit: function(type, payload) {
+            if( disconnected ) return;
             port.postMessage({
                 type: type,
                 payload: payload
@@ -32,7 +38,7 @@ var PortWrapper = function (port, name) {
         },
         name: port.name,
         raw: port
-    }
+    };
     
 };
 
