@@ -29,7 +29,6 @@
             "js": [
                 "data/chrome/buffer-chrome-port-wrapper.js",
                 "data/chrome/buffer-chrome-embed.js",
-                "data/shared/libs/postmessage.js",
                 "data/shared/embeds/buffer-overlay-scraper.js"
             ],
             "all_frames": true

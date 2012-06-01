@@ -42,6 +42,7 @@ var attachOverlay = function (data, cb) {
     port.on('buffer_done', function (overlayData) {
         port.destroy();
         port = null;
+        overlayPort = null;
         setTimeout(function () {
             cb(overlayData);
         }, 0);
@@ -92,7 +93,7 @@ chrome.contextMenus.create({
 
 // Listen for embedded events (twitter/hacker news)
 var ports = [];
-var overlayPort;
+var overlayPort, scraperPort;
 chrome.extension.onConnect.addListener(function(chport) {
     
     if( chport.name !== "buffer-embed" ) return;
@@ -115,18 +116,21 @@ chrome.extension.onConnect.addListener(function(chport) {
     port.on("buffer_details_request", function () {
         console.log("Details request.");
         overlayPort = port;
-        var i = 0, l = ports.length;
-        for( ; i < l; i++ ) {
-            var p = ports[i];
-            console.log(i, p);
-            p.emit("buffer_details_request");
+        if( scraperPort ) {
+            console.log("main emitting buffer_details_request");
+            scraperPort.emit("buffer_details_request");
         }
-        
     });
 
     port.on("buffer_details", function (data) {
-        console.log(data);
+        console.log("main has buffer_details", data);
         if( overlayPort ) overlayPort.emit("buffer_details", data);
     });
+
+    port.on("buffer_register_scraper", function () {
+        console.log("scraper registered");
+        scraperPort = port;
+    });
+
 
 });
