@@ -114,21 +114,17 @@ chrome.extension.onConnect.addListener(function(chport) {
 
     // Listen for a request for scraper data
     port.on("buffer_details_request", function () {
-        console.log("Details request.");
         overlayPort = port;
         if( scraperPort ) {
-            console.log("main emitting buffer_details_request");
             scraperPort.emit("buffer_details_request");
         }
     });
 
     port.on("buffer_details", function (data) {
-        console.log("main has buffer_details", data);
         if( overlayPort ) overlayPort.emit("buffer_details", data);
     });
 
     port.on("buffer_register_scraper", function () {
-        console.log("scraper registered");
         scraperPort = port;
     });
 
