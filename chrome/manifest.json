@@ -1,6 +1,6 @@
 {
 	"name": "Buffer",
-	"version": "2.2.2",
+	"version": "2.2.3",
 	"description": "Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!",
 	"browser_action": {
 		"default_icon": "logo_icon_small.png"
@@ -10,50 +10,50 @@
 		"tabs", "http://*/*", "contextMenus"
 	],
 	"content_scripts": [
-	    {
-			"matches": ["http://*/*", "https://*/*"],
+		{
+		"matches": ["http://*/*", "https://*/*"],
+		"js": [
+			"data/chrome/buffer-chrome-port-wrapper.js", 
+			"data/chrome/buffer-chrome-data-wrapper.js", 
+			"data/chrome/buffer-chrome-embed.js", 
+			"data/shared/libs/jquery-1.7.2.min.js", 
+			"data/shared/libs/postmessage.js", 
+			"data/shared/buffer-overlay.js", 
+			"data/shared/embeds/buffer-scraper.js",
+			"data/shared/embeds/buffer-hotkey.js", 
+			"data/chrome/buffer-chrome.js"
+		]
+		},
+		{
+			"matches": ["https://*.bufferapp.com/*", "http://*.bufferapp.com/*"],
 			"js": [
-				"data/chrome/buffer-chrome-port-wrapper.js", 
-				"data/chrome/buffer-chrome-data-wrapper.js", 
-				"data/chrome/buffer-chrome-embed.js", 
-				"data/shared/libs/jquery-1.7.2.min.js", 
-				"data/shared/libs/postmessage.js", 
-				"data/shared/buffer-overlay.js", 
-                "data/shared/embeds/buffer-scraper.js",
-				"data/shared/embeds/buffer-hotkey.js", 
-				"data/chrome/buffer-chrome.js"
-			]
-    	},
-        {
-            "matches": ["https://*.bufferapp.com/*", "http://*.bufferapp.com/*"],
-            "js": [
-                "data/chrome/buffer-chrome-port-wrapper.js",
-                "data/chrome/buffer-chrome-embed.js",
-                "data/shared/embeds/buffer-overlay-scraper.js"
-            ],
-            "all_frames": true
-        },
-        {
+				"data/chrome/buffer-chrome-port-wrapper.js",
+				"data/chrome/buffer-chrome-embed.js",
+				"data/shared/embeds/buffer-overlay-scraper.js"
+			],
+			"all_frames": true
+		},
+		{
 			"matches": ["https://*.facebook.com/*", "http://*.facebook.com/*"],
 			"js": ["data/shared/embeds/buffer-facebook.js"]
-        },
-        {
+		},
+		{
 			"matches": ["http://*.reddit.com/*"],
 			"js": ["data/shared/embeds/buffer-reddit.js"]
-        },
-    	{
+		},
+		{
 			"matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
 			"js": ["data/shared/embeds/buffer-twitter.js"]
-    	},
-    	{
+		},
+		{
 			"matches": ["http://*.google.com/reader/*", "https://*.google.com/reader/*"],
 			"js": ["data/shared/embeds/buffer-google-reader.js"]
-    	},
-    	{
+		},
+		{
 			"matches": ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*"],
 			"js": ["data/shared/embeds/buffer-hn.js"]
-      	}
-  	],
+		}
+	],
 	"icons": {
 		"16": "logo_icon_small.png",
 		"48": "logo_icon_large.png",
