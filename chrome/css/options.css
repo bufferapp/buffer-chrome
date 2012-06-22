@@ -50,7 +50,7 @@ body {
   text-shadow: none;
 }
 ::selection {
-  background: #fe57a1;
+  background: #54982f;
   color: #fff;
   text-shadow: none;
 }
@@ -287,6 +287,9 @@ body {
   width: 50%;
   margin: 2.5em auto;
 }
+header {
+  position: relative;
+}
 header img {
   margin: 1.5em 1.5em;
 }
@@ -370,6 +373,15 @@ header h1.love {
   font-style: italic;
   text-decoration: none;
   border-bottom: 1px solid #ccc;
+  -webkit-transition: all .1s linear;
+}
+.field .other:hover {
+  color: #54982f;
+  border-color: #54982f;
+}
+.field .other:active {
+  color: #61b036;
+  border-color: #61b036;
 }
 .field small {
   color: #999;

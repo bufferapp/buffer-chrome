@@ -7,7 +7,7 @@
 <div class="wrapper">
   <header>
     <img src="img/buffer-logo-small.png">
-    <h1>Make <strong>Buffer</strong> work <em>just right</em> for you.</h1>
+    <h1>Make <strong>Buffer</strong> work <em>perfectly</em> for you.</h1>
   </header>
   <div class="options">
     <div class="field">
@@ -126,7 +126,10 @@
     // Indicate to the user that things went well
     $(this).text('Saved').addClass("saved");
 
-    $('header h1').html('Enjoying <strong>Buffer</strong>? Head over to the <a class="fivestars" href="https://chrome.google.com/webstore/detail/noojglkidnpfjbincgijbaiedldjfbhh?hl=en-GB" target="_bank">Chrome Web Store</a> and give us 5 stars.<br>We will love you <em>forever</em>.').addClass('highlight');
+    // Ask for a good review
+    if( ! localStorage.getItem('buffer.reviewed') ) {
+      $('header h1:not(.highlight)').html('Enjoying <strong>Buffer</strong>? Head over to the <a class="fivestars" href="https://chrome.google.com/webstore/detail/noojglkidnpfjbincgijbaiedldjfbhh?hl=en-GB" target="_bank">Chrome Web Store</a> and give us 5 stars.<br>We will love you <em>forever</em>.').addClass('highlight');
+    }
 
   });
 
@@ -138,7 +141,7 @@
   });
 
   $('body').on('click', '.fivestars', function () {
-    console.log("highfive")
+    localStorage.setItem('buffer.reviewed', 'true');
     $('header h1').html("You're <strong>awesome</strong> &hearts;").addClass('love').removeClass('highlight');
   })
 
