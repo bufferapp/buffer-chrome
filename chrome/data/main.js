@@ -67,6 +67,33 @@ if( ! localStorage.getItem('buffer.run') ) {
     });
 }
 
+// Set up options
+if( ! localStorage.getItem('buffer.op') ) {
+    localStorage.setItem('buffer.op', true);
+
+    // Grab the options page and use it to generate the options
+    $.get('options.html', function (data) {
+
+        // Use the checkbox's value attribute as the key and default value
+        $('input[type="checkbox"]', data).each(function () {
+            var val = $(this).attr('value'),
+                key = 'buffer.op.' + val;
+
+            localStorage.setItem(key, val);
+        });
+
+        // Use any text input's placeholder as the value,
+        // and the name as the key
+        $('input[type="text"]', data).each(function () {
+            var val = $(this).attr('placeholder'),
+                key = 'buffer.op.' + $(this).attr('name');
+
+            localStorage.setItem(key, val);
+        });
+
+    });
+}
+
 // Fire the overlay when the button is clicked
 chrome.browserAction.onClicked.addListener(function(tab) {
     attachOverlay({tab: tab, placement: 'toolbar'});
@@ -101,6 +128,8 @@ chrome.extension.onConnect.addListener(function(chport) {
     var port = PortWrapper(chport);
     var index = ports.push(port);
     var tab = port.raw.sender.tab;
+
+    port.emit('buffer_options', localStorage);
     
     // Listen for embedded triggers
     port.on("buffer_click", function (embed) {

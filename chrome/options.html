@@ -1,0 +1,138 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Options &mdash; Buffer for Chrome</title>
+<link rel="stylesheet" href="css/options.css">
+
+
+<div class="wrapper">
+  <header>
+    <img src="img/buffer-logo-small.png">
+    <h1>Make <strong>Buffer for Chrome</strong> work <em>just right</em> for you.</h1>
+  </header>
+  <div class="options">
+    <div class="field">
+      <label for="site">Buffer Integration</label>
+      <fieldset>
+        <div class="checkbox">
+          <input type="checkbox" name="site" value="twitter">Twitter
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="site" value="facebook">Facebook
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="site" value="reader">Google Reader
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="site" value="reddit">Reddit
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="site" value="hacker">Hacker News
+        </div>
+      </fieldset>
+    </div>
+    <div class="field">
+      <label for="site">Keyboard Shortcut</label>
+      <fieldset>
+        <input type="text" placeholder="alt+b" name="key-combo">
+        <small>Keys separated by '+'. Eg. 'alt+shift+b' or 'ctrl+b'.</small>
+        <small class="checkbox">
+          <input type="checkbox" name="key-enable" value="key-enable" checked>Use key shortcut?
+        </small>
+      </fieldset>
+    </div>
+    <div class="field">
+      <label for="save"></label>
+      <fieldset>
+        <a class="submit saved" href="#">Saved</a>
+        <small>
+          or <a class="other" href="http://bufferapp.com/extras" target="_blank">find other ways to add to Buffer...</a>
+          <aside>
+            Please <strong>refresh</strong> any open pages after making changes.
+          </aside>
+        </small>
+      </fieldset>
+    </div>
+  </div>
+</div>
+
+<script src="data/shared/libs/jquery-1.7.2.min.js"></script>
+<script>
+
+  /**
+   * turn checkboxes on & off from localStorage based on their values
+   */
+  var checkboxes = $('input[type="checkbox"]').each(function () {
+
+    var val = $(this).attr('value'), 
+        key = 'buffer.op.' + val;
+
+    if( localStorage.getItem(key) === val ) {
+      $(this).attr('checked', true);
+    } else {
+      $(this).attr('checked', false);
+    }
+
+  });
+
+  /**
+   * fill in text inputs from localStorage
+   */
+  var inputs = $('input[type="text"]').each(function () {
+
+    var val = $(this).attr('placeholder'),
+        key = 'buffer.op.' + $(this).attr('name');
+
+    if( localStorage.getItem(key) !== val ) {
+      $(this).val(localStorage.getItem(key));
+    }
+
+  });
+
+  /**
+   * Save it all
+   */
+  $('.submit').click(function () {
+
+    // Save the checkbox values based on their values
+    $(checkboxes).each(function () {
+
+      var val = $(this).attr('value'), 
+          key = 'buffer.op.' + val;
+
+      if( $(this).attr('checked') === 'checked' ) {
+        localStorage.setItem(key, val);
+      } else {
+        localStorage.setItem(key, 'false');
+      }
+
+    });
+
+    // Save the checkbox values based on their values
+    $(inputs).each(function () {
+
+      var val = $(this).val(),
+          key = 'buffer.op.' + $(this).attr('name'),
+          placeholder = $(this).attr('placeholder');
+
+      if( val !== placeholder ) {
+        if( val === '' ) val = placeholder;
+        localStorage.setItem(key, val);
+      }
+
+    });
+
+    console.log(localStorage);
+
+    // Indicate to the user that things went well
+    $(this).text('Saved').addClass("saved");
+
+  });
+
+  /**
+   * Reset the save button
+   */
+  $('input').change(function () {
+    $('.submit').text('Save').removeClass("saved");
+  });
+
+</script>

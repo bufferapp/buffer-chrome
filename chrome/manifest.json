@@ -6,6 +6,7 @@
 		"default_icon": "logo_icon_small.png"
 	},
 	"background_page": "buffer.html",
+	"options_page": "options.html",
 	"permissions": [
 		"tabs", "http://*/*", "contextMenus"
 	],
