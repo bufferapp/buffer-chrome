@@ -45,6 +45,14 @@ header {
   h1 {
     background: #efefef;
     .padding;
+    -webkit-transition: background .1s linear;
+    transition: background .1s linear;
+    &.highlight {
+      background: hsl(51,80%,80%);
+    }
+    &.love {
+      background: hsl(330,80%,80%);
+    }
   }
 }
 
@@ -108,6 +116,7 @@ header {
     font-size: 0.667em;
     text-transform: uppercase;
     -webkit-transition: background .1s linear;
+    transition: background .1s linear;
     &:hover {
       background: hsl(99, 53%, 45%);
     }

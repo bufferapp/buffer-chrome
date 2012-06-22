@@ -293,6 +293,14 @@ header img {
 header h1 {
   background: #efefef;
   padding: 1em 1.5em;
+  -webkit-transition: background .1s linear;
+  transition: background .1s linear;
+}
+header h1.highlight {
+  background: #f5e9a3;
+}
+header h1.love {
+  background: #f5a3cc;
 }
 /**
  * Form
@@ -346,6 +354,7 @@ header h1 {
   font-size: 0.667em;
   text-transform: uppercase;
   -webkit-transition: background .1s linear;
+  transition: background .1s linear;
 }
 .field .submit:hover {
   background: #61b036;
