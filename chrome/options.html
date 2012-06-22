@@ -88,6 +88,11 @@
 
   });
 
+  $('input[name="key-combo"]').change(function () {
+    var val = $(this).val().toLowerCase().replace(/[^\sa-z0-9\+]/gi, '');
+    $(this).val(val);
+  });
+
   /**
    * Save it all
    */
