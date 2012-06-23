@@ -10,6 +10,31 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display
   padding: 1em 1.5em;
 }
 
+.button {
+  text-decoration: none;
+  border: none;
+  background: hsl(99, 53%, 39%);
+  border-radius: 3px;
+  .padding;
+  color: white;
+  font-weight: bold;
+  font-size: 0.667em;
+  text-transform: uppercase;
+  -webkit-transition: background .1s linear;
+  transition: background .1s linear;
+  &:visited {
+    color: white;
+  }
+  &:hover {
+    background: hsl(99, 53%, 45%);
+    color: white;
+  }
+  &:active {
+    background: hsl(99, 53%, 60%);
+    color: white;
+  }
+}
+
 /**
  * Reset
  */
@@ -53,6 +78,25 @@ header {
     }
     &.love {
       background: hsl(330,80%,80%);
+    }
+  }
+  menu {
+    float: right;
+    width: 33%;
+  }
+  ul {
+    overflow: hidden;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    li {
+      float: right;
+      display: block;
+    }
+    a {
+      display: block;
+      .button;
+      .padding;
     }
   }
 }
@@ -113,24 +157,8 @@ header {
 
   .submit {
     display: inline-block;
-    text-decoration: none;
     margin-right: 0.5em;
-    border: none;
-    background: hsl(99, 53%, 39%);
-    border-radius: 3px;
-    .padding;
-    color: white;
-    font-weight: bold;
-    font-size: 0.667em;
-    text-transform: uppercase;
-    -webkit-transition: background .1s linear;
-    transition: background .1s linear;
-    &:hover {
-      background: hsl(99, 53%, 45%);
-    }
-    &:active {
-      background: hsl(99, 53%, 60%);
-    }
+    .button;
     &.saved {
       background: #aaa;
     }

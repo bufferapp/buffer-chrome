@@ -6,6 +6,13 @@
 
 <div class="wrapper">
   <header>
+    <menu>
+      <ul>
+        <li>
+          <a href='mailto:hello@bufferapp.com?subject=Chrome+Extension' title="Email the Buffer Team">Get in touch</a>
+        </li>
+      </ul>
+    </menu>
     <img src="img/buffer-logo-small.png">
     <h1>Make <strong>Buffer</strong> work <em>perfectly</em> for you.</h1>
   </header>
@@ -69,7 +76,7 @@
 <script>
 
   /**
-   * turn checkboxes on & off from localStorage based on their values
+   * Turn checkboxes on & off from localStorage based on their values
    */
   var checkboxes = $('input[type="checkbox"]').each(function () {
 
@@ -85,7 +92,7 @@
   });
 
   /**
-   * fill in text inputs from localStorage
+   * Fill in text inputs from localStorage
    */
   var inputs = $('input[type="text"]').each(function () {
 
@@ -102,7 +109,12 @@
    * Clean up the key combo
    */
   $('input[name="key-combo"]').change(function () {
-    var val = $(this).val().toLowerCase().replace(/[^\sa-z0-9\+]/gi, '');
+    var val = $(this)
+              .val()
+              .trim()
+              .toLowerCase()
+              .replace(/[\s\,\&]/gi, '+') // Convert possible spacer characters to pluses
+              .replace(/[^a-z0-9\+]/gi, ''); // Strip out almost everything else
     $(this).val(val);
   });
 
@@ -116,6 +128,11 @@
     var keycombo = $('input[name="key-combo"]').val();
 
     // Check the key combo
+    // The regex:
+    //
+    // starts with (one or more) of     alt / shift / ctrl / command and a plus 
+    // then (zero or more) of           a-z / 0-9 (only one) and a plus 
+    // then ends with                   a-z / 0-9 (only one)
     if( keycombo.length > 0 &&
         keycombo.match(/^(((alt|shift|ctrl|command)\+)+([a-z0-9]{1}\+)*([a-z0-9]{1}))$/gi) === null ) {
       // Indicate there's an error
@@ -129,8 +146,6 @@
       }, 1500 * 0.15);
       return;
     }
-
-    console.log("Not invalid");
 
     // Save the checkbox values based on their values
     $(checkboxes).each(function () {
@@ -153,11 +168,8 @@
           key = 'buffer.op.' + $(this).attr('name'),
           placeholder = $(this).attr('placeholder');
 
-      console.log("Checking", key, val, placeholder);
-
       if( val !== placeholder ) {
         if( val === '' ) val = placeholder;
-        console.log("Setting", key, val);
         localStorage.setItem(key, val);
       }
 
@@ -176,10 +188,13 @@
   /**
    * Reset the save button
    */
-  $('input').on('keyup', function () {
+  $('input').on('keyup click', function () {
     $('.submit').text('Save').removeClass("saved");
   });
 
+  /**
+   * Store that the user has already been to the Web Store (:. we <3 them)
+   */
   $('body').on('click', '.fivestars', function () {
     localStorage.setItem('buffer.reviewed', 'true');
     $('header h1').html("You're <strong>awesome</strong> &hearts;").addClass('love').removeClass('highlight');
