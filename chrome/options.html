@@ -109,7 +109,28 @@
   /**
    * Save it all
    */
-  $('.submit').click(function () {
+  $('.submit').click(function (ev) {
+
+    ev.preventDefault();
+
+    var keycombo = $('input[name="key-combo"]').val();
+
+    // Check the key combo
+    if( keycombo.length > 0 &&
+        keycombo.match(/^(((alt|shift|ctrl|command)\+)+([a-z0-9]{1}\+)*([a-z0-9]{1}))$/gi) === null ) {
+      // Indicate there's an error
+      $('input[name="key-combo"]').addClass('error').one('change', function () {
+        $(this).removeClass("error");
+      });
+      // Wiggle the box
+      var button = $(this).addClass('wiggle');
+      setTimeout(function () {
+        $(button).removeClass('wiggle');
+      }, 1500 * 0.15);
+      return;
+    }
+
+    console.log("Not invalid");
 
     // Save the checkbox values based on their values
     $(checkboxes).each(function () {
@@ -132,8 +153,11 @@
           key = 'buffer.op.' + $(this).attr('name'),
           placeholder = $(this).attr('placeholder');
 
+      console.log("Checking", key, val, placeholder);
+
       if( val !== placeholder ) {
         if( val === '' ) val = placeholder;
+        console.log("Setting", key, val);
         localStorage.setItem(key, val);
       }
 
@@ -152,7 +176,7 @@
   /**
    * Reset the save button
    */
-  $('input').change(function () {
+  $('input').on('keyup', function () {
     $('.submit').text('Save').removeClass("saved");
   });
 

@@ -314,12 +314,13 @@ header h1.love {
   margin: 1em 0;
 }
 .field h2 {
-  width: 33%;
+  width: 32%;
   float: left;
   font-weight: bold;
 }
 .field fieldset {
   width: 66%;
+  padding-left: 1%;
   float: right;
   overflow: hidden;
 }
@@ -327,6 +328,11 @@ header h1.love {
   padding: 0 0 0.262em;
   width: 50%;
   float: left;
+}
+.field .error {
+  box-shadow: inset 0 0 1em rgba(255, 0, 0, 0.5) !important;
+  position: relative;
+  margin-bottom: 0.667em;
 }
 .field input[type="checkbox"] {
   margin-right: 0.667em;
@@ -392,4 +398,26 @@ header h1.love {
 .field small aside {
   margin-top: 2.5em;
   font-size: 1em;
+}
+.wiggle {
+  position: relative;
+  -webkit-animation-name: wiggle;
+  -webkit-animation-duration: .15s;
+  -webkit-animation-iteration-count: 4;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-delay: 0;
+}
+@-webkit-keyframes wiggle {
+  0% {
+    left: 0;
+  }
+  25% {
+    left: 0.2em;
+  }
+  50% {
+    left: 0em;
+  }
+  75% {
+    left: -0.2em;
+  }
 }
