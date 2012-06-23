@@ -313,7 +313,7 @@ header h1.love {
   overflow: hidden;
   margin: 1em 0;
 }
-.field label {
+.field h2 {
   width: 33%;
   float: left;
   font-weight: bold;
