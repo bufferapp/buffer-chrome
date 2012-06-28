@@ -11,7 +11,7 @@ Authors: Joel Gascoigne         Tom Ashworth
 var config = {};
 config.plugin = {
     label: "Buffer This Page",
-    version: "2.2.9",
+    version: "2.2.10",
     guide: 'http://bufferapp.com/guides/chrome/installed',
     menu: {
         page: {
