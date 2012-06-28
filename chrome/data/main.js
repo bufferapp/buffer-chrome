@@ -7,11 +7,14 @@ Authors: Joel Gascoigne         Tom Ashworth
 
 */
 
+// Add manifest access to the extension
+chrome.manifest = chrome.app.getDetails();
+
 // Configuration
 var config = {};
 config.plugin = {
     label: "Buffer This Page",
-    version: "2.2.10",
+    version: chrome.manifest.version,
     guide: 'http://bufferapp.com/guides/chrome/installed',
     menu: {
         page: {
