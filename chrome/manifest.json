@@ -1,15 +1,24 @@
 {
 	"name": "Buffer",
 	"version": "2.2.14",
+	"manifest_version": 2,
 	"description": "Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!",
 	"browser_action": {
 		"default_icon": "logo_icon_small.png"
 	},
-	"background_page": "buffer.html",
+	"background": {
+		"page": "buffer.html"
+	},
 	"options_page": "options.html",
 	"permissions": [
 		"tabs", "http://*/*", "contextMenus"
 	],
+	"web_accessible_resources": [
+    "data/shared/img/buffer-icon-sprite.png",
+    "data/shared/img/buffer_twitter_small.png",
+    "data/shared/img/twttr-sprite.png",
+    "data/shared/img/twttr-sprite-small.png"
+  ],
 	"content_scripts": [
 		{
 		"matches": ["http://*/*", "https://*/*"],
