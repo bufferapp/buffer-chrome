@@ -194,5 +194,4 @@ chrome.extension.onConnect.addListener(function(chport) {
         scraperPort = port;
     });
 
-
 });
