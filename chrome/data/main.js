@@ -66,11 +66,41 @@ var attachOverlay = function (data, cb) {
     port.emit("buffer_click", data);
 };
 
+var injectButtonCode = function (id) {
+    var scripts = chrome.manifest.content_scripts[0].js;
+    var i =0, s = scripts.length;
+    for( ; i < s; i++ ) {
+        console.log(id, "injecting", scripts[i]);
+        chrome.tabs.executeScript(id, {
+            file: scripts[i]
+        });
+    }
+};
+
 // Show the guide on first run
 if( ! localStorage.getItem('buffer.run') ) {
     localStorage.setItem('buffer.run', true);
-    chrome.tabs.create({
-        url: config.plugin.guide
+    // Inject the scraper scripts into all tabs in all windows straight away
+    chrome.windows.getAll({
+        populate: true
+    }, function (windows) {
+        var i = 0, w = windows.length, currentWindow;
+        for( ; i < w; i++ ) {
+            currentWindow = windows[i];
+            var j = 0, t = currentWindow.tabs.length, currentTab;
+            for( ; j < t; j++ ) {
+                currentTab = currentWindow.tabs[j];
+                // Skip chrome:// and https:// pages
+                if( ! currentTab.url.match(/(chrome|https):\/\//gi) ) {
+                    injectButtonCode(currentTab.id);
+                }
+            }
+        }
+        // Open the guide
+        chrome.tabs.create({
+            url: config.plugin.guide,
+            active: true
+        });
     });
 }
 
