@@ -49,6 +49,10 @@ var attachOverlay = function (data, cb) {
         setTimeout(function () {
             cb(overlayData);
         }, 0);
+        chrome.browserAction.setIcon({
+            path: 'logo_icon_small.png',
+            tabId: tab.id
+        });
     });
     
     // Don't try to JSON encode a tab
@@ -99,6 +103,10 @@ if( ! localStorage.getItem('buffer.op') ) {
 
 // Fire the overlay when the button is clicked
 chrome.browserAction.onClicked.addListener(function(tab) {
+    chrome.browserAction.setIcon({
+        path: 'logo_icon_small_loading.png',
+        tabId: tab.id
+    });
     attachOverlay({tab: tab, placement: 'toolbar'});
 });
 
