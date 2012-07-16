@@ -155,6 +155,19 @@ chrome.contextMenus.create({
     }
 });
 
+// Selection
+chrome.contextMenus.create({
+    title: config.plugin.menu.image.label,
+    contexts: ["image"],
+    onclick: function (info, tab) {
+        attachOverlay({
+            tab: tab,
+            image: info.srcUrl,
+            placement: 'menu-image'
+        });
+    }
+});
+
 // Listen for embedded events (twitter/hacker news)
 var ports = [];
 var overlayPort, scraperPort;
