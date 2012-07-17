@@ -169,14 +169,12 @@ chrome.contextMenus.create({
 });
 
 // Listen for embedded events (twitter/hacker news)
-var ports = [];
 var overlayPort, scraperPort;
 chrome.extension.onConnect.addListener(function(chport) {
     
     if( chport.name !== "buffer-embed" ) return;
 
     var port = PortWrapper(chport);
-    var index = ports.push(port);
     var tab = port.raw.sender.tab;
 
     port.emit('buffer_options', localStorage);
