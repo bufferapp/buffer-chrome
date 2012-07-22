@@ -70,7 +70,6 @@ var injectButtonCode = function (id) {
     var scripts = chrome.manifest.content_scripts[0].js;
     var i =0, s = scripts.length;
     for( ; i < s; i++ ) {
-        console.log(id, "injecting", scripts[i]);
         chrome.tabs.executeScript(id, {
             file: scripts[i]
         });
