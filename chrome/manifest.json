@@ -1,6 +1,6 @@
 {
 	"name": "Buffer",
-	"version": "2.2.19",
+	"version": "2.2.20",
 	"manifest_version": 2,
 	"description": "Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!",
 	"browser_action": {
