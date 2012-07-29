@@ -1,8 +1,8 @@
 {
 	"name": "Buffer",
-	"version": "2.2.21",
+	"version": "2.2.22",
 	"manifest_version": 2,
-	"description": "Buffer is the best way to share to Twitter, Facebook and LinkedIn from anywhere on the web, with just one click. Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!",
+	"description": "Buffer is the best way to share great content to Twitter, Facebook and LinkedIn from anywhere on the web, with just one click.",
 	"browser_action": {
 		"default_icon": "logo_icon_small.png"
 	},
