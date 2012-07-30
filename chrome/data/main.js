@@ -68,12 +68,11 @@ var attachOverlay = function (data, cb) {
 
 var injectButtonCode = function (id) {
     var scripts = chrome.manifest.content_scripts[0].js;
-    var i =0, s = scripts.length;
-    for( ; i < s; i++ ) {
+    scripts.forEach(function (script) {
         chrome.tabs.executeScript(id, {
-            file: scripts[i]
+            file: script
         });
-    }
+    });
 };
 
 // Show the guide on first run
@@ -83,18 +82,14 @@ if( ! localStorage.getItem('buffer.run') ) {
     chrome.windows.getAll({
         populate: true
     }, function (windows) {
-        var i = 0, w = windows.length, currentWindow;
-        for( ; i < w; i++ ) {
-            currentWindow = windows[i];
-            var j = 0, t = currentWindow.tabs.length, currentTab;
-            for( ; j < t; j++ ) {
-                currentTab = currentWindow.tabs[j];
+        windows.forEach(function (currentWindow) {
+            currentWindow.tabs.forEach(function (currentTab) {
                 // Skip chrome:// and https:// pages
                 if( ! currentTab.url.match(/(chrome|https):\/\//gi) ) {
                     injectButtonCode(currentTab.id);
                 }
-            }
-        }
+            });
+        });
         // Open the guide
         chrome.tabs.create({
             url: config.plugin.guide,

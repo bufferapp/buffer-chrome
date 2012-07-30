@@ -3,7 +3,7 @@
  */
 var checkboxes = $('input[type="checkbox"]').each(function () {
 
-  var val = $(this).attr('value'), 
+  var val = $(this).attr('value'),
       key = 'buffer.op.' + val;
 
   if( localStorage.getItem(key) === val ) {
