@@ -2,15 +2,15 @@
 
 Buffer for Chrome
 
-Authors: Joel Gascoigne         Tom Ashworth
-         joel@bufferapp.com     tom.a@bufferapp.com
-
 */
+
+/**=========================================
+ * CONFIGURATION
+ =========================================*/
 
 // Add manifest access to the extension
 chrome.manifest = chrome.app.getDetails();
 
-// Configuration
 var config = {};
 config.plugin = {
     label: "Buffer This Page",
@@ -29,30 +29,29 @@ config.plugin = {
     }
 };
 
-// Overlay
+/**=========================================
+ * OVERLAY & TAB MANAGEMENT
+ =========================================*/
+
+var tabs = [];
+
+// Trigger buffer_click in the content scripts,
+// so that an overlay is created
 var attachOverlay = function (data, cb) {
     
+    // Make sure all the data is in the right place
     if( typeof data === 'function' ) cb = data;
     if( ! data ) data = {};
     if( ! cb ) cb = function () {};
     if( ! data.embed ) data.embed = {};
     
+    // Store references to important data
     var tab = data.tab;
-        
-    var port = PortWrapper(chrome.tabs.connect(tab.id));
+    var port = PortWrapper(chrome.tabs.connect(tab.id), {name: 'buffer'});
 
     // Remove the port once the Buffering is complete
     port.on('buffer_done', function (overlayData) {
-        port.destroy();
-        port = null;
-        overlayPort = null;
-        setTimeout(function () {
-            cb(overlayData);
-        }, 0);
-        chrome.browserAction.setIcon({
-            path: 'logo_icon_small.png',
-            tabId: tab.id
-        });
+        cb(overlayData);
     });
     
     // Don't try to JSON encode a tab
@@ -65,6 +64,52 @@ var attachOverlay = function (data, cb) {
     // Inform overlay that click has occurred
     port.emit("buffer_click", data);
 };
+
+/**=========================================
+ * CONTENT SCRIPT PORT
+ =========================================*/
+
+// Listen for embedded events
+chrome.extension.onConnect.addListener(function(rawPort) {
+    
+    // Ignore anything that doesn't begin with Buffer
+    if( ! rawPort.name.match(/^buffer/) ) { return; }
+
+    var port = PortWrapper(rawPort),
+        tab = rawPort.sender.tab;
+
+    tabs[tab.id] = port;
+
+    // Send the user's options to content scripts
+    port.emit('buffer_options', localStorage);
+
+    // Listen for embedded triggers
+    port.on("buffer_click", function (embed) {
+        attachOverlay({tab: tab, embed: embed}, function (overlaydata) {
+            if( !!overlaydata.sent ) {
+                // Buffer was sent
+                port.emit("buffer_embed_clear");
+            }
+        });
+    });
+
+    // Listen for a request for scraper data from the overlay-scraper
+    // and send it on to the scraper
+    port.on("buffer_details_request", function () {
+        port.emit("buffer_details_request");
+    });
+
+    // overlay-scraper asks for details, then the scraper
+    // return it, so we send it back to the overlay-scraper
+    port.on("buffer_details", function (data) {
+        port.emit("buffer_details", data);
+    });
+
+});
+
+/**=========================================
+ * INITIAL SETUP
+ =========================================*/
 
 var injectButtonCode = function (id) {
     var scripts = chrome.manifest.content_scripts[0].js;
@@ -125,12 +170,17 @@ if( ! localStorage.getItem('buffer.op') ) {
     });
 }
 
-// Fire the overlay when the button is clicked
+/**=========================================
+ * TRIGGERS
+ =========================================*/
+
+// Fire the overlay when the browser action button is clicked
 chrome.browserAction.onClicked.addListener(function(tab) {
     attachOverlay({tab: tab, placement: 'toolbar'});
 });
 
 // Context menus
+
 // Page
 chrome.contextMenus.create({
     title: config.plugin.menu.page.label,
@@ -160,43 +210,4 @@ chrome.contextMenus.create({
             placement: 'menu-image'
         });
     }
-});
-
-// Listen for embedded events (twitter/hacker news)
-var overlayPort, scraperPort;
-chrome.extension.onConnect.addListener(function(chport) {
-    
-    if( chport.name !== "buffer-embed" ) return;
-
-    var port = PortWrapper(chport);
-    var tab = port.raw.sender.tab;
-
-    port.emit('buffer_options', localStorage);
-    
-    // Listen for embedded triggers
-    port.on("buffer_click", function (embed) {
-        attachOverlay({tab: tab, embed: embed}, function (overlaydata) {
-            if( !!overlaydata.sent ) {
-                // Buffer was sent
-                port.emit("buffer_embed_clear");
-            }
-        });
-    });
-
-    // Listen for a request for scraper data
-    port.on("buffer_details_request", function () {
-        overlayPort = port;
-        if( scraperPort ) {
-            scraperPort.emit("buffer_details_request");
-        }
-    });
-
-    port.on("buffer_details", function (data) {
-        if( overlayPort ) overlayPort.emit("buffer_details", data);
-    });
-
-    port.on("buffer_register_scraper", function () {
-        scraperPort = port;
-    });
-
 });

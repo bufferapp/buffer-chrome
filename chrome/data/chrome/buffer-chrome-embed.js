@@ -9,6 +9,7 @@
     var reconnectToExtension = function () {
       // Reset port
       rawPort = null;
+
       // Attempt to reconnect after 1 second
       setTimeout(connectToExtension, 1000 * 1);
     };
@@ -29,16 +30,16 @@
 
       // Wrap it up for use by the content scripts
       xt.port = PortWrapper(rawPort);
+
+      // Wait for options
+      xt.port.on('buffer_options', function (options) {
+        xt.options = options;
+      });
       
     };
 
     // Connect for the first time
     connectToExtension();
-   
-    // Wait for options
-    xt.port.on('buffer_options', function (options) {
-      xt.options = options;
-    });
   
   }
 
