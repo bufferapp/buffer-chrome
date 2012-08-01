@@ -33,8 +33,6 @@ config.plugin = {
  * OVERLAY & TAB MANAGEMENT
  =========================================*/
 
-var tabs = [];
-
 // Trigger buffer_click in the content scripts,
 // so that an overlay is created
 var attachOverlay = function (data, cb) {
