@@ -78,8 +78,6 @@ chrome.extension.onConnect.addListener(function(rawPort) {
     var port = PortWrapper(rawPort),
         tab = rawPort.sender.tab;
 
-    tabs[tab.id] = port;
-
     // Send the user's options to content scripts
     port.emit('buffer_options', localStorage);
 
