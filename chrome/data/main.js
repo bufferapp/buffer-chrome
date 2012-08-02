@@ -1,8 +1,21 @@
-/*
-
-Buffer for Chrome
-
-*/
+/**=========================================
+ * Buffer for Chrome
+ *
+ * How it works:
+ *
+ * 1.  Content scripts are injected according to the list
+ *     in the manifest.
+ * 2.  As each script is injected, a connection is set up and
+ *     the chrome.extension.onConnect listener is fired.
+ * 3.  This creates listeners for events from the content
+ *     script, which can be triggers or data passing
+ * 4.  When a trigger (buffer_click) is fired, from a content
+ *     script or from a page action or menu, the attachOverlay
+ *     function is fired, which initiates a connection to the
+ *     buffer-overlay content script, collates some data and
+ *     fires an event that triggers the creation of the Buffer
+ *     overlay.
+ =========================================*/
 
 /**=========================================
  * CONFIGURATION
@@ -11,6 +24,7 @@ Buffer for Chrome
 // Add manifest access to the extension
 chrome.manifest = chrome.app.getDetails();
 
+// Plugin configuration
 var config = {};
 config.plugin = {
     label: "Buffer This Page",
@@ -107,8 +121,10 @@ chrome.extension.onConnect.addListener(function(rawPort) {
  * INITIAL SETUP
  =========================================*/
 
+// Inject code from the first element of the content script list
 var injectButtonCode = function (id) {
     var scripts = chrome.manifest.content_scripts[0].js;
+    // Programmatically inject each script
     scripts.forEach(function (script) {
         chrome.tabs.executeScript(id, {
             file: script
