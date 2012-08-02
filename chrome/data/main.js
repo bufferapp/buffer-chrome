@@ -3,18 +3,39 @@
  *
  * How it works:
  *
- * 1.  Content scripts are injected according to the list
- *     in the manifest.
- * 2.  As each script is injected, a connection is set up and
- *     the chrome.extension.onConnect listener is fired.
+ * 1.  Content scripts are injected according to the list in
+ *     the manifest.
+ * 2.  As each script is injected, a connection is set up
+ *     and the chrome.extension.onConnectlistener is fired.
  * 3.  This creates listeners for events from the content
- *     script, which can be triggers or data passing
+ *     script, which can be triggers or data passing.
  * 4.  When a trigger (buffer_click) is fired, from a content
  *     script or from a page action or menu, the attachOverlay
  *     function is fired, which initiates a connection to the
  *     buffer-overlay content script, collates some data and
  *     fires an event that triggers the creation of the Buffer
  *     overlay.
+ *
+ * The shared embeds:
+ *
+ * The embed code (shared/...) is identical across the extensions.
+ * They are injected with some or all of the contents of chrome/...
+ * to allow them to run the same code across all three+ browsers.
+ *
+ * The scripts that hack on other's UI do so by defining a list of
+ * objects that are processed and converted in DOM elements with
+ * event listeners and style etc.
+ *
+ * For example, in buffer-twitter:
+ *
+ * config.buttons is the list of elements that are added to the UI.
+ * The element, built in the create method, is added to the container
+ * elements, after another specific element. It's not quite consistent
+ * between the embedded scripts, so it's worth checking out the
+ * insertButtons function to see what's possible.
+ *
+ * I started to extract this out into a library, but there didn't seem
+ * to be demand for it so I stopped. https://github.com/phuu/extensio
  =========================================*/
 
 /**=========================================
