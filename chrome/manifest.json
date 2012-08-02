@@ -2,7 +2,7 @@
 
   "name": "Buffer",
   "description": "Buffer is the best way to share great content to Twitter, Facebook and LinkedIn from anywhere on the web, with just one click.",
-  "version": "2.5",
+  "version": "2.3",
   "manifest_version": 2,
   
   "browser_action": {
