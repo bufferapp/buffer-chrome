@@ -45,7 +45,7 @@
       ]
     },
     {
-      "matches": ["https://*.bufferapp.com/*", "http://*.bufferapp.com/*"],
+      "matches": ["*://*.bufferapp.com/*"],
       "js": [
         "data/chrome/buffer-chrome-port-wrapper.js",
         "data/chrome/buffer-chrome-embed.js",
@@ -54,29 +54,41 @@
       "all_frames": true
     },
     {
-      "matches": ["https://*.facebook.com/*", "http://*.facebook.com/*"],
+      "matches": ["*://*.facebook.com/*"],
       "js": ["data/shared/embeds/buffer-facebook.js"]
     },
     {
-      "matches": ["http://*.reddit.com/*"],
+      "matches": ["*://*.reddit.com/*"],
       "js": [
         "data/shared/embeds/buffer-reddit.js"
       ]
     },
     {
-      "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
+      "matches": ["*://*.twitter.com/*"],
       "js": [
         "data/shared/embeds/buffer-twitter.js"
       ]
     },
     {
-      "matches": ["http://*.google.com/reader/*", "https://*.google.com/reader/*"],
+      "matches": [
+        "*://*.google.com/reader/*",
+        "*://*.google.co.uk/reader/*",
+        "*://*.google.de/reader/*",
+        "*://*.google.ca/reader/*",
+        "*://*.google.jp/reader/*",
+        "*://*.google.es/reader/*",
+        "*://*.google.fr/reader/*",
+        "*://*.google.it/reader/*",
+        "*://*.google.se/reader/*"
+      ],
       "js": [
         "data/shared/embeds/buffer-google-reader.js"
       ]
     },
     {
-      "matches": ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*"],
+      "matches": [
+        "http://*.ycombinator.org/*", 
+        "http://*.ycombinator.com/*"],
       "js": [
         "data/shared/embeds/buffer-hn.js"
       ]
