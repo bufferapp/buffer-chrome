@@ -1,9 +1,9 @@
 {
 
-  "name": "Buffer",
-  "description": "Buffer is the best way to share great content to Twitter, Facebook and LinkedIn from anywhere on the web, with just one click.",
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "manifest_version": 2,
   
   "browser_action": {
