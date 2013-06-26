@@ -44,6 +44,7 @@
         "data/shared/buffer-overlay.js", 
         "data/shared/embeds/buffer-scraper.js",
         "data/shared/embeds/buffer-hotkey.js", 
+        "data/shared/embeds/buffer-tpc-check.js", 
         "data/chrome/buffer-chrome.js"
       ]
     },
