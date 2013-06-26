@@ -61,7 +61,9 @@ config.plugin = {
         image: {
             label: "Buffer This Image"
         }
-    }
+    },
+    //assume third party cookies are enabled
+	tpc: true 
 };
 
 /**=========================================
@@ -89,6 +91,8 @@ var attachOverlay = function (data, cb) {
     
     // Don't try to JSON encode a tab
     data.tab = null;
+
+    data.tpc = config.tpc; 
 
     // Pass statistic data
     data.version = config.plugin.version;
@@ -122,6 +126,11 @@ chrome.extension.onConnect.addListener(function(rawPort) {
                 port.emit("buffer_embed_clear");
             }
         });
+    });
+
+    // Listen for third party cookies disabled
+    port.on("buffer_tpc_disabled", function (embed) {
+        config.tpc = false; 
     });
 
     // Listen for a request for scraper data from the overlay-scraper
