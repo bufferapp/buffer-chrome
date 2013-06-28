@@ -75,22 +75,6 @@
     },
     {
       "matches": [
-        "*://*.google.com/reader/*",
-        "*://*.google.co.uk/reader/*",
-        "*://*.google.de/reader/*",
-        "*://*.google.ca/reader/*",
-        "*://*.google.jp/reader/*",
-        "*://*.google.es/reader/*",
-        "*://*.google.fr/reader/*",
-        "*://*.google.it/reader/*",
-        "*://*.google.se/reader/*"
-      ],
-      "js": [
-        "data/shared/embeds/buffer-google-reader.js"
-      ]
-    },
-    {
-      "matches": [
         "*://*.ycombinator.org/*", 
         "*://*.ycombinator.com/*"],
       "js": [
