@@ -103,7 +103,7 @@ $('.submit').click(function (ev) {
 
   // Ask for a good review
   if( ! localStorage.getItem('buffer.reviewed') ) {
-    $('header h1:not(.highlight)').html('Enjoying <strong>Buffer</strong>? Head over to the <a class="fivestars" href="https://chrome.google.com/webstore/detail/noojglkidnpfjbincgijbaiedldjfbhh?hl=en-GB" target="_bank">Chrome Web Store</a> and give us 5 stars.<br>We will love you <em>forever</em>.').addClass('highlight');
+    $('header h1:not(.highlight)').html('Enjoying <strong>Buffer</strong>? Head over to the <a class="fivestars" href="https://addons.opera.com/extensions/details/buffer-2/" target="_bank">Opera add-ons</a> and give us 5 stars.<br>We will love you <em>forever</em>.').addClass('highlight');
   }
 
 });
