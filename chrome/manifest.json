@@ -1,55 +1,53 @@
 {
-
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "2.3.29",
+  "version": "2.3.30",
   "manifest_version": 2,
-  
   "browser_action": {
     "default_icon": {
       "19": "logo_icon_19.png",
-  	  "38": "logo_icon_38.png"
+      "38": "logo_icon_38.png"
     }
   },
-  
   "background": {
     "page": "buffer.html"
   },
-  
   "options_page": "options.html",
-  
   "permissions": [
     "tabs",
     "http://*/*",
     "contextMenus"
   ],
-  
   "web_accessible_resources": [
     "data/shared/img/buffer-icon-sprite.png",
     "data/shared/img/buffer_twitter_small.png",
     "data/shared/img/twttr-sprite.png",
     "data/shared/img/twttr-sprite-small.png"
   ],
-  
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
       "js": [
-        "data/chrome/buffer-chrome-port-wrapper.js", 
-        "data/chrome/buffer-chrome-data-wrapper.js", 
-        "data/chrome/buffer-chrome-embed.js", 
-        "data/shared/libs/jquery-1.7.2.min.js", 
-        "data/shared/libs/postmessage.js", 
-        "data/shared/buffer-overlay.js", 
+        "data/chrome/buffer-chrome-port-wrapper.js",
+        "data/chrome/buffer-chrome-data-wrapper.js",
+        "data/chrome/buffer-chrome-embed.js",
+        "data/shared/libs/jquery-1.7.2.min.js",
+        "data/shared/libs/postmessage.js",
+        "data/shared/buffer-overlay.js",
         "data/shared/embeds/buffer-scraper.js",
-        "data/shared/embeds/buffer-hotkey.js", 
-        "data/shared/embeds/buffer-tpc-check.js", 
+        "data/shared/embeds/buffer-hotkey.js",
+        "data/shared/embeds/buffer-tpc-check.js",
         "data/chrome/buffer-chrome.js"
       ]
     },
     {
-      "matches": ["*://*.bufferapp.com/*"],
+      "matches": [
+        "*://*.bufferapp.com/*"
+      ],
       "js": [
         "data/chrome/buffer-chrome-port-wrapper.js",
         "data/chrome/buffer-chrome-embed.js",
@@ -58,35 +56,42 @@
       "all_frames": true
     },
     {
-      "matches": ["*://*.facebook.com/*"],
-      "js": ["data/shared/embeds/buffer-facebook.js"]
+      "matches": [
+        "*://*.facebook.com/*"
+      ],
+      "js": [
+        "data/shared/embeds/buffer-facebook.js"
+      ]
     },
     {
-      "matches": ["*://*.reddit.com/*"],
+      "matches": [
+        "*://*.reddit.com/*"
+      ],
       "js": [
         "data/shared/embeds/buffer-reddit.js"
       ]
     },
     {
-      "matches": ["*://*.twitter.com/*"],
+      "matches": [
+        "*://*.twitter.com/*"
+      ],
       "js": [
         "data/shared/embeds/buffer-twitter.js"
       ]
     },
     {
       "matches": [
-        "*://*.ycombinator.org/*", 
-        "*://*.ycombinator.com/*"],
+        "*://*.ycombinator.org/*",
+        "*://*.ycombinator.com/*"
+      ],
       "js": [
         "data/shared/embeds/buffer-hn.js"
       ]
     }
   ],
-
   "icons": {
     "16": "logo_icon_small.png",
     "48": "logo_icon_large.png",
     "128": "logo_icon_128.png"
   }
-
 }
