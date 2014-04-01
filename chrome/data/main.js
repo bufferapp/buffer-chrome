@@ -153,28 +153,29 @@ var injectButtonCode = function (id) {
     });
 };
 
-// Show the guide on first run
-if( ! localStorage.getItem('buffer.run') ) {
-    localStorage.setItem('buffer.run', true);
-    // Inject the scraper scripts into all tabs in all windows straight away
-    chrome.windows.getAll({
-        populate: true
-    }, function (windows) {
-        windows.forEach(function (currentWindow) {
-            currentWindow.tabs.forEach(function (currentTab) {
-                // Skip chrome:// and https:// pages
-                if( ! currentTab.url.match(/(chrome|https):\/\//gi) ) {
-                    injectButtonCode(currentTab.id);
-                }
+chrome.runtime.onInstalled.addListener(function(details){
+    if (details.reason == "install"){
+        chrome.windows.getAll({
+            populate: true
+        }, function (windows) {
+            windows.forEach(function (currentWindow) {
+                currentWindow.tabs.forEach(function (currentTab) {
+                    // Skip chrome:// and https:// pages
+                    if( ! currentTab.url.match(/(chrome|https):\/\//gi) ) {
+                        injectButtonCode(currentTab.id);
+                    }
+                });
+            });
+            // Open the guide
+            chrome.tabs.create({
+                url: config.plugin.guide,
+                active: true
             });
         });
-        // Open the guide
-        chrome.tabs.create({
-            url: config.plugin.guide,
-            active: true
-        });
-    });
-}
+    } else if (details.reason == "update"){
+        // Nothing to do here, yet...
+    }
+});
 
 // Set up options
 if( ! localStorage.getItem('buffer.op') ) {
