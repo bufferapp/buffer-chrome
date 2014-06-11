@@ -23,7 +23,7 @@
       // When extension is upgraded or disabled and renabled, the content scripts
       // will still be injected, so we have to reconnect them.
       // We listen for an onDisconnect event, and then wait for a second before
-      // trying to connect again. Becuase chrome.extension.connect fires an onDisconnect
+      // trying to connect again. Because chrome.extension.connect fires an onDisconnect
       // event if it does not connect, an unsuccessful connection should trigger
       // another attempt, 1 second later.
       rawPort.onDisconnect.addListener(reconnectToExtension);
