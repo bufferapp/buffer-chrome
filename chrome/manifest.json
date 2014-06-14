@@ -2,7 +2,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "2.3.38",
+  "version": "2.4.0",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
@@ -23,7 +23,9 @@
     "data/shared/img/buffer-icon-sprite.png",
     "data/shared/img/buffer_twitter_small.png",
     "data/shared/img/twttr-sprite.png",
-    "data/shared/img/twttr-sprite-small.png"
+    "data/shared/img/twttr-sprite-small.png",
+    "data/shared/img/buffer-hover-icon@1x.png",
+    "data/shared/img/buffer-hover-icon@2x.png"
   ],
   "content_scripts": [
     {
@@ -41,6 +43,7 @@
         "data/shared/embeds/buffer-scraper.js",
         "data/shared/embeds/buffer-hotkey.js",
         "data/shared/embeds/buffer-tpc-check.js",
+        "data/shared/embeds/buffer-hover-button.js",
         "data/chrome/buffer-chrome.js"
       ]
     },
