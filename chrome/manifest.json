@@ -2,7 +2,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
@@ -20,6 +20,7 @@
     "contextMenus"
   ],
   "web_accessible_resources": [
+    "manifest.json",
     "data/shared/img/buffer-icon-sprite.png",
     "data/shared/img/buffer_twitter_small.png",
     "data/shared/img/twttr-sprite.png",
@@ -51,10 +52,15 @@
       "matches": [
         "*://*.bufferapp.com/*"
       ],
+      "css": [
+        "data/shared/buffer-extension-detection.css"
+      ],
       "js": [
         "data/chrome/buffer-chrome-port-wrapper.js",
         "data/chrome/buffer-chrome-embed.js",
-        "data/shared/embeds/buffer-overlay-scraper.js"
+        "data/shared/embeds/buffer-overlay-scraper.js",
+        "data/shared/buffer-install-check.js",
+        "data/shared/buffer-extension-settings.js"
       ],
       "all_frames": true
     },
