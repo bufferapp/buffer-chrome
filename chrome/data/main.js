@@ -136,6 +136,14 @@ chrome.extension.onConnect.addListener(function(rawPort) {
     port.emit("buffer_details", data);
   });
 
+  // Open the settings options.html in a new tab
+  port.on("buffer_open_settings", function () {
+    chrome.tabs.create({
+      url: 'options.html',
+      index: tab.index + 1
+    });
+  });
+
 });
 
 /**=========================================
