@@ -1,3 +1,4 @@
+/* globals chrome, PortWrapper */
 /**=========================================
  * Buffer for Chrome
  *
@@ -71,13 +72,13 @@ config.plugin = {
 // Trigger buffer_click in the content scripts,
 // so that an overlay is created
 var attachOverlay = function (data, cb) {
-  
+
   // Make sure all the data is in the right place
   if( typeof data === 'function' ) cb = data;
   if( ! data ) data = {};
   if( ! cb ) cb = function () {};
   if( ! data.embed ) data.embed = {};
-  
+
   // Store references to important data
   var tab = data.tab;
   var port = PortWrapper(chrome.tabs.connect(tab.id), {name: 'buffer'});
@@ -86,7 +87,7 @@ var attachOverlay = function (data, cb) {
   port.on('buffer_done', function (overlayData) {
     cb(overlayData);
   });
-  
+
   // Don't try to JSON encode a tab
   data.tab = null;
 
@@ -104,7 +105,7 @@ var attachOverlay = function (data, cb) {
 
 // Listen for embedded events
 chrome.extension.onConnect.addListener(function(rawPort) {
-  
+
   // Ignore anything that doesn't begin with Buffer
   if( ! rawPort.name.match(/^buffer/) ) { return; }
 
