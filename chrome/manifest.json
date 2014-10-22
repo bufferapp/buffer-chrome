@@ -2,7 +2,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "2.6.14",
+  "version": "2.7.0",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
@@ -26,7 +26,8 @@
     "data/shared/img/twttr-sprite.png",
     "data/shared/img/twttr-sprite-small.png",
     "data/shared/img/buffer-hover-icon@1x.png",
-    "data/shared/img/buffer-hover-icon@2x.png"
+    "data/shared/img/buffer-hover-icon@2x.png",
+    "data/shared/img/white-loading-gif-small.gif"
   ],
   "content_scripts": [
     {
