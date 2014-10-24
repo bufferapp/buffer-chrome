@@ -49,12 +49,28 @@ chrome.manifest = chrome.app.getDetails();
 // Plugin configuration
 var config = {};
 config.plugin = {
+<<<<<<< HEAD
+    label: "Buffer This Page",
+    version: chrome.manifest.version,
+    guide: 'http://bufferapp.com/guides/opera/installed',
+    menu: {
+        page: {
+            label: "Buffer This Page"
+        },
+        selection: {
+            label: "Buffer Selected Text"
+        },
+        image: {
+            label: "Buffer This Image"
+        }
+=======
   label: "Buffer This Page",
   version: chrome.manifest.version,
-  guide: 'http://bufferapp.com/guides/opera/installed',
+  guide: 'http://bufferapp.com/guides/chrome/installed',
   menu: {
     page: {
       label: "Buffer This Page"
+>>>>>>> master
     },
     selection: {
       label: "Buffer Selected Text"

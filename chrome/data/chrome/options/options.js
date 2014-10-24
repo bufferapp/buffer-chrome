@@ -4,9 +4,10 @@
 var checkboxes = $('input[type="checkbox"]').each(function () {
 
   var val = $(this).attr('value'),
-      key = 'buffer.op.' + val;
+      key = 'buffer.op.' + val,
+      setting = localStorage.getItem(key);
 
-  if( localStorage.getItem(key) === val ) {
+  if( setting === val || setting === null) {
     $(this).attr('checked', true);
   } else {
     $(this).attr('checked', false);
