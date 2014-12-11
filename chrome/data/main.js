@@ -51,7 +51,7 @@ var config = {};
 config.plugin = {
   label: "Buffer This Page",
   version: chrome.manifest.version,
-  guide: 'http://bufferapp.com/guides/opera/installed',
+  guide: 'https://bufferapp.com/guides/opera/installed',
   menu: {
     page: {
       label: "Buffer This Page"
