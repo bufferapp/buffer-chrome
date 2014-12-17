@@ -17,6 +17,7 @@
   "permissions": [
     "tabs",
     "http://*/*",
+    "https://*/*",
     "contextMenus"
   ],
   "web_accessible_resources": [
