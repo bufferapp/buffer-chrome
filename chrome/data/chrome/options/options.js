@@ -54,8 +54,8 @@ $('.submit').click(function (ev) {
   // Check the key combo
   // The regex:
   //
-  // starts with (one or more) of     alt / shift / ctrl / command and a plus 
-  // then (zero or more) of           a-z / 0-9 (only one) and a plus 
+  // starts with (one or more) of     alt / shift / ctrl / command and a plus
+  // then (zero or more) of           a-z / 0-9 (only one) and a plus
   // then ends with                   a-z / 0-9 (only one)
   if( keycombo.length > 0 &&
       keycombo.match(/^(((alt|shift|ctrl|command)\+)+([a-z0-9]{1}\+)*([a-z0-9]{1}))$/gi) === null ) {
@@ -74,10 +74,10 @@ $('.submit').click(function (ev) {
   // Save the checkbox values based on their values
   $(checkboxes).each(function () {
 
-    var val = $(this).attr('value'), 
+    var val = $(this).attr('value'),
         key = 'buffer.op.' + val;
 
-    if( $(this).attr('checked') === 'checked' ) {
+    if( $(this).prop('checked') ) {
       localStorage.setItem(key, val);
     } else {
       localStorage.setItem(key, 'false');
