@@ -1,13 +1,13 @@
 {
-  "name": "__MSG_appName__",
+  "name": "__MSG_appName__ - DEV CHANNEL",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
   "version": "2.8.2",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
-      "19": "logo_icon_19.png",
-      "38": "logo_icon_38.png"
+      "19": "logo_icon_19_dev.png",
+      "38": "logo_icon_38_dev.png"
     }
   },
   "background": {
@@ -113,7 +113,7 @@
   ],
   "icons": {
     "16": "logo_icon_small.png",
-    "48": "logo_icon_large.png",
-    "128": "logo_icon_128.png"
+    "48": "logo_icon_large_dev.png",
+    "128": "logo_icon_128_dev.png"
   }
 }
