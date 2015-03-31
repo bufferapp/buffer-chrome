@@ -52,6 +52,7 @@
     },
     {
       "matches": [
+        "*://*.buffer.com/*",
         "*://*.bufferapp.com/*"
       ],
       "css": [
