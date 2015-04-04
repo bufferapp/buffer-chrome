@@ -2,7 +2,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "2.9.0",
+  "version": "2.10.1",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
@@ -87,11 +87,25 @@
       "matches": [
         "*://*.twitter.com/*"
       ],
+      "exclude_matches": [
+        "*://tweetdeck.twitter.com/*"
+      ],
       "js": [
         "data/shared/embeds/buffer-twitter.js"
       ],
       "css": [
         "data/shared/embeds/buffer-twitter.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://tweetdeck.twitter.com/*"
+      ],
+      "js": [
+        "data/shared/embeds/buffer-tweetdeck.js"
+      ],
+      "css": [
+        "data/shared/embeds/buffer-tweetdeck.css"
       ]
     },
     {
