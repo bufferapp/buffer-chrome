@@ -110,6 +110,17 @@
     },
     {
       "matches": [
+        "*://*.pinterest.com/*"
+      ],
+      "js": [
+        "data/shared/embeds/buffer-pinterest.js"
+      ],
+      "css": [
+        "data/shared/embeds/buffer-pinterest.css"
+      ]
+    },
+    {
+      "matches": [
         "*://*.ycombinator.org/*",
         "*://*.ycombinator.com/*"
       ],
