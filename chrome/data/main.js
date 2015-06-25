@@ -59,6 +59,9 @@ config.plugin = {
     selection: {
       label: "Buffer Selected Text"
     },
+    pablo_selection: {
+      label: "Create Image With Pablo"
+    },
     image: {
       label: "Buffer This Image"
     }
@@ -239,6 +242,15 @@ chrome.contextMenus.create({
   contexts: ["selection"],
   onclick: function (info, tab) {
     attachOverlay({tab: tab, placement: 'menu-selection'});
+  }
+});
+
+// Pablo Selection
+chrome.contextMenus.create({
+  title: config.plugin.menu.pablo_selection.label,
+  contexts: ["selection"],
+  onclick: function (info, tab) {
+    chrome.tabs.create({url: 'https://buffer.com/pablo?text='+info.selectionText});
   }
 });
 
