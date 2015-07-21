@@ -100,6 +100,12 @@ var attachOverlay = function (data, cb) {
 
   // Inform overlay that click has occurred
   port.emit("buffer_click", data);
+
+  // Listen to overlay asking to open a popup from privileged code
+  // to bypass CSP on some sites
+  port.on('buffer_open_popup', function(url) {
+    chrome.tabs.create({ url: url, openerTabId: tab.id });
+  });
 };
 
 /**=========================================
