@@ -64,6 +64,9 @@ config.plugin = {
     },
     image: {
       label: "Buffer This Image"
+    },
+    pablo_image: {
+      label: "Open Image With Pablo"
     }
   },
 };
@@ -260,7 +263,7 @@ chrome.contextMenus.create({
   }
 });
 
-// Selection
+// Image
 chrome.contextMenus.create({
   title: config.plugin.menu.image.label,
   contexts: ["image"],
@@ -270,5 +273,15 @@ chrome.contextMenus.create({
       image: info.srcUrl,
       placement: 'menu-image'
     });
+  }
+});
+
+
+// Pablo Image
+chrome.contextMenus.create({
+  title: config.plugin.menu.pablo_image.label,
+  contexts: ["image"],
+  onclick: function(info, tab) {
+    chrome.tabs.create({ url: 'https://buffer.com/pablo?image=' + encodeURIComponent(info.srcUrl) });
   }
 });
