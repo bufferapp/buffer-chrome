@@ -1,4 +1,4 @@
-/* globals chrome, PortWrapper */
+/* globals chrome, PortWrapper, _bmq */
 /**=========================================
  * Buffer for Chrome
  *
@@ -108,6 +108,11 @@ var attachOverlay = function (data, cb) {
   // to bypass CSP on some sites
   port.on('buffer_open_popup', function(url) {
     chrome.tabs.create({ url: url, openerTabId: tab.id });
+  });
+
+  // Map content script _bmq calls to the real _bmq here
+  port.on('buffer_tracking', function(payload) {
+    _bmq[payload.methodName].apply(_bmq, payload.args);
   });
 };
 
