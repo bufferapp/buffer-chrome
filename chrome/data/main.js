@@ -1,4 +1,4 @@
-/* globals chrome, PortWrapper */
+/* globals chrome, PortWrapper, _bmq */
 /**=========================================
  * Buffer for Chrome
  *
@@ -50,6 +50,7 @@ chrome.manifest = chrome.app.getDetails();
 var config = {};
 config.plugin = {
   label: "Buffer This Page",
+  browser: 'chrome',
   version: chrome.manifest.version,
   guide: 'https://buffer.com/guides/opera/installed',
   menu: {
@@ -108,6 +109,11 @@ var attachOverlay = function (data, cb) {
   // to bypass CSP on some sites
   port.on('buffer_open_popup', function(url) {
     chrome.tabs.create({ url: url, openerTabId: tab.id });
+  });
+
+  // Map content script _bmq calls to the real _bmq here
+  port.on('buffer_tracking', function(payload) {
+    _bmq[payload.methodName].apply(_bmq, payload.args);
   });
 };
 
@@ -259,7 +265,7 @@ chrome.contextMenus.create({
   title: config.plugin.menu.pablo_selection.label,
   contexts: ["selection"],
   onclick: function (info, tab) {
-    chrome.tabs.create({url: 'https://buffer.com/pablo?text='+info.selectionText});
+    chrome.tabs.create({ url: 'https://buffer.com/pablo?text=' + encodeURIComponent(info.selectionText) });
   }
 });
 
