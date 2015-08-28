@@ -50,7 +50,7 @@ chrome.manifest = chrome.app.getDetails();
 var config = {};
 config.plugin = {
   label: "Buffer This Page",
-  browser: 'chrome',
+  browser: 'opera',
   version: chrome.manifest.version,
   guide: 'https://buffer.com/guides/opera/installed',
   menu: {
