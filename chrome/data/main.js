@@ -88,7 +88,16 @@ var attachOverlay = function (data, cb) {
 
   // Store references to important data
   var tab = data.tab;
-  var port = PortWrapper(chrome.tabs.connect(tab.id), {name: 'buffer'});
+
+  // frameId is supported since Chrome 41, and it apparently throws in prev. versions.
+  // frameId fixes an issue that appeared in 45 where Chrome sends a message to all tabs
+  // sharing a same opener tab and that opener tab itself (e.g. when using window.open)
+  try {
+    var rawPort = chrome.tabs.connect(tab.id, { name: 'buffer', frameId: 0 });
+  } catch(e) {
+    var rawPort = chrome.tabs.connect(tab.id, { name: 'buffer' });
+  }
+  var port = PortWrapper(rawPort);
 
   // Remove the port once the Buffering is complete
   port.on('buffer_done', function (overlayData) {
