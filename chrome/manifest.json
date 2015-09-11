@@ -26,7 +26,7 @@
     "data/shared/img/twitter-sprite.png",
     "data/shared/img/buffer-hover-icon@1x.png",
     "data/shared/img/buffer-hover-icon@2x.png",
-    "data/shared/img/white-loading-gif-small.gif",
+    "data/shared/img/black-loading-gif-small.gif",
     "data/shared/tpc-check.html"
   ],
   "content_scripts": [
