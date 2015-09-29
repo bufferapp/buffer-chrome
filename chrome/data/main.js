@@ -75,7 +75,7 @@ config.plugin = {
 /**=========================================
  * OVERLAY & TAB MANAGEMENT
  =========================================*/
-var extensionUserData;
+var extensionUserData = JSON.parse(localStorage.getItem('buffer.extensionUserData'));
 
 // Trigger buffer_click in the content scripts,
 // so that an overlay is created
@@ -136,6 +136,7 @@ var attachOverlay = function (data, cb) {
   // Listen for user data from buffer-overlay, and cache it here
   port.on('buffer_user_data', function(userData) {
     extensionUserData = userData;
+    localStorage.setItem('buffer.extensionUserData', JSON.stringify(extensionUserData));
     port.emit('buffer_user_data', extensionUserData);
   });
 };
