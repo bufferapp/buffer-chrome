@@ -75,7 +75,6 @@ config.plugin = {
 /**=========================================
  * OVERLAY & TAB MANAGEMENT
  =========================================*/
-var latestOverlayPort;
 var extensionUserData;
 
 // Trigger buffer_click in the content scripts,
@@ -99,7 +98,7 @@ var attachOverlay = function (data, cb) {
   } catch(e) {
     var rawPort = chrome.tabs.connect(tab.id, { name: 'buffer' });
   }
-  var port = latestOverlayPort = PortWrapper(rawPort);
+  var port = PortWrapper(rawPort);
 
   // Remove the port once the Buffering is complete
   port.on('buffer_done', function (overlayData) {
@@ -133,6 +132,12 @@ var attachOverlay = function (data, cb) {
       port.emit('buffer_user_data', extensionUserData);
     });
   }
+
+  // Listen for user data from buffer-overlay, and cache it here
+  port.on('buffer_user_data', function(userData) {
+    extensionUserData = userData;
+    port.emit('buffer_user_data', extensionUserData);
+  });
 };
 
 /**=========================================
@@ -180,14 +185,6 @@ chrome.extension.onConnect.addListener(function(rawPort) {
       index: tab.index + 1
     });
   });
-
-  // Listen for user data from buffer-get-user-info, and send it
-  // straight to overlay to make it available there
-  port.on('buffer_user_data', function(userData) {
-    extensionUserData = userData;
-    latestOverlayPort.emit('buffer_user_data', extensionUserData);
-  });
-
 });
 
 /**=========================================
