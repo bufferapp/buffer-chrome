@@ -288,7 +288,7 @@ chrome.contextMenus.create({
   title: config.plugin.menu.pablo_selection.label,
   contexts: ["selection"],
   onclick: function (info, tab) {
-    chrome.tabs.create({ url: 'https://buffer.com/pablo?text=' + encodeURIComponent(info.selectionText) });
+    chrome.tabs.create({ url: 'https://buffer.com/pablo?text=' + encodeURIComponent(info.selectionText) + '&source_url=' + encodeURIComponent(info.pageUrl) });
   }
 });
 
