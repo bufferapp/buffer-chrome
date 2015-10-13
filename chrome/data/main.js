@@ -311,6 +311,6 @@ chrome.contextMenus.create({
   title: config.plugin.menu.pablo_image.label,
   contexts: ["image"],
   onclick: function(info, tab) {
-    chrome.tabs.create({ url: 'https://buffer.com/pablo?image=' + encodeURIComponent(info.srcUrl) });
+    chrome.tabs.create({ url: 'https://buffer.com/pablo?image=' + encodeURIComponent(info.srcUrl) + '&source_url=' + encodeURIComponent(info.pageUrl) });
   }
 });
