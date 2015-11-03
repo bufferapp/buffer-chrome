@@ -2,7 +2,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "2.13.9",
+  "version": "2.13.10",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
@@ -66,8 +66,7 @@
         "data/chrome/buffer-chrome-embed.js",
         "data/shared/embeds/buffer-overlay-scraper.js",
         "data/shared/buffer-install-check.js",
-        "data/shared/buffer-extension-settings.js",
-        "data/shared/buffer-get-user-info.js"
+        "data/shared/buffer-extension-settings.js"
       ],
       "all_frames": true
     },

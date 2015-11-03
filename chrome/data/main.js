@@ -75,8 +75,7 @@ config.plugin = {
 /**=========================================
  * OVERLAY & TAB MANAGEMENT
  =========================================*/
-var latestOverlayPort;
-var extensionUserData;
+var extensionUserData = JSON.parse(localStorage.getItem('buffer.extensionUserData'));
 
 // Trigger buffer_click in the content scripts,
 // so that an overlay is created
@@ -99,7 +98,7 @@ var attachOverlay = function (data, cb) {
   } catch(e) {
     var rawPort = chrome.tabs.connect(tab.id, { name: 'buffer' });
   }
-  var port = latestOverlayPort = PortWrapper(rawPort);
+  var port = PortWrapper(rawPort);
 
   // Remove the port once the Buffering is complete
   port.on('buffer_done', function (overlayData) {
@@ -133,6 +132,13 @@ var attachOverlay = function (data, cb) {
       port.emit('buffer_user_data', extensionUserData);
     });
   }
+
+  // Listen for user data from buffer-overlay, and cache it here
+  port.on('buffer_user_data', function(userData) {
+    extensionUserData = userData;
+    localStorage.setItem('buffer.extensionUserData', JSON.stringify(extensionUserData));
+    port.emit('buffer_user_data', extensionUserData);
+  });
 };
 
 /**=========================================
@@ -180,14 +186,6 @@ chrome.extension.onConnect.addListener(function(rawPort) {
       index: tab.index + 1
     });
   });
-
-  // Listen for user data from buffer-get-user-info, and send it
-  // straight to overlay to make it available there
-  port.on('buffer_user_data', function(userData) {
-    extensionUserData = userData;
-    latestOverlayPort.emit('buffer_user_data', extensionUserData);
-  });
-
 });
 
 /**=========================================
@@ -290,7 +288,7 @@ chrome.contextMenus.create({
   title: config.plugin.menu.pablo_selection.label,
   contexts: ["selection"],
   onclick: function (info, tab) {
-    chrome.tabs.create({ url: 'https://buffer.com/pablo?text=' + encodeURIComponent(info.selectionText) });
+    chrome.tabs.create({ url: 'https://buffer.com/pablo?text=' + encodeURIComponent(info.selectionText) + '&source_url=' + encodeURIComponent(info.pageUrl) });
   }
 });
 
@@ -313,6 +311,6 @@ chrome.contextMenus.create({
   title: config.plugin.menu.pablo_image.label,
   contexts: ["image"],
   onclick: function(info, tab) {
-    chrome.tabs.create({ url: 'https://buffer.com/pablo?image=' + encodeURIComponent(info.srcUrl) });
+    chrome.tabs.create({ url: 'https://buffer.com/pablo?image=' + encodeURIComponent(info.srcUrl) + '&source_url=' + encodeURIComponent(info.pageUrl) });
   }
 });
