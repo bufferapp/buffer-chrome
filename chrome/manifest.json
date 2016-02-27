@@ -2,6 +2,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
+  "homepage_url": "https://buffer.com",
   "version": "2.13.18",
   "manifest_version": 2,
   "browser_action": {
