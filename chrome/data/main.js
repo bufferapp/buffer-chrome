@@ -117,8 +117,24 @@ var attachOverlay = function (data, cb) {
 
   // Listen to overlay asking to open a popup from privileged code
   // to bypass CSP on some sites
-  port.on('buffer_open_popup', function(url) {
-    chrome.tabs.create({ url: url, openerTabId: tab.id });
+  port.on('buffer_open_popup', function(options) {
+    var url = options.src;
+    var isSmallPopup = !!options.isSmallPopup;
+
+    if (isSmallPopup) {
+      chrome.windows.getCurrent({}, function(currentWindow) {
+        var popupWidth = Math.min(740, currentWindow.width);
+        var popupHeight = Math.min(700, currentWindow.height);
+        var popupLeft = Math.round((currentWindow.width - popupWidth) / 2);
+        var popupTop = Math.round((currentWindow.height - popupHeight) / 2);
+
+        chrome.windows.create({
+          url: url, type: 'popup', width: popupWidth, height: popupHeight, top: popupTop, left: popupLeft
+        });
+      });
+    } else {
+      chrome.tabs.create({ url: url, openerTabId: tab.id });
+    }
   });
 
   // Map content script _bmq calls to the real _bmq here
