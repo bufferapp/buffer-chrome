@@ -3,7 +3,7 @@
   "description": "__MSG_appDesc__",
   "default_locale": "en",
   "homepage_url": "https://buffer.com",
-  "version": "2.14.0",
+  "version": "2.14.1",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
