@@ -9,7 +9,8 @@
     "default_icon": {
       "19": "logo_icon_19.png",
       "38": "logo_icon_38.png"
-    }
+    },
+    "default_title": "Share with Buffer"
   },
   "background": {
     "page": "buffer.html"
