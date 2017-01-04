@@ -1,0 +1,62 @@
+/**
+ * This stylesheet contains a number of overrides for options-base.css that make
+ * the options page look simpler and integrate more nicely in any browser's chrome
+ * when it's embedded somewhere (e.g. on a browser's extensions page)
+ */
+
+body {
+  margin: 0;
+  background: transparent;
+  line-height: 1.4em;
+}
+
+.wrapper{
+  width: 100%;
+  margin: 0;
+}
+
+menu,
+#buffer-logo {
+  display: none;
+}
+
+h1:not(.highlight, .love)::before {
+  content: "Buffer Extension options – ";
+}
+
+header h1 {
+  padding: 1em;
+}
+
+.field{
+  padding: 0.5em 1em;
+}
+
+.field input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+
+.field input[type="text"] {
+  padding: 0.9em 1em;
+}
+
+.field:nth-child(2) .checkbox {
+  float: none;
+  display: block;
+  width: 100%;
+}
+
+.field:last-child small {
+  white-space: nowrap;
+}
+
+.field:last-child small aside {
+  white-space: normal;
+}
+
+/* A pinch of native-looking styles for Firefox */
+@-moz-document url-prefix() {
+  .field:last-child {
+    border-bottom: 1px solid #c1c1c1;
+  }
+}

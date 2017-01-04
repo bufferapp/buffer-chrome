@@ -21,8 +21,10 @@
       "data/shared/buffermetrics.js"
     ]
   },
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": false
   },
-  "options_page": "options.html",
   "permissions": [
     "tabs",
     "http://*/*",

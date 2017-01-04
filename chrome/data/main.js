@@ -198,7 +198,7 @@ chrome.extension.onConnect.addListener(function(rawPort) {
   // Open the settings options.html in a new tab
   port.on("buffer_open_settings", function () {
     chrome.tabs.create({
-      url: 'options.html',
+      url: 'options.html#newtab',
       index: tab.index + 1
     });
   });
