@@ -13,7 +13,14 @@
     "default_title": "Share with Buffer"
   },
   "background": {
-    "page": "buffer.html"
+    "scripts": [
+      "data/shared/libs/jquery-2.1.1.min.js",
+      "data/chrome/buffer-chrome-port-wrapper.js",
+      "data/main.js",
+      "data/shared/buffermetrics-bg-shim.js",
+      "data/shared/buffermetrics.js"
+    ]
+  },
   },
   "options_page": "options.html",
   "permissions": [
