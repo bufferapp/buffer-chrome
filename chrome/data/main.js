@@ -133,7 +133,12 @@ var attachOverlay = function (data, cb) {
         });
       });
     } else {
-      chrome.tabs.create({ url: url, openerTabId: tab.id });
+      // Firefox currently doesn't support the openerTabId option and throws on it
+      // See https://bugzilla.mozilla.org/show_bug.cgi?id=1238314
+      var isFirefox = location.protocol === 'moz-extension:';
+
+      if (isFirefox) chrome.tabs.create({ url: url });
+      else chrome.tabs.create({ url: url, openerTabId: tab.id });
     }
   });
 
