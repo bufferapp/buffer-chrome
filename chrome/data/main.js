@@ -224,36 +224,38 @@ var injectButtonCode = function (id) {
   });
 };
 
-chrome.runtime.onInstalled.addListener(function(details){
-  if (details.reason == "install"){
-    chrome.windows.getAll({
-      populate: true
-    }, function (windows) {
-      windows.forEach(function (currentWindow) {
-        currentWindow.tabs.forEach(function (currentTab) {
-          // Skip chrome:// and https:// pages
-          if( ! currentTab.url.match(/(chrome|https):\/\//gi) ) {
-            injectButtonCode(currentTab.id);
-          }
+if (chrome.runtime.onInstalled) {
+  chrome.runtime.onInstalled.addListener(function(details){
+    if (details.reason == "install"){
+      chrome.windows.getAll({
+        populate: true
+      }, function (windows) {
+        windows.forEach(function (currentWindow) {
+          currentWindow.tabs.forEach(function (currentTab) {
+            // Skip chrome:// and https:// pages
+            if( ! currentTab.url.match(/(chrome|https):\/\//gi) ) {
+              injectButtonCode(currentTab.id);
+            }
+          });
+        });
+        // Open the guide
+        chrome.tabs.create({
+          url: config.plugin.guide,
+          active: true
         });
       });
-      // Open the guide
-      chrome.tabs.create({
-        url: config.plugin.guide,
-        active: true
-      });
-    });
-  } else if (details.reason == "update"){
-    // Nothing to do here, yet...
-  }
-});
+    } else if (details.reason == "update"){
+      // Nothing to do here, yet...
+    }
+  });
+}
 
 // Set up options
 if( ! localStorage.getItem('buffer.op') ) {
   localStorage.setItem('buffer.op', true);
 
   // Grab the options page and use it to generate the options
-  $.get('options.html', function (data) {
+  $.get(chrome.extension.getURL('options.html'), function (data) {
 
     // Use the checkbox's value attribute as the key and default value
     $('input[type="checkbox"]', data).each(function () {
@@ -272,7 +274,7 @@ if( ! localStorage.getItem('buffer.op') ) {
       localStorage.setItem(key, val);
     });
 
-  });
+  }, 'html');
 }
 
 /**=========================================
