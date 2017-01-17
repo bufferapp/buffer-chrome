@@ -43,6 +43,11 @@
  * CONFIGURATION
  =========================================*/
 
+var currentBrowser = (
+  location.protocol === 'chrome-extension:' ? 'chrome' :
+  location.protocol === 'moz-extension:' ? 'firefox' : ''
+);
+
 // Add manifest access to the extension
 chrome.manifest = chrome.runtime.getManifest();
 
@@ -50,9 +55,9 @@ chrome.manifest = chrome.runtime.getManifest();
 var config = {};
 config.plugin = {
   label: "Buffer This Page",
-  browser: 'chrome',
+  browser: currentBrowser,
   version: chrome.manifest.version,
-  guide: 'https://buffer.com/guides/chrome/installed',
+  guide: 'https://buffer.com/guides/' + currentBrowser + '/installed',
   menu: {
     page: {
       label: "Buffer This Page"
@@ -135,9 +140,7 @@ var attachOverlay = function (data, cb) {
     } else {
       // Firefox currently doesn't support the openerTabId option and throws on it
       // See https://bugzilla.mozilla.org/show_bug.cgi?id=1238314
-      var isFirefox = location.protocol === 'moz-extension:';
-
-      if (isFirefox) chrome.tabs.create({ url: url });
+      if (currentBrowser === 'firefox') chrome.tabs.create({ url: url });
       else chrome.tabs.create({ url: url, openerTabId: tab.id });
     }
   });
