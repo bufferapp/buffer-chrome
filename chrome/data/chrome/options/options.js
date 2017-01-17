@@ -11,6 +11,18 @@ var framedStylesheet = document.querySelector('[data-use-when="framed"]');
 if (isFramed) framedStylesheet.setAttribute('href', framedStylesheet.getAttribute('data-href'));
 
 $(document).on('ready', function() {
+  var currentBrowser = (
+    location.protocol === 'chrome-extension:' ? 'chrome' :
+    location.protocol === 'moz-extension:' ? 'firefox' : ''
+  );
+
+  // Dynamically update page title and email subject
+  var hardcodedBrowserName = 'Chrome';
+  var formattedCurrentBrowser = currentBrowser.substr(0, 1).toUpperCase() + currentBrowser.substr(1);
+  document.title = document.title.replace(hardcodedBrowserName, formattedCurrentBrowser);
+  var emailAnchor = document.getElementById('email-anchor');
+  emailAnchor.href = emailAnchor.href.replace(hardcodedBrowserName, formattedCurrentBrowser);
+
   /**
    * Turn checkboxes on & off from localStorage based on their values
    */
@@ -121,11 +133,6 @@ $(document).on('ready', function() {
         chrome: 'the <a class="fivestars" href="https://chrome.google.com/webstore/detail/buffer/noojglkidnpfjbincgijbaiedldjfbhh" target="_bank">Chrome Web Store</a>',
         firefox: '<a class="fivestars" href="https://addons.mozilla.org/en-US/firefox/addon/buffer-for-firefox/" target="_bank">Mozilla Add-ons</a>',
       };
-
-      var currentBrowser = (
-        location.protocol === 'chrome-extension:' ? 'chrome' :
-        location.protocol === 'moz-extension:' ? 'firefox' : ''
-      );
 
       $('header h1:not(.highlight)').html('Enjoying <strong>Buffer</strong>? Head over to ' + webstoresCopy[currentBrowser] + ' and give us 5 stars.<br>We will love you <em>forever</em>.').addClass('highlight');
     }
