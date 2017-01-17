@@ -176,7 +176,7 @@ chrome.runtime.onConnect.addListener(function(rawPort) {
     tab = rawPort.sender.tab;
 
   // Send the user's options to content scripts
-  port.emit('buffer_options', localStorage);
+  port.emit('buffer_options', Object.assign({}, localStorage));
 
   // Listen for embedded triggers
   port.on("buffer_click", function (embed) {
