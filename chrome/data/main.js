@@ -232,8 +232,8 @@ if (chrome.runtime.onInstalled) {
       }, function (windows) {
         windows.forEach(function (currentWindow) {
           currentWindow.tabs.forEach(function (currentTab) {
-            // Skip chrome:// and https:// pages
-            if( ! currentTab.url.match(/(chrome|https):\/\//gi) ) {
+            // Skip chrome://, about:, and https:// pages
+            if(!currentTab.url.match(/^(?:chrome|about|https):/gi) ) {
               injectButtonCode(currentTab.id);
             }
           });
