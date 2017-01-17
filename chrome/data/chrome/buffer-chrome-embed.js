@@ -18,12 +18,12 @@
     var connectToExtension = function () {
 
       // Make the connection
-      rawPort = chrome.extension.connect({name: "buffer-embed"});
-      
+      rawPort = chrome.runtime.connect({name: "buffer-embed"});
+
       // When extension is upgraded or disabled and renabled, the content scripts
       // will still be injected, so we have to reconnect them.
       // We listen for an onDisconnect event, and then wait for a second before
-      // trying to connect again. Because chrome.extension.connect fires an onDisconnect
+      // trying to connect again. Because chrome.runtime.connect fires an onDisconnect
       // event if it does not connect, an unsuccessful connection should trigger
       // another attempt, 1 second later.
       rawPort.onDisconnect.addListener(reconnectToExtension);
@@ -35,12 +35,10 @@
       xt.port.on('buffer_options', function (options) {
         xt.options = options;
       });
-      
     };
 
     // Connect for the first time
     connectToExtension();
-  
   }
 
 }());

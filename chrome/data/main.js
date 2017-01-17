@@ -1,13 +1,13 @@
 /* globals chrome, PortWrapper, _bmq */
 /**=========================================
- * Buffer for Chrome
+ * Buffer for Chrome/Firefox
  *
  * How it works:
  *
  * 1.  Content scripts are injected according to the list in
  *     the manifest.
  * 2.  As each script is injected, a connection is set up
- *     and the chrome.extension.onConnectlistener is fired.
+ *     and the chrome.runtime.onConnectlistener is fired.
  * 3.  This creates listeners for events from the content
  *     script, which can be triggers or data passing.
  * 4.  When a trigger (buffer_click) is fired, from a content
@@ -44,7 +44,7 @@
  =========================================*/
 
 // Add manifest access to the extension
-chrome.manifest = chrome.app.getDetails();
+chrome.manifest = chrome.runtime.getManifest();
 
 // Plugin configuration
 var config = {};
@@ -167,7 +167,7 @@ var attachOverlay = function (data, cb) {
  =========================================*/
 
 // Listen for embedded events
-chrome.extension.onConnect.addListener(function(rawPort) {
+chrome.runtime.onConnect.addListener(function(rawPort) {
 
   // Ignore anything that doesn't begin with Buffer
   if( ! rawPort.name.match(/^buffer/) ) { return; }
