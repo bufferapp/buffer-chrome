@@ -1,13 +1,13 @@
 /* globals chrome, PortWrapper, _bmq */
 /**=========================================
- * Buffer for Chrome
+ * Buffer for Chrome/Firefox
  *
  * How it works:
  *
  * 1.  Content scripts are injected according to the list in
  *     the manifest.
  * 2.  As each script is injected, a connection is set up
- *     and the chrome.extension.onConnectlistener is fired.
+ *     and the chrome.runtime.onConnectlistener is fired.
  * 3.  This creates listeners for events from the content
  *     script, which can be triggers or data passing.
  * 4.  When a trigger (buffer_click) is fired, from a content
@@ -43,8 +43,13 @@
  * CONFIGURATION
  =========================================*/
 
+var currentBrowser = (
+  location.protocol === 'chrome-extension:' ? 'chrome' :
+  location.protocol === 'moz-extension:' ? 'firefox' : ''
+);
+
 // Add manifest access to the extension
-chrome.manifest = chrome.app.getDetails();
+chrome.manifest = chrome.runtime.getManifest();
 
 // Plugin configuration
 var config = {};
@@ -133,7 +138,10 @@ var attachOverlay = function (data, cb) {
         });
       });
     } else {
-      chrome.tabs.create({ url: url, openerTabId: tab.id });
+      // Firefox currently doesn't support the openerTabId option and throws on it
+      // See https://bugzilla.mozilla.org/show_bug.cgi?id=1238314
+      if (currentBrowser === 'firefox') chrome.tabs.create({ url: url });
+      else chrome.tabs.create({ url: url, openerTabId: tab.id });
     }
   });
 
@@ -162,7 +170,7 @@ var attachOverlay = function (data, cb) {
  =========================================*/
 
 // Listen for embedded events
-chrome.extension.onConnect.addListener(function(rawPort) {
+chrome.runtime.onConnect.addListener(function(rawPort) {
 
   // Ignore anything that doesn't begin with Buffer
   if( ! rawPort.name.match(/^buffer/) ) { return; }
@@ -171,7 +179,7 @@ chrome.extension.onConnect.addListener(function(rawPort) {
     tab = rawPort.sender.tab;
 
   // Send the user's options to content scripts
-  port.emit('buffer_options', localStorage);
+  port.emit('buffer_options', Object.assign({}, localStorage));
 
   // Listen for embedded triggers
   port.on("buffer_click", function (embed) {
@@ -198,7 +206,7 @@ chrome.extension.onConnect.addListener(function(rawPort) {
   // Open the settings options.html in a new tab
   port.on("buffer_open_settings", function () {
     chrome.tabs.create({
-      url: 'options.html',
+      url: 'options.html#newtab',
       index: tab.index + 1
     });
   });
@@ -219,36 +227,38 @@ var injectButtonCode = function (id) {
   });
 };
 
-chrome.runtime.onInstalled.addListener(function(details){
-  if (details.reason == "install"){
-    chrome.windows.getAll({
-      populate: true
-    }, function (windows) {
-      windows.forEach(function (currentWindow) {
-        currentWindow.tabs.forEach(function (currentTab) {
-          // Skip chrome:// and https:// pages
-          if( ! currentTab.url.match(/(chrome|https):\/\//gi) ) {
-            injectButtonCode(currentTab.id);
-          }
+if (chrome.runtime.onInstalled) {
+  chrome.runtime.onInstalled.addListener(function(details){
+    if (details.reason == "install"){
+      chrome.windows.getAll({
+        populate: true
+      }, function (windows) {
+        windows.forEach(function (currentWindow) {
+          currentWindow.tabs.forEach(function (currentTab) {
+            // Skip chrome://, about:, and https:// pages
+            if(!currentTab.url.match(/^(?:chrome|about|https):/gi) ) {
+              injectButtonCode(currentTab.id);
+            }
+          });
+        });
+        // Open the guide
+        chrome.tabs.create({
+          url: config.plugin.guide,
+          active: true
         });
       });
-      // Open the guide
-      chrome.tabs.create({
-        url: config.plugin.guide,
-        active: true
-      });
-    });
-  } else if (details.reason == "update"){
-    // Nothing to do here, yet...
-  }
-});
+    } else if (details.reason == "update"){
+      // Nothing to do here, yet...
+    }
+  });
+}
 
 // Set up options
 if( ! localStorage.getItem('buffer.op') ) {
   localStorage.setItem('buffer.op', true);
 
   // Grab the options page and use it to generate the options
-  $.get('options.html', function (data) {
+  $.get(chrome.extension.getURL('options.html'), function (data) {
 
     // Use the checkbox's value attribute as the key and default value
     $('input[type="checkbox"]', data).each(function () {
@@ -267,7 +277,7 @@ if( ! localStorage.getItem('buffer.op') ) {
       localStorage.setItem(key, val);
     });
 
-  });
+  }, 'html');
 }
 
 /**=========================================

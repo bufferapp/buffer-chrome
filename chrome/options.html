@@ -1,18 +1,20 @@
-<!doctype html>
 <meta charset="utf-8">
 <title>Options &mdash; Buffer for Opera</title>
-<link rel="stylesheet" href="data/chrome/options/css/options.css">
+<link rel="stylesheet" href="data/chrome/options/css/options-base.css">
+<link rel="stylesheet" href="" data-use-when="framed" data-href="data/chrome/options/css/options-framed.css">
+<script src="data/shared/libs/jquery-2.1.1.min.js"></script>
+<script src="data/chrome/options/options.js"></script>
 
 <div class="wrapper">
   <header>
     <menu>
       <ul>
         <li>
-          <a href='mailto:hello@buffer.com?subject=Chrome Extension' title="Email the Buffer Team">Get in touch</a>
+          <a id="email-anchor" href='mailto:hello@buffer.com?subject=Chrome Extension' title="Email the Buffer Team">Get in touch</a>
         </li>
       </ul>
     </menu>
-    <img src="data/chrome/options/img/buffer-logo-small.png">
+    <span id="buffer-logo"></span>
     <h1>Make <strong>Buffer</strong> work <em>perfectly</em> for you.</h1>
   </header>
   <div class="options">
@@ -90,6 +92,3 @@
     </div>
   </div>
 </div>
-
-<script src="data/shared/libs/jquery-2.1.1.min.js"></script>
-<script src="data/chrome/options/options.js"></script>

@@ -58,7 +58,7 @@ h1,h2,h3,h4,h5,h6,p{font-size:1em;font-weight:normal;margin:0;}
 *{box-sizing:border-box;}
 body{font:16px/1.5 "Helvetica Neue",sans-serif;background:white;color:black;-webkit-font-smoothing:antialiased;}
 .wrapper{width:50%;margin:2.5em auto;}
-header{position:relative;}header img{margin:1.5em 1.5em;}
+header{position:relative;}
 header h1{background:#efefef;padding:1em 1.5em;-webkit-transition:background .1s linear;transition:background .1s linear;}header h1.highlight{background:#f5e9a3;}
 header h1.love{background:#f5a3cc;}
 header menu{float:right;width:33%;}
@@ -82,3 +82,10 @@ header ul a:active{background:#89cf63;color:white;}
 .field small aside{margin-top:2.5em;font-size:1em;}
 .wiggle{position:relative;-webkit-animation-name:wiggle;-webkit-animation-duration:.15s;-webkit-animation-iteration-count:4;-webkit-animation-timing-function:ease;-webkit-animation-delay:0;}
 @-webkit-keyframes wiggle{0%{left:0;} 25%{left:0.2em;} 50%{left:0em;} 75%{left:-0.2em;}}
+#buffer-logo {
+  display: inline-block;
+  width: 132px;
+  height: 26px;
+  margin:1.5em 1.5em;
+  background-image: url(../img/buffer-logo-small.png);
+}

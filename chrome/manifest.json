@@ -3,18 +3,28 @@
   "description": "__MSG_appDesc__",
   "default_locale": "en",
   "homepage_url": "https://buffer.com",
-  "version": "2.13.37",
+  "version": "3.0.4",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
       "19": "logo_icon_19.png",
       "38": "logo_icon_38.png"
-    }
+    },
+    "default_title": "Share with Buffer"
   },
   "background": {
-    "page": "buffer.html"
+    "scripts": [
+      "data/shared/libs/jquery-2.1.1.min.js",
+      "data/chrome/buffer-chrome-port-wrapper.js",
+      "data/main.js",
+      "data/shared/buffermetrics-bg-shim.js",
+      "data/shared/buffermetrics.js"
+    ]
   },
-  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": false
+  },
   "permissions": [
     "tabs",
     "http://*/*",
