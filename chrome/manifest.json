@@ -56,6 +56,7 @@
         "data/shared/libs/jquery-2.1.1.min.js",
         "data/shared/libs/postmessage.js",
         "data/shared/libs/keymaster.js",
+        "data/shared/libs/he.js",
         "data/shared/buffer-overlay.js",
         "data/shared/embeds/buffer-scraper.js",
         "data/shared/embeds/buffer-hotkey.js",
