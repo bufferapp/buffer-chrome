@@ -212,6 +212,15 @@ chrome.runtime.onConnect.addListener(function(rawPort) {
   });
 });
 
+// Using chrome.runtime.sendMessage/onMessage because we need access to the sender,
+// and Firefox currently doesn't pass the sender alonside the payload when using ports
+// for messaging
+chrome.runtime.onMessage.addListener(function(data, sender) {
+  if (data.type === 'buffer_close_popup') {
+    chrome.tabs.remove(sender.tab.id);
+  }
+});
+
 /**=========================================
  * INITIAL SETUP
  =========================================*/
