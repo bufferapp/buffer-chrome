@@ -38,7 +38,9 @@
     "data/shared/img/buffer-hover-icon@1x.png",
     "data/shared/img/buffer-hover-icon@2x.png",
     "data/shared/img/black-loading-gif-small.gif",
-    "data/shared/tpc-check.html"
+    "data/shared/tpc-check.html",
+    "data/shared/buffer-frame-container.html",
+    "data/shared/buffer-frame-container.js"
   ],
   "content_scripts": [
     {
