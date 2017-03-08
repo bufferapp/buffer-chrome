@@ -70,7 +70,7 @@ header ul a:active{background:#89cf63;color:white;}
 .field fieldset{width:66%;padding-left:1%;float:right;overflow:hidden;}
 .field .checkbox{padding:0 0 0.262em;width:50%;float:left;}
 .field .error{box-shadow:inset 0 0 1em rgba(255, 0, 0, 0.5) !important;position:relative;margin-bottom:0.667em;}
-.field input[type="checkbox"]{margin-right:0.667em;}
+.field input[type="checkbox"], .field input[type="radio"] {margin-right:0.667em;}
 .field input[type="text"]{width:100%;display:block;background:#efefef;border:none;outline:none;margin-bottom:0.667em;padding:1em 1.5em;}.field input[type="text"]:focus{outline:none;box-shadow:inset 0 0 1em rgba(0, 0, 0, 0.2);}
 .field .submit{display:inline-block;margin-right:0.5em;text-decoration:none;border:none;background:#54982f;border-radius:3px;padding:1em 1.5em;color:white;font-weight:bold;font-size:0.667em;text-transform:uppercase;-webkit-transition:background .1s linear;transition:background .1s linear;}.field .submit:visited{color:white;}
 .field .submit:hover{background:#61b036;color:white;}
