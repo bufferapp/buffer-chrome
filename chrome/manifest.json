@@ -36,7 +36,8 @@
     "data/shared/img/*",
     "data/shared/tpc-check.html",
     "data/shared/buffer-frame-container.html",
-    "data/shared/buffer-frame-container.js"
+    "data/shared/buffer-frame-container.js",
+    "data/shared/libs/dompurify.min.js"
   ],
   "content_scripts": [
     {
