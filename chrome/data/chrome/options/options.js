@@ -41,6 +41,20 @@ $(document).on('ready', function() {
   });
 
   /**
+   * Turn radios on & off from localStorage based on their values
+   */
+  var radios = $('input[type="radio"]').each(function () {
+    var $this = $(this);
+    var key = 'buffer.op.' + $this.attr('name');
+    var val = $this.val();
+    var setting = localStorage.getItem(key);
+
+    if (setting === val) {
+      $this.prop('checked', true);
+    }
+  });
+
+  /**
    * Fill in text inputs from localStorage
    */
   var inputs = $('input[type="text"]').each(function () {
@@ -109,6 +123,19 @@ $(document).on('ready', function() {
       }
 
     });
+
+    // Save the radio values based on their values
+    $(radios)
+      .filter(function() {
+        return $(this).is(':checked');
+      })
+      .each(function() {
+        var $this = $(this);
+        var key = 'buffer.op.' + $this.attr('name');
+        var val = $this.val();
+
+        localStorage.setItem(key, val);
+      });
 
     // Save the checkbox values based on their values
     $(inputs).each(function () {
