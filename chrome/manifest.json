@@ -126,7 +126,9 @@
     },
     {
       "matches": [
-        "*://*.pinterest.com/*"
+        "*://*.pinterest.com/*",
+        "*://*.pinterest.pt/*",
+        "*://*.pinterest.de/*"
       ],
       "js": [
         "data/shared/embeds/buffer-pinterest.js"
