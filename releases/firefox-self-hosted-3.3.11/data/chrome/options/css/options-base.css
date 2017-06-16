@@ -1,0 +1,91 @@
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
+audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
+audio:not([controls]){display:none;}
+[hidden]{display:none;}
+html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+html,button,input,select,textarea{font-family:sans-serif;color:#222222;}
+body{margin:0;font-size:1em;line-height:1.4;}
+::-moz-selection{background:#fe57a1;color:#fff;text-shadow:none;}
+::selection{background:#54982f;color:#fff;text-shadow:none;}
+a{color:#0000ee;}
+a:visited{color:#551a8b;}
+a:hover{color:#0066ee;}
+a:focus{outline:thin dotted;}
+a:hover,a:active{outline:0;}
+abbr[title]{border-bottom:1px dotted;}
+b,strong{font-weight:bold;}
+blockquote{margin:1em 40px;}
+dfn{font-style:italic;}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0;}
+ins{background:#ff9;color:#000;text-decoration:none;}
+mark{background:#ff0;color:#000;font-style:italic;font-weight:bold;}
+pre,code,kbd,samp{font-family:monospace,serif;_font-family:'courier new',monospace;font-size:1em;}
+pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word;}
+q{quotes:none;}
+q:before,q:after{content:"";content:none;}
+small{font-size:85%;}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}
+sup{top:-0.5em;}
+sub{bottom:-0.25em;}
+ul,ol{margin:1em 0;padding:0 0 0 40px;}
+dd{margin:0 0 0 40px;}
+nav ul,nav ol{list-style:none;list-style-image:none;margin:0;padding:0;}
+img{border:0;-ms-interpolation-mode:bicubic;vertical-align:middle;}
+svg:not(:root){overflow:hidden;}
+figure{margin:0;}
+form{margin:0;}
+fieldset{border:0;margin:0;padding:0;}
+label{cursor:pointer;}
+legend{border:0;*margin-left:-7px;padding:0;white-space:normal;}
+button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle;}
+button,input{line-height:normal;}
+button,input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button;*overflow:visible;}
+button[disabled],input[disabled]{cursor:default;}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;*width:13px;*height:13px;}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}
+input[type="search"]::-webkit-search-decoration,input[type="search"]::-webkit-search-cancel-button{-webkit-appearance:none;}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+textarea{overflow:auto;vertical-align:top;resize:vertical;}
+input:invalid,textarea:invalid{background-color:#f0dddd;}
+table{border-collapse:collapse;border-spacing:0;}
+td{vertical-align:top;}
+.chromeframe{margin:.2em 0;background:#ccc;color:black;padding:0.2em 0;}
+.padding{padding:1em 1.5em;}
+.button{text-decoration:none;border:none;background:#54982f;border-radius:3px;padding:1em 1.5em;color:white;font-weight:bold;font-size:0.667em;text-transform:uppercase;-webkit-transition:background .1s linear;transition:background .1s linear;}.button:visited{color:white;}
+.button:hover{background:#61b036;color:white;}
+.button:active{background:#89cf63;color:white;}
+h1,h2,h3,h4,h5,h6,p{font-size:1em;font-weight:normal;margin:0;}
+*{box-sizing:border-box;}
+body{font:16px/1.5 "Helvetica Neue",sans-serif;background:white;color:black;-webkit-font-smoothing:antialiased;}
+.wrapper{width:50%;margin:2.5em auto;}
+header{position:relative;}
+header h1{background:#efefef;padding:1em 1.5em;-webkit-transition:background .1s linear;transition:background .1s linear;}header h1.highlight{background:#f5e9a3;}
+header h1.love{background:#f5a3cc;}
+header menu{float:right;width:33%;}
+header ul{overflow:hidden;list-style:none;padding-left:0;margin:0;}header ul li{float:right;display:block;}
+header ul a{display:block;text-decoration:none;border:none;background:#54982f;border-radius:3px;padding:1em 1.5em;color:white;font-weight:bold;font-size:0.667em;text-transform:uppercase;-webkit-transition:background .1s linear;transition:background .1s linear;padding:1em 1.5em;}header ul a:visited{color:white;}
+header ul a:hover{background:#61b036;color:white;}
+header ul a:active{background:#89cf63;color:white;}
+.field{padding:1em 1.5em;overflow:hidden;margin:1em 0;}.field h2{width:32%;float:left;font-weight:bold;}
+.field fieldset{width:66%;padding-left:1%;float:right;overflow:hidden;}
+.field .checkbox{padding:0 0 0.262em;width:50%;float:left;}
+.field .error{box-shadow:inset 0 0 1em rgba(255, 0, 0, 0.5) !important;position:relative;margin-bottom:0.667em;}
+.field input[type="checkbox"], .field input[type="radio"] {margin-right:0.667em;}
+.field input[type="text"]{width:100%;display:block;background:#efefef;border:none;outline:none;margin-bottom:0.667em;padding:1em 1.5em;}.field input[type="text"]:focus{outline:none;box-shadow:inset 0 0 1em rgba(0, 0, 0, 0.2);}
+.field .submit{display:inline-block;margin-right:0.5em;text-decoration:none;border:none;background:#54982f;border-radius:3px;padding:1em 1.5em;color:white;font-weight:bold;font-size:0.667em;text-transform:uppercase;-webkit-transition:background .1s linear;transition:background .1s linear;}.field .submit:visited{color:white;}
+.field .submit:hover{background:#61b036;color:white;}
+.field .submit:active{background:#89cf63;color:white;}
+.field .submit.saved{background:#aaa;}
+.field .other{color:#888;font-style:italic;text-decoration:none;border-bottom:1px solid #ccc;-webkit-transition:all .1s linear;}.field .other:hover{color:#54982f;border-color:#54982f;}
+.field .other:active{color:#61b036;border-color:#61b036;}
+.field small{color:#999;}.field small input{margin-top:1em;}
+.field small aside{margin-top:2.5em;font-size:1em;}
+.wiggle{position:relative;-webkit-animation-name:wiggle;-webkit-animation-duration:.15s;-webkit-animation-iteration-count:4;-webkit-animation-timing-function:ease;-webkit-animation-delay:0;}
+@-webkit-keyframes wiggle{0%{left:0;} 25%{left:0.2em;} 50%{left:0em;} 75%{left:-0.2em;}}
+#buffer-logo {
+  display: inline-block;
+  width: 132px;
+  height: 26px;
+  margin:1.5em 1.5em;
+  background-image: url(../img/buffer-logo-small.png);
+}

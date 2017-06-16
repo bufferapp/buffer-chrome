@@ -1,0 +1,17 @@
+.buffer-facebook-newsfeed-post-embed {
+  position: relative;
+  padding-left: 20px !important; /* Overriding a relatively specific Facebook default style */
+}
+
+.buffer-facebook-newsfeed-post-embed:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  background-color: transparent;
+  /* Inline SVG with the color #4b4f56 - Search in XML for %234b4f56 to change (%23 === encoded #) */
+  background-image: url('data:image/svg+xml;utf8,<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"><g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-49.000000, -48.000000)" fill="%234b4f56"><g id="Logomark" sketch:type="MSLayerGroup" transform="translate(49.000000, 48.000000)"><path d="M39.7073437,30.4560937 L35.1570312,28.3590625 C34.766875,28.1792187 34.1282812,28.1792187 33.7379687,28.3590625 L20.7095312,34.3632812 C20.319375,34.543125 19.680625,34.543125 19.2904687,34.3632812 L6.26203125,28.3590625 C5.87171875,28.1792187 5.233125,28.1792187 4.84296875,28.3590625 L0.29265625,30.4560937 C-0.0975,30.6359375 -0.0975,30.9301562 0.29265625,31.11 L19.2904687,39.8651562 C19.680625,40.045 20.319375,40.045 20.7095312,39.8651562 L39.7073437,31.11 C40.0975,30.9301562 40.0975,30.6359375 39.7073437,30.4560937" id="Fill-1" sketch:type="MSShapeGroup"></path><path d="M39.7073437,19.6729687 L35.1570312,17.5760937 C34.766875,17.39625 34.1282812,17.39625 33.7379687,17.5760937 L20.7095312,23.5801562 C20.319375,23.76 19.680625,23.76 19.2904687,23.5801562 L6.26203125,17.5760937 C5.87171875,17.39625 5.233125,17.39625 4.84296875,17.5760937 L0.29265625,19.6729687 C-0.0975,19.8528125 -0.0975,20.1471875 0.29265625,20.3270312 L19.2904687,29.0820312 C19.680625,29.261875 20.319375,29.261875 20.7095312,29.0820312 L39.7073437,20.3270312 C40.0975,20.1471875 40.0975,19.8528125 39.7073437,19.6729687" id="Fill-2" sketch:type="MSShapeGroup"></path><path d="M0.29265625,9.54390625 L19.2904687,18.2990625 C19.680625,18.4789063 20.319375,18.4789063 20.7095312,18.2990625 L39.7073437,9.54390625 C40.0975,9.3640625 40.0975,9.06984375 39.7073437,8.89 L20.7095312,0.13484375 C20.319375,-0.045 19.680625,-0.045 19.2904687,0.13484375 L0.29265625,8.89 C-0.0975,9.06984375 -0.0975,9.3640625 0.29265625,9.54390625" id="Fill-3" sketch:type="MSShapeGroup"></path></g></g></g></svg>');
+  background-repeat: no-repeat;
+  background-size: 14px 14px;
+}

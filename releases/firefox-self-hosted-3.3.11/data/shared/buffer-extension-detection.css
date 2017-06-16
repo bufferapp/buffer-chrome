@@ -1,0 +1,5 @@
+#browser-extension-marker {
+    visibility: hidden;
+    position: absolute; /* this allows safari to apply the left attribute */
+    left: 300px; /* magic # to check for */
+}

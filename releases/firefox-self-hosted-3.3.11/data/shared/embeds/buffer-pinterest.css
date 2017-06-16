@@ -1,0 +1,191 @@
+/**
+ * buffer-pinterest.css
+ *
+ * Inserted into pinterest.com
+ */
+
+/* Hover */
+
+.buffer-pinterest .Pin.Module.buffer-inserted .pinImageActionButtonWrapper .pin-action-item{
+  display: none;
+  position: absolute;
+  z-index: 101;
+  left: 150px;
+  padding: 5px 10px 5px 5px;
+  border: 1px solid rgba(0, 0, 0, 0.55) !important;
+  top: 8px;
+  border-radius: 4px;
+}
+.buffer-pinterest .Pin.Module.buffer-inserted .pinImageActionButtonWrapper .pin-action-item.Button.btn {
+  position: absolute;
+  display: none;
+  padding: 5px 10px 5px 5px;
+}
+.buffer-pinterest .Pin.Module.buffer-inserted .pinImageActionButtonWrapper .pin-action-item:hover{
+  border-color: #666;
+}
+.buffer-pinterest .Pin.Module.buffer-inserted .pinImageActionButtonWrapper:hover .pin-action-item{
+  display: block;
+}
+
+.buffer-pinterest .Pin.Module.buffer-inserted .pinImageActionButtonWrapper:hover .pin-action-item.Button.btn{
+  border: 1px solid rgba(0, 0, 0, 0.55) !important;
+  display: inline-block !important;
+  position: absolute !important;
+  padding: 5px 10px 5px 5px !important;
+}
+
+.buffer-pinterest .BoardLabel.Module.buffer-inserted .pin-action-item {
+  display: none;
+  float: right;
+  width: 14px;
+  padding: 6px 17px 6px 6px;
+  border-radius: 4px;
+  margin-left: 5px;
+}
+
+.buffer-pinterest .Module.SelectList .item.selected .BoardLabel.Module.buffer-inserted .pin-action-item {
+  display: block;
+}
+
+.buffer-pinterest .Module.SelectList .BoardLabel.Module.buffer-inserted .pin-action-item.Button.btn{
+  padding: 6px 16px 6px 6px !important;
+}
+
+.buffer-pinterest .PinActionBar.buffer-inserted .pin-action-item.action-bar{
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin-left: 6px;
+  border-radius: 3px;
+  padding: 7px 13px 7px 8px;
+}
+.buffer-pinterest .PinActionBar.buffer-inserted .pin-action-item.action-bar.Button.btn{
+  padding: 5px 10px 1px 5px !important;
+  height: 28px !important;
+}
+
+
+
+
+
+/* The main buffer icon
+ * !important's are used to override the default pinterest styles
+ */
+
+
+.buffer-pinterest .icon-buffer,
+.buffer-pinterest .icon.icon-buffer {
+  display: block;
+  width: 20px !important;
+  height: 21px !important;
+  background-color: transparent;
+  /* Inline SVG with the color #888 - Search in XML for %23888888 to change (%23 === encoded #) */
+  background-image: url('data:image/svg+xml;utf8,<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"><g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-49.000000, -48.000000)" fill="%23666666"><g id="Logomark" sketch:type="MSLayerGroup" transform="translate(49.000000, 48.000000)"><path d="M39.7073437,30.4560937 L35.1570312,28.3590625 C34.766875,28.1792187 34.1282812,28.1792187 33.7379687,28.3590625 L20.7095312,34.3632812 C20.319375,34.543125 19.680625,34.543125 19.2904687,34.3632812 L6.26203125,28.3590625 C5.87171875,28.1792187 5.233125,28.1792187 4.84296875,28.3590625 L0.29265625,30.4560937 C-0.0975,30.6359375 -0.0975,30.9301562 0.29265625,31.11 L19.2904687,39.8651562 C19.680625,40.045 20.319375,40.045 20.7095312,39.8651562 L39.7073437,31.11 C40.0975,30.9301562 40.0975,30.6359375 39.7073437,30.4560937" id="Fill-1" sketch:type="MSShapeGroup"></path><path d="M39.7073437,19.6729687 L35.1570312,17.5760937 C34.766875,17.39625 34.1282812,17.39625 33.7379687,17.5760937 L20.7095312,23.5801562 C20.319375,23.76 19.680625,23.76 19.2904687,23.5801562 L6.26203125,17.5760937 C5.87171875,17.39625 5.233125,17.39625 4.84296875,17.5760937 L0.29265625,19.6729687 C-0.0975,19.8528125 -0.0975,20.1471875 0.29265625,20.3270312 L19.2904687,29.0820312 C19.680625,29.261875 20.319375,29.261875 20.7095312,29.0820312 L39.7073437,20.3270312 C40.0975,20.1471875 40.0975,19.8528125 39.7073437,19.6729687" id="Fill-2" sketch:type="MSShapeGroup"></path><path d="M0.29265625,9.54390625 L19.2904687,18.2990625 C19.680625,18.4789063 20.319375,18.4789063 20.7095312,18.2990625 L39.7073437,9.54390625 C40.0975,9.3640625 40.0975,9.06984375 39.7073437,8.89 L20.7095312,0.13484375 C20.319375,-0.045 19.680625,-0.045 19.2904687,0.13484375 L0.29265625,8.89 C-0.0975,9.06984375 -0.0975,9.3640625 0.29265625,9.54390625" id="Fill-3" sketch:type="MSShapeGroup"></path></g></g></g></svg>');
+  background-repeat: no-repeat;
+  background-size: 14px 14px; /* Natural is 40x40 */
+  background-position: 100% 4px; /* right aligned 4px from top */
+}
+
+/* New styles and markup; 4/19/2016 */
+
+.Pin.summary .rightSideButtonsWrapper .Button.BufferButton:not(.isBrioFlat) + .Button.editPin {
+  margin-left: 0;
+}
+
+.Button.btn.BufferButton:not(.isBrioFlat) {
+  padding: 7px 8px 7px 9px;
+}
+
+.Button.btn.BufferButton.isBrioFlat {
+  margin-left: 4px;
+  padding: 10px;
+  line-height: 16px;
+}
+
+.Button.btn.BufferButton.isBrioFlat.BufferPinPopup {
+  display: none;
+  float: right;
+  margin-top: 6px;
+  margin-right: 6px;
+  height: 36px;
+  background-color: #efefef;
+  background-image: none;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: none;
+  color: #555;
+  text-shadow: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.Button.btn.BufferButton.isBrioFlat.BufferPinPopup:hover {
+  background-color: #e3e3e3;
+  border: 0;
+}
+
+.Button.btn.BufferButton.isBrioFlat.BufferPinPopup:focus {
+  outline: none;
+}
+
+div._3CNi6 > .Button.btn.BufferButton.isBrioFlat.BufferPinPopup {
+  display: block;
+}
+
+.Button.btn.BufferButton.isBrioFlat.BufferPinPopup .accessibilityText {
+  display: none;
+}
+
+.sendShareFlyout + .Button.btn.BufferButton.isBrioFlat {
+  margin-left: 0;
+}
+
+.BufferButton em {
+  width: 14px;
+  height: 14px;
+  background-color: transparent;
+  /* Inline SVG with the color #5A5A5A - Search in XML for %235A5A5A to change (%23 === encoded #) */
+  background-image: url('data:image/svg+xml;utf8,<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"><g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-49.000000, -48.000000)" fill="%235A5A5A"><g id="Logomark" sketch:type="MSLayerGroup" transform="translate(49.000000, 48.000000)"><path d="M39.7073437,30.4560937 L35.1570312,28.3590625 C34.766875,28.1792187 34.1282812,28.1792187 33.7379687,28.3590625 L20.7095312,34.3632812 C20.319375,34.543125 19.680625,34.543125 19.2904687,34.3632812 L6.26203125,28.3590625 C5.87171875,28.1792187 5.233125,28.1792187 4.84296875,28.3590625 L0.29265625,30.4560937 C-0.0975,30.6359375 -0.0975,30.9301562 0.29265625,31.11 L19.2904687,39.8651562 C19.680625,40.045 20.319375,40.045 20.7095312,39.8651562 L39.7073437,31.11 C40.0975,30.9301562 40.0975,30.6359375 39.7073437,30.4560937" id="Fill-1" sketch:type="MSShapeGroup"></path><path d="M39.7073437,19.6729687 L35.1570312,17.5760937 C34.766875,17.39625 34.1282812,17.39625 33.7379687,17.5760937 L20.7095312,23.5801562 C20.319375,23.76 19.680625,23.76 19.2904687,23.5801562 L6.26203125,17.5760937 C5.87171875,17.39625 5.233125,17.39625 4.84296875,17.5760937 L0.29265625,19.6729687 C-0.0975,19.8528125 -0.0975,20.1471875 0.29265625,20.3270312 L19.2904687,29.0820312 C19.680625,29.261875 20.319375,29.261875 20.7095312,29.0820312 L39.7073437,20.3270312 C40.0975,20.1471875 40.0975,19.8528125 39.7073437,19.6729687" id="Fill-2" sketch:type="MSShapeGroup"></path><path d="M0.29265625,9.54390625 L19.2904687,18.2990625 C19.680625,18.4789063 20.319375,18.4789063 20.7095312,18.2990625 L39.7073437,9.54390625 C40.0975,9.3640625 40.0975,9.06984375 39.7073437,8.89 L20.7095312,0.13484375 C20.319375,-0.045 19.680625,-0.045 19.2904687,0.13484375 L0.29265625,8.89 C-0.0975,9.06984375 -0.0975,9.3640625 0.29265625,9.54390625" id="Fill-3" sketch:type="MSShapeGroup"></path></g></g></g></svg>');
+  background-repeat: no-repeat;
+  background-size: 14px 14px; /* Natural is 40x40 */
+  background-position: 0 0;
+}
+
+.BufferButton.BufferPinPopup em {
+  display: inline-block;
+  outline: none;
+  position: relative;
+  vertical-align: middle;
+}
+
+.BufferButton.isBrioFlat em {
+  top: -1px;
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+}
+
+.BufferButton span {
+  margin-right: -1px;
+}
+
+.PinCreate .Picker .item .BufferButton {
+  display: none;
+  float: right;
+  margin-left: 4px;
+}
+
+.PinCreate .Picker .item.activeItem .BufferButton,
+.PinCreate .Picker .item.selected .BufferButton,
+.PinCreate .Picker .item:hover .BufferButton {
+  display: block;
+}
+
+.PinCreate .Picker .item .BufferButton:not(.isBrioFlat) {
+  margin-top: 1px;
+}
+
+.PinCreate .Picker .item .BufferButton:not(.isBrioFlat) em {
+  top: -1px;
+}

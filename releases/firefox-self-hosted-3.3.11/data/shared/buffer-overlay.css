@@ -1,0 +1,117 @@
+.buffer-btn-container {
+	position: fixed !important;
+	top: 10px !important;
+	right: 10px !important;
+	z-index: 2147483647 !important;
+	background-color: #fff !important;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px !important;
+	border-radius: 3px !important;
+}
+
+.buffer-btn-container.buffer-btn-container-left {
+	right: auto !important;
+	left: 10px !important;
+}
+
+.buffer-btn-container a,
+.buffer-btn-container button {
+	position: relative !important;
+	display: inline-block !important;
+	box-sizing: content-box !important;
+	margin: 0 !important;
+	padding: 6px 13px !important;
+	height: 31px !important;
+	min-height: 31px !important;
+	line-height: 31px !important;
+	font-family: "Open Sans", Roboto, Helvetica, Arial !important;
+	font-size: 13px !important;
+	font-weight: normal !important;
+	border: 0 !important;
+	border-radius: 3px !important;
+	border-image: none !important;
+	background-color: #fff !important;
+	background-image: none !important;
+	color: #59626a !important;
+	cursor: pointer !important;
+	text-decoration: none !important;
+	text-transform: none !important;
+	text-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.buffer-btn-container a::after,
+.buffer-btn-container button::after {
+	content: '' !important;
+	position: absolute !important;
+	top: 6px !important;
+	right: 0 !important;
+	bottom: 6px !important;
+	width: 1px !important;
+	background-color: #e7eaef !important;
+}
+
+.buffer-btn-container a:last-child::after,
+.buffer-btn-container button:last-child::after {
+	content: none;
+}
+
+.buffer-btn-container a:hover,
+.buffer-btn-container button:hover {
+	text-decoration: none !important;
+	color: #323b43 !important;
+}
+
+.buffer-btn-container .buffer-btn-dashboard {
+	padding-left: 37px !important;
+	/* Inline SVG with the color #59626a - Search in XML for %2359626a to change (%23 === encoded #) */
+	background-image: url('data:image/svg+xml;utf8,<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"><g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-49.000000, -48.000000)" fill="%2359626a"><g id="Logomark" sketch:type="MSLayerGroup" transform="translate(49.000000, 48.000000)"><path d="M39.7073437,30.4560937 L35.1570312,28.3590625 C34.766875,28.1792187 34.1282812,28.1792187 33.7379687,28.3590625 L20.7095312,34.3632812 C20.319375,34.543125 19.680625,34.543125 19.2904687,34.3632812 L6.26203125,28.3590625 C5.87171875,28.1792187 5.233125,28.1792187 4.84296875,28.3590625 L0.29265625,30.4560937 C-0.0975,30.6359375 -0.0975,30.9301562 0.29265625,31.11 L19.2904687,39.8651562 C19.680625,40.045 20.319375,40.045 20.7095312,39.8651562 L39.7073437,31.11 C40.0975,30.9301562 40.0975,30.6359375 39.7073437,30.4560937" id="Fill-1" sketch:type="MSShapeGroup"></path><path d="M39.7073437,19.6729687 L35.1570312,17.5760937 C34.766875,17.39625 34.1282812,17.39625 33.7379687,17.5760937 L20.7095312,23.5801562 C20.319375,23.76 19.680625,23.76 19.2904687,23.5801562 L6.26203125,17.5760937 C5.87171875,17.39625 5.233125,17.39625 4.84296875,17.5760937 L0.29265625,19.6729687 C-0.0975,19.8528125 -0.0975,20.1471875 0.29265625,20.3270312 L19.2904687,29.0820312 C19.680625,29.261875 20.319375,29.261875 20.7095312,29.0820312 L39.7073437,20.3270312 C40.0975,20.1471875 40.0975,19.8528125 39.7073437,19.6729687" id="Fill-2" sketch:type="MSShapeGroup"></path><path d="M0.29265625,9.54390625 L19.2904687,18.2990625 C19.680625,18.4789063 20.319375,18.4789063 20.7095312,18.2990625 L39.7073437,9.54390625 C40.0975,9.3640625 40.0975,9.06984375 39.7073437,8.89 L20.7095312,0.13484375 C20.319375,-0.045 19.680625,-0.045 19.2904687,0.13484375 L0.29265625,8.89 C-0.0975,9.06984375 -0.0975,9.3640625 0.29265625,9.54390625" id="Fill-3" sketch:type="MSShapeGroup"></path></g></g></g></svg>') !important;
+	background-repeat: no-repeat !important;
+	background-size: 17px !important; /* Natural is 40x40 */
+	background-position: 14px 12px !important;
+}
+
+.buffer-btn-container .buffer-btn-dashboard:hover {
+	/* Inline SVG with the color #323b43 - Search in XML for %23323b43 to change (%23 === encoded #) */
+	background-image: url('data:image/svg+xml;utf8,<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"><g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-49.000000, -48.000000)" fill="%23323b43"><g id="Logomark" sketch:type="MSLayerGroup" transform="translate(49.000000, 48.000000)"><path d="M39.7073437,30.4560937 L35.1570312,28.3590625 C34.766875,28.1792187 34.1282812,28.1792187 33.7379687,28.3590625 L20.7095312,34.3632812 C20.319375,34.543125 19.680625,34.543125 19.2904687,34.3632812 L6.26203125,28.3590625 C5.87171875,28.1792187 5.233125,28.1792187 4.84296875,28.3590625 L0.29265625,30.4560937 C-0.0975,30.6359375 -0.0975,30.9301562 0.29265625,31.11 L19.2904687,39.8651562 C19.680625,40.045 20.319375,40.045 20.7095312,39.8651562 L39.7073437,31.11 C40.0975,30.9301562 40.0975,30.6359375 39.7073437,30.4560937" id="Fill-1" sketch:type="MSShapeGroup"></path><path d="M39.7073437,19.6729687 L35.1570312,17.5760937 C34.766875,17.39625 34.1282812,17.39625 33.7379687,17.5760937 L20.7095312,23.5801562 C20.319375,23.76 19.680625,23.76 19.2904687,23.5801562 L6.26203125,17.5760937 C5.87171875,17.39625 5.233125,17.39625 4.84296875,17.5760937 L0.29265625,19.6729687 C-0.0975,19.8528125 -0.0975,20.1471875 0.29265625,20.3270312 L19.2904687,29.0820312 C19.680625,29.261875 20.319375,29.261875 20.7095312,29.0820312 L39.7073437,20.3270312 C40.0975,20.1471875 40.0975,19.8528125 39.7073437,19.6729687" id="Fill-2" sketch:type="MSShapeGroup"></path><path d="M0.29265625,9.54390625 L19.2904687,18.2990625 C19.680625,18.4789063 20.319375,18.4789063 20.7095312,18.2990625 L39.7073437,9.54390625 C40.0975,9.3640625 40.0975,9.06984375 39.7073437,8.89 L20.7095312,0.13484375 C20.319375,-0.045 19.680625,-0.045 19.2904687,0.13484375 L0.29265625,8.89 C-0.0975,9.06984375 -0.0975,9.3640625 0.29265625,9.54390625" id="Fill-3" sketch:type="MSShapeGroup"></path></g></g></g></svg>') !important;
+}
+
+.buffer-btn-container .buffer-btn-help {
+	padding-left: 45px !important;
+}
+
+.buffer-btn-container .buffer-btn-help .icon {
+	content: '' !important;
+	position: absolute !important;
+	top: 11px !important;
+	left: 14px !important;
+	width: 23px !important;
+	height: 18px !important;
+  /* background-image: set programmatically from buffer-overlay.js */
+	background-size: 23px 36px !important;
+}
+
+.buffer-btn-container .buffer-btn-help:hover::before {
+	background-position: 0 -18px !important;
+}
+
+.buffer-btn-container .buffer-btn-upgrade,
+.buffer-btn-container .buffer-btn-upgrade:hover {
+	padding-left: 37px !important;
+	color: #168eea !important;
+}
+
+.buffer-btn-container .buffer-btn-upgrade .icon {
+	content: '' !important;
+	position: absolute !important;
+	top: 11px !important;
+	left: 14px !important;
+	width: 18px !important;
+	height: 18px !important;
+  /* background-image: set programmatically from buffer-overlay.js */
+	background-size: 18px !important;
+}
+
+.buffer-btn-container .buffer-btn-upgrade.hidden,
+.buffer-btn-container .buffer-btn-help.hidden {
+	display: none !important;
+}

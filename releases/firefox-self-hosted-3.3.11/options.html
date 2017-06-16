@@ -1,0 +1,106 @@
+<meta charset="utf-8">
+<title>Options &mdash; Buffer for Chrome</title>
+<link rel="stylesheet" href="data/chrome/options/css/options-base.css">
+<link rel="stylesheet" href="" data-use-when="framed" data-href="data/chrome/options/css/options-framed.css">
+<script src="data/shared/libs/jquery-2.1.1.min.js"></script>
+<script src="data/chrome/options/options.js"></script>
+
+<div class="wrapper">
+  <header>
+    <menu>
+      <ul>
+        <li>
+          <a id="email-anchor" href='mailto:hello@buffer.com?subject=Chrome Extension' title="Email the Buffer Team">Get in touch</a>
+        </li>
+      </ul>
+    </menu>
+    <span id="buffer-logo"></span>
+    <h1>Make <strong>Buffer</strong> work <em>perfectly</em> for you.</h1>
+  </header>
+  <div class="options">
+    <div class="field">
+      <h2 for="site">Buffer Integration</h2>
+      <fieldset>
+        <div class="checkbox">
+          <label for="twitter">
+            <input type="checkbox" id="twitter" name="site" value="twitter">Twitter
+          </label>
+        </div>
+        <div class="checkbox">
+          <label for="facebook">
+            <input type="checkbox" id="facebook" name="site" value="facebook">Facebook
+          </label>
+        </div>
+        <div class="checkbox">
+          <label for="tweetdeck">
+            <input type="checkbox" id="tweetdeck" name="site" value="tweetdeck">Tweetdeck
+          </label>
+        </div>
+        <div class="checkbox">
+          <label for="pinterest">
+            <input type="checkbox" id="pinterest" name="site" value="pinterest">Pinterest
+          </label>
+        </div>
+        <!--<div class="checkbox">
+          <label for="quora">
+            <input type="checkbox" id="quora" name="site" value="quora">Quora
+          </label>
+        </div>-->
+        <div class="checkbox">
+          <label for="reddit">
+            <input type="checkbox" id="reddit" name="site" value="reddit">Reddit
+          </label>
+        </div>
+        <div class="checkbox">
+          <label for="hacker">
+            <input type="checkbox" id="hacker" name="site" value="hacker">Hacker News
+          </label>
+        </div>
+      </fieldset>
+    </div>
+    <div class="field">
+      <h2>Keyboard Shortcut</h2>
+      <fieldset>
+        <input type="text" placeholder="alt+b" name="key-combo">
+        <small>Keys separated by '+'. Eg. 'alt+shift+b' or 'ctrl+b'.</small>
+        <small class="checkbox">
+          <input type="checkbox" name="key-enable" value="key-enable" checked>Use key shortcut?
+        </small>
+      </fieldset>
+    </div>
+    <div class="field">
+      <h2 for="site">Buffer Button Overlays</h2>
+      <fieldset>
+        <div class="checkbox">
+          <label for="image-overlays">
+            <input type="checkbox" id="image-overlays" name="site" value="image-overlays" checked>Images
+          </label>
+        </div>
+      </fieldset>
+    </div>
+    <div class="field">
+      <h2>Open Buffer Extension As</h2>
+      <fieldset>
+        <small>Always open Buffer extension as:</small><br />
+        <label>
+          <input type="radio" name="open-as" value="overlay" checked />Overlay on page
+        </label><br />
+        <label>
+          <input type="radio" name="open-as" value="new-tab" />New tab
+        </label>
+      </fieldset>
+    </div>
+    <div class="field">
+      <h2></h2>
+      <fieldset>
+        <a class="submit saved" href="#">Saved</a>
+        <small>
+          or <a class="other" href="http://buffer.com/extras" target="_blank">find other ways to add to Buffer...</a>
+          <aside>
+            Please <strong>refresh</strong> any open pages after making changes.
+          </aside>
+        </small>
+      </fieldset>
+    </div>
+  </div>
+</div>

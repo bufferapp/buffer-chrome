@@ -1,0 +1,168 @@
+{
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
+  "homepage_url": "https://buffer.com",
+  "version": "3.3.11",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": {
+      "19": "logo_icon_19.png",
+      "38": "logo_icon_38.png"
+    },
+    "default_title": "Share with Buffer"
+  },
+  "background": {
+    "scripts": [
+      "data/shared/libs/jquery-2.1.1.min.js",
+      "data/chrome/buffer-chrome-port-wrapper.js",
+      "data/main.js",
+      "data/shared/buffermetrics-bg-shim.js",
+      "data/shared/buffermetrics.js"
+    ]
+  },
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": false
+  },
+  "permissions": [
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "contextMenus"
+  ],
+  "web_accessible_resources": [
+    "manifest.json",
+    "data/shared/img/*",
+    "data/shared/tpc-check.html",
+    "data/shared/buffer-frame-container.html",
+    "data/shared/buffer-frame-container.js"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "css": [
+        "data/shared/buffer-overlay.css"
+      ],
+      "js": [
+        "data/chrome/buffer-chrome-port-wrapper.js",
+        "data/chrome/buffer-chrome-data-wrapper.js",
+        "data/chrome/buffer-chrome-embed.js",
+        "data/shared/libs/jquery-2.1.1.min.js",
+        "data/shared/libs/postmessage.js",
+        "data/shared/libs/keymaster.js",
+        "data/shared/libs/he.js",
+        "data/shared/buffer-overlay.js",
+        "data/shared/embeds/buffer-scraper.js",
+        "data/shared/embeds/buffer-hotkey.js",
+        "data/shared/embeds/buffer-tpc-check.js",
+        "data/shared/embeds/buffer-hover-button.js",
+        "data/chrome/buffer-chrome.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.buffer.com/*",
+        "*://*.bufferapp.com/*"
+      ],
+      "css": [
+        "data/shared/buffer-extension-detection.css"
+      ],
+      "js": [
+        "data/chrome/buffer-chrome-port-wrapper.js",
+        "data/chrome/buffer-chrome-embed.js",
+        "data/shared/embeds/buffer-overlay-scraper.js",
+        "data/shared/buffer-install-check.js",
+        "data/shared/buffer-extension-settings.js"
+      ],
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "*://*.facebook.com/*"
+      ],
+      "js": [
+        "data/shared/embeds/buffer-facebook.js"
+      ],
+      "css": [
+        "data/shared/embeds/buffer-facebook.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.reddit.com/*"
+      ],
+      "js": [
+        "data/shared/embeds/buffer-reddit.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.twitter.com/*"
+      ],
+      "exclude_matches": [
+        "*://tweetdeck.twitter.com/*"
+      ],
+      "js": [
+        "data/shared/embeds/buffer-twitter.js"
+      ],
+      "css": [
+        "data/shared/embeds/buffer-twitter.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://tweetdeck.twitter.com/*"
+      ],
+      "js": [
+        "data/shared/embeds/buffer-tweetdeck.js"
+      ],
+      "css": [
+        "data/shared/embeds/buffer-tweetdeck.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.pinterest.com/*",
+        "*://*.pinterest.pt/*",
+        "*://*.pinterest.de/*"
+      ],
+      "js": [
+        "data/shared/embeds/buffer-pinterest.js"
+      ],
+      "css": [
+        "data/shared/embeds/buffer-pinterest.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.ycombinator.org/*",
+        "*://*.ycombinator.com/*"
+      ],
+      "js": [
+        "data/shared/embeds/buffer-hn.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.quora.com/*"
+      ],
+      "js": [
+        "data/shared/embeds/buffer-quora.js"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "logo_icon_small.png",
+    "48": "logo_icon_large.png",
+    "128": "logo_icon_128.png"
+  },
+  "applications": {
+    "gecko": {
+      "update_url": "https://s3.amazonaws.com/buffer-static/extensions/firefox/updates.json"
+    }
+  }
+}

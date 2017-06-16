@@ -1,0 +1,16 @@
+<!--
+  The page is injected only to detect if a user's browser is blocking
+  "Third Party Cookies." If the user has third party cookies disabled,
+  we won't be able to insert the Buffer extension iframe into the
+  page successfully. We rely on third party cookies to show that the
+  user is logged into Buffer within an iframe.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="libs/postmessage.js"></script>
+    <script src="tpc-check-add-cookie.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
