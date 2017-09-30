@@ -3,7 +3,7 @@
   "description": "__MSG_appDesc__",
   "default_locale": "en",
   "homepage_url": "https://buffer.com",
-  "version": "3.3.20",
+  "version": "3.3.25",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
@@ -130,13 +130,15 @@
         "*://*.pinterest.com/*",
         "*://*.pinterest.pt/*",
         "*://*.pinterest.de/*",
-        "*://*.pinterest.mx/*",
+        "*://*.pinterest.com.mx/*",
         "*://*.pinterest.ie/*",
         "*://*.pinterest.co.uk/*",
         "*://*.pinterest.fr/*",
         "*://*.pinterest.es/*",
         "*://*.pinterest.nl/*",
-        "*://*.pinterest.ca/*"
+        "*://*.pinterest.ca/*",
+        "*://*.pinterest.dk/*",
+        "*://*.pinterest.at/*"
       ],
       "js": [
         "data/shared/embeds/buffer-pinterest.js"
