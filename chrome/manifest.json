@@ -138,7 +138,8 @@
         "*://*.pinterest.ca/*",
         "*://*.pinterest.dk/*",
         "*://*.pinterest.at/*",
-        "*://*.pinterest.se/*"
+        "*://*.pinterest.se/*",
+        "*://*.pinterest.ch/*"
       ],
       "js": [
         "data/shared/embeds/buffer-pinterest.js"
