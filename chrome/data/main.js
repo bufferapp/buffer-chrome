@@ -331,7 +331,6 @@ chrome.contextMenus.create({
 chrome.contextMenus.create({
   title: config.plugin.menu.image.label,
   contexts: ["image"],
-  targetUrlPatterns: ['*://*/*.jpg', '*://*/*.jpeg', '*://*/*.gif', '*://*/*.png'],
   onclick: function (info, tab) {
     attachOverlay({
       tab: tab,
@@ -346,7 +345,6 @@ chrome.contextMenus.create({
 chrome.contextMenus.create({
   title: config.plugin.menu.pablo_image.label,
   contexts: ["image"],
-  targetUrlPatterns: ['*://*/*.jpg', '*://*/*.jpeg', '*://*/*.gif', '*://*/*.png'],
   onclick: function(info, tab) {
     chrome.tabs.create({ url: 'https://buffer.com/pablo?image=' + encodeURIComponent(info.srcUrl) + '&source_url=' + encodeURIComponent(info.pageUrl) });
   }
