@@ -51,7 +51,7 @@ $(document).on('ready', function() {
     } else {
       var settingValue = localStorage.getItem('buffer.op.firefox-disable-data-collection');
 
-      if (setting === 'yes') $this.attr('checked', true);
+      if (settingValue === 'yes') $this.attr('checked', true);
       else $this.attr('checked', false);
     }
 
@@ -141,11 +141,11 @@ $(document).on('ready', function() {
         } else {
           localStorage.setItem(key, 'false');
         }
-        // Specific serialization for this Firefox data collection setting
-        } else {
-          var settingValue = $this.prop('checked') ? 'yes' : 'no';
-          localStorage.setItem('buffer.op.firefox-disable-data-collection', settingValue);
-        }
+      // Specific serialization for this Firefox data collection setting
+      } else {
+        var settingValue = $this.prop('checked') ? 'yes' : 'no';
+        localStorage.setItem('buffer.op.firefox-disable-data-collection', settingValue);
+      }
 
     });
 
