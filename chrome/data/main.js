@@ -117,6 +117,9 @@ var attachOverlay = function (data, cb) {
   // Pass statistic data
   data.version = config.plugin.version;
   if( data.embed.placement ) data.placement = data.embed.placement;
+  if (localStorage.getItem('buffer.op.firefox-disable-data-collection') === 'yes') {
+    data['disable-telemetry'] = true;
+  }
 
   // Inform overlay that click has occurred
   port.emit("buffer_click", data);
