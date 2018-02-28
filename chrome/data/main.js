@@ -210,6 +210,11 @@ chrome.runtime.onConnect.addListener(function(rawPort) {
       index: tab.index + 1
     });
   });
+
+  port.on('buffer_data_collection_setting_change', function(data) {
+    var settingValue = data.choice === 'enable' ? 'no' : 'yes';
+    localStorage.setItem('buffer.op.firefox-disable-data-collection', settingValue);
+  });
 });
 
 // Using chrome.runtime.sendMessage/onMessage because we need access to the sender,
