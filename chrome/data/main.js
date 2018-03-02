@@ -58,7 +58,6 @@ config.plugin = {
   browser: currentBrowser,
   version: chrome.manifest.version,
   guide: 'https://buffer.com/guides/' + currentBrowser + '/installed',
-  telemetryInfo: 'https://buffer.com/guides/' + currentBrowser + '/telemetry-info',
   menu: {
     page: {
       label: "Buffer This Page"
@@ -228,11 +227,6 @@ chrome.runtime.onConnect.addListener(function(rawPort) {
       index: tab.index + 1
     });
   });
-
-  port.on('buffer_data_collection_setting_change', function(data) {
-    var settingValue = data.choice === 'enable' ? 'no' : 'yes';
-    localStorage.setItem('buffer.op.firefox-disable-data-collection', settingValue);
-  });
 });
 
 // Using chrome.runtime.sendMessage/onMessage because we need access to the sender,
@@ -278,25 +272,9 @@ if (chrome.runtime.onInstalled) {
           url: config.plugin.guide,
           active: true
         });
-
-        if (currentBrowser === 'firefox') {
-          // Set to "null" (the string) to remember the choice was shown, pending actual choice from user
-          localStorage.setItem('buffer.op.firefox-disable-data-collection', 'null');
-        }
       });
     } else if (details.reason == "update"){
-      var hasntBeenShownTelemetryChoiceYet =
-        localStorage.getItem('buffer.op.firefox-disable-data-collection') === null;
-
-      if (currentBrowser === 'firefox' && hasntBeenShownTelemetryChoiceYet) {
-        chrome.tabs.create({
-          url: config.plugin.telemetryInfo,
-          active: true
-        });
-
-        // Set to "null" (the string) to remember the choice was shown, pending actual choice from user
-        localStorage.setItem('buffer.op.firefox-disable-data-collection', 'null');
-      }
+      // Nothing to do here, yet...
     }
   });
 }
