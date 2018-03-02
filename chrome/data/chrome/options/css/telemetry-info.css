@@ -1,0 +1,40 @@
+body {
+  background-color: #f4f7f91a;
+}
+
+.wrapper {
+  width: 100%;
+  margin: 0;
+}
+
+header {
+  background: #efefef;
+}
+
+header h1 {
+  padding: 16px 24px 16px 56px;
+  font-weight: bold;
+  background: url('../img/buffer-logo-icon.png') 24px 16px no-repeat;
+  background-size: 24px;
+}
+
+.content {
+  padding: 16px 24px;
+}
+
+.content p {
+  margin-bottom: 16px;
+}
+
+.buttons-container {
+  text-align: center;
+}
+
+button {
+  margin: 0 10px;
+  padding: 0px 10px;
+  border: 1px solid #CED7DF;
+  border-radius: 3px;
+  line-height: 30px;
+  background: #fff;
+}

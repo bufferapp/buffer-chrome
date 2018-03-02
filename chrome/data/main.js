@@ -85,7 +85,21 @@ var extensionUserData = JSON.parse(localStorage.getItem('buffer.extensionUserDat
 
 // Trigger buffer_click in the content scripts,
 // so that an overlay is created
-var attachOverlay = function (data, cb) {
+var attachOverlay = async (data, cb) => {
+  if (localStorage.getItem('buffer.op.firefox-disable-data-collection') === null) {
+    await new Promise((resolve) => {
+      chrome.windows.create({
+        type: 'popup',
+        url: chrome.extension.getURL('telemetry-info.html'),
+        width: 525,
+        height: 600,
+      }, function(popupWindow) {
+        chrome.windows.onRemoved.addListener(function(closedWindowId) {
+          if (popupWindow.id === closedWindowId) resolve();
+        })
+      });
+    });
+  }
 
   // Make sure all the data is in the right place
   if( typeof data === 'function' ) cb = data;
