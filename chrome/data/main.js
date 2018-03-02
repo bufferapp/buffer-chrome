@@ -85,7 +85,12 @@ var extensionUserData = JSON.parse(localStorage.getItem('buffer.extensionUserDat
 // Trigger buffer_click in the content scripts,
 // so that an overlay is created
 var attachOverlay = async (data, cb) => {
-  if (localStorage.getItem('buffer.op.firefox-disable-data-collection') === null) {
+  var showTelemetryInfoPopup = (
+    currentBrowser === 'firefox' &&
+    localStorage.getItem('buffer.op.firefox-disable-data-collection') === null
+  );
+
+  if (showTelemetryInfoPopup) {
     await new Promise((resolve) => {
       chrome.windows.create({
         type: 'popup',
