@@ -24,18 +24,35 @@ $(document).on('ready', function() {
   emailAnchor.href = emailAnchor.href.replace(hardcodedBrowserName, formattedCurrentBrowser);
 
   /**
+   * Remove Firefox-specific option in other browsers
+   */
+  if (currentBrowser !== 'firefox') {
+    $('#firefox-data-collection').remove();
+  }
+
+  /**
    * Turn checkboxes on & off from localStorage based on their values
    */
   var checkboxes = $('input[type="checkbox"]').each(function () {
+    var $this = $(this);
+    var name = $this.attr('name');
 
-    var val = $(this).attr('value'),
-        key = 'buffer.op.' + val,
-        setting = localStorage.getItem(key);
+    if (name !== 'firefox-disable-data-collection') {
+      var val = $this.attr('value'),
+          key = 'buffer.op.' + val,
+          setting = localStorage.getItem(key);
 
-    if( setting === val || setting === null) {
-      $(this).attr('checked', true);
+      if( setting === val || setting === null) {
+        $this.attr('checked', true);
+      } else {
+        $this.attr('checked', false);
+      }
+    // Specific deserialization for this Firefox data collection setting
     } else {
-      $(this).attr('checked', false);
+      var settingValue = localStorage.getItem('buffer.op.firefox-disable-data-collection');
+
+      if (settingValue === 'yes') $this.attr('checked', true);
+      else $this.attr('checked', false);
     }
 
   });
@@ -112,14 +129,22 @@ $(document).on('ready', function() {
 
     // Save the checkbox values based on their values
     $(checkboxes).each(function () {
+      var $this = $(this);
+      var name = $this.attr('name');
 
-      var val = $(this).attr('value'),
-          key = 'buffer.op.' + val;
+      if (name !== 'firefox-disable-data-collection') {
+        var val = $this.attr('value'),
+            key = 'buffer.op.' + val;
 
-      if( $(this).prop('checked') ) {
-        localStorage.setItem(key, val);
+        if( $this.prop('checked') ) {
+          localStorage.setItem(key, val);
+        } else {
+          localStorage.setItem(key, 'false');
+        }
+      // Specific serialization for this Firefox data collection setting
       } else {
-        localStorage.setItem(key, 'false');
+        var settingValue = $this.prop('checked') ? 'yes' : 'no';
+        localStorage.setItem('buffer.op.firefox-disable-data-collection', settingValue);
       }
 
     });

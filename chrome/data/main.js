@@ -84,7 +84,26 @@ var extensionUserData = JSON.parse(localStorage.getItem('buffer.extensionUserDat
 
 // Trigger buffer_click in the content scripts,
 // so that an overlay is created
-var attachOverlay = function (data, cb) {
+var attachOverlay = async (data, cb) => {
+  var showTelemetryInfoPopup = (
+    currentBrowser === 'firefox' &&
+    localStorage.getItem('buffer.op.firefox-disable-data-collection') === null
+  );
+
+  if (showTelemetryInfoPopup) {
+    await new Promise((resolve) => {
+      chrome.windows.create({
+        type: 'popup',
+        url: chrome.extension.getURL('telemetry-info.html'),
+        width: 525,
+        height: 600,
+      }, function(popupWindow) {
+        chrome.windows.onRemoved.addListener(function(closedWindowId) {
+          if (popupWindow.id === closedWindowId) resolve();
+        })
+      });
+    });
+  }
 
   // Make sure all the data is in the right place
   if( typeof data === 'function' ) cb = data;
@@ -116,6 +135,9 @@ var attachOverlay = function (data, cb) {
   // Pass statistic data
   data.version = config.plugin.version;
   if( data.embed.placement ) data.placement = data.embed.placement;
+  if (localStorage.getItem('buffer.op.firefox-disable-data-collection') === 'yes') {
+    data['disable-telemetry'] = true;
+  }
 
   // Inform overlay that click has occurred
   port.emit("buffer_click", data);
