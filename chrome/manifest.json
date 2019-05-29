@@ -14,7 +14,7 @@
   },
   "background": {
     "scripts": [
-      "data/shared/libs/jquery-2.1.1.min.js",
+      "data/shared/libs/jquery-3.4.1.min.js",
       "data/chrome/buffer-chrome-port-wrapper.js",
       "data/main.js",
       "data/shared/buffermetrics-bg-shim.js",
@@ -51,7 +51,7 @@
         "data/chrome/buffer-chrome-port-wrapper.js",
         "data/chrome/buffer-chrome-data-wrapper.js",
         "data/chrome/buffer-chrome-embed.js",
-        "data/shared/libs/jquery-2.1.1.min.js",
+        "data/shared/libs/jquery-3.4.1.min.js",
         "data/shared/libs/postmessage.js",
         "data/shared/libs/keymaster.js",
         "data/shared/libs/he.js",
