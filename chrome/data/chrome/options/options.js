@@ -10,7 +10,7 @@ var isFramed = window.location.hash !== '#newtab';
 var framedStylesheet = document.querySelector('[data-use-when="framed"]');
 if (isFramed) framedStylesheet.setAttribute('href', framedStylesheet.getAttribute('data-href'));
 
-$(document).on('ready', function() {
+$(document).ready(function() {
   var currentBrowser = (
     location.protocol === 'chrome-extension:' ? 'chrome' :
     location.protocol === 'moz-extension:' ? 'firefox' : ''
